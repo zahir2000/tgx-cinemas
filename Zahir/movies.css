@@ -15,6 +15,7 @@
     width: 90%;
     /* height: 100vh; */
     margin: 0 auto;
+    margin-top: 3vh;
 }
 
 .booking-panel-poster>.movie-box {
@@ -69,4 +70,143 @@
 
 .booking-panel-close>i:hover {
     color: red;
+}
+
+.booking-panel-form {
+    background-color: #FFF5EE;
+    margin: auto;
+    margin-top: 4vh;
+    width: 90%;
+    padding: 40px;
+    box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+}
+
+.booking-panel-form form {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.booking-panel-form form button {
+    border-radius: 4px;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    float: right;
+    width: 25%;
+    text-align: center;
+    background-color: #a3861e;
+    color: #FFF;
+    transition: all 0.7s ease;
+    cursor: pointer;
+    height: 42px;
+}
+
+.booking-panel-form form button:hover {
+    background-color: #b6b6b6
+}
+
+.booking-panel-form form select {
+    padding: 10px;
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    background: #fff url('#') no-repeat calc(100% - 10px) 50%;
+    /* custom arrow set as a background */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE1cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgMTUgOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTUgOCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+ICA8cGF0aCBmaWxsPSIjODk4OTg5IMKgIiBkPSJNMS4wMywwLjE3NWMtMC4yMzYtMC4yMzMtMC42MTgtMC4yMzMtMC44NTQsMGMtMC4yMzUsMC4yMzItMC4yMzYsMC42MSwwLDAuODQybDYuODk3LDYuODA5ICAgIGMwLjIzNiwwLjIzMywwLjYxOCwwLjIzMywwLjg1NCwwbDYuODk3LTYuODA5YzAuMjM2LTAuMjMzLDAuMjM2LTAuNjEsMC0wLjg0MmMtMC4yMzYtMC4yMzMtMC42MTgtMC4yMzMtMC44NTQsMEw3LjUsNi4zODQgICAgTDEuMDMsMC4xNzV6Ii8+ICA8L3N2Zz4=);
+    box-sizing: border-box;
+    border: solid 2px #cbcbcb;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    color: #606060;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 250px;
+    min-width: 150px;
+    height: 42px;
+    margin: 5px 0;
+}
+
+.booking-panel-form form input {
+    border-radius: 4px;
+    border: 1px solid #6e6e6e;
+    padding: 10px;
+    width: 31%;
+    height: 42px;
+    margin: 5px 0;
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc; 
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.movie-dates{
+    border: none;
+    padding: 3vh;
+    margin-right: 2vh;
+    text-align: center;
+    background-color: black;
+    color: #FFF;
+    transition: all 0.7s ease;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+}
+
+.movie-dates:hover{
+    background-color: grey;
+}
+
+.movie-dates-active{
+    background-color: grey !important;
+}
+
+.movie-times{
+    border: none;
+    padding: 2vh;
+    margin-right: 2vh;
+    margin-bottom: 2vh;
+    text-align: center;
+    background-color: black;
+    color: #FFF;
+    transition: all 0.7s ease;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+}
+
+.movie-times:hover{
+    background-color: grey;
 }
