@@ -48,7 +48,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
             <div class="booking-panel-section booking-panel-poster">
                 <div class="movie-box">
-                    <?php echo '<img src="/Assignment/' . $result['poster'] . '" alt="">'; ?>
+                    <?php echo '<img src="../' . $result['poster'] . '" alt="">'; ?>
                 </div>
             </div>
 
@@ -209,7 +209,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         foreach ($experience as $e) {
                             echo "<h4>" . $e['experience'] . "</h4>";
 
-                            $timeQuery = "SELECT showTime "
+                            $timeQuery = "SELECT showTime, showtimeID "
                                     . "FROM showtime S, Hall H, cinema C "
                                     . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID AND C.cinemaID = ?";
 
