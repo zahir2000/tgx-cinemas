@@ -226,7 +226,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                 $showTimeHour = (int)($showTimeInput / 60);
                                 $showTimeMin = str_pad($showTimeInput % 60, 2, '0', STR_PAD_RIGHT);
                                 
-                                echo "<a class='movie-times' href='#'>" . $showTimeHour . ":" . $showTimeMin . "</a>";
+                                echo "<a class='movie-times' href='seats.php?id=" . $t['showtimeID'] . "'>" . $showTimeHour . ":" . $showTimeMin . "</a>";
                             }
                         }
 

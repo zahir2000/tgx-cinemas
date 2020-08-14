@@ -155,7 +155,8 @@
 }
 
 .active, .accordion:hover {
-    background-color: #ccc; 
+    background-color: black;
+    color: #eee;
 }
 
 .panel {

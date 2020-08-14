@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<showtimes>
+  <showtime id="1">
+    <date>2020-08-20</date>
+    <time>12:00</time>
+    <cinema id="">
+      <name>TGX Wangsa Walk</name>
+    </cinema>
+    <movie>
+      <name>Avengers</name>
+    </movie>
+  </showtime>
+</showtimes>
