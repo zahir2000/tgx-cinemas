@@ -1,0 +1,46 @@
+<svg ng-attr-width="{{ ::$ctrl.seatWidth * 1.2 }}" xmlns="http://www.w3.org/2000/svg" ng-attr-view_box="0 0 {{ ::$ctrl.viewBoxW }} {{ ::$ctrl.viewBoxH }}" width="26.4" viewBox="0 0 25 21">
+        <g>
+            <rect ng-attr-x="{{ ::$ctrl.strokeWidth / 2 + 1 }}" ng-attr-y="{{ ::$ctrl.strokeWidth / 2 }}" ng-attr-width="{{ ::$ctrl.seatWidth }}" ng-attr-height="{{ ::$ctrl.seatHeight }}" rx="3" ry="3" ng-attr-fill="{{ $ctrl.fillColor }}" stroke="#7f1922" stroke-width="1" x="1.5" y="0.5" width="22" height="19" fill="#7f1922"></rect>
+
+            <!---->
+
+            <!----><!----><!---->
+
+            <!----><!----><path d="M5.91,5.2,10.25.85a.48.48,0,0,0,0-.7.5.5,0,0,0-.71,0L5.2,4.49.85.15a.48.48,0,0,0-.7,0,.48.48,0,0,0,0,.7L4.49,5.2.15,9.54a.5.5,0,0,0,0,.71.47.47,0,0,0,.35.15.47.47,0,0,0,.35-.15L5.2,5.91l4.34,4.34a.51.51,0,0,0,.36.15.5.5,0,0,0,.35-.15.5.5,0,0,0,0-.71Z" fill="#fff" ng-if="$ctrl.seat.status !== 0 &amp;&amp; $ctrl.seat.status !== 5 &amp;&amp; $ctrl.seat.status !== 2" ng-repeat="seat in ::$ctrl.seatCountArray track by $index" ng-attr-transform="
+                    translate({{ ($ctrl.viewBoxW / $ctrl.seatCount * $index) + ((($ctrl.viewBoxW / $ctrl.seatCount) - $ctrl.crossWidth) / 2) }}, 3)" transform="
+                    translate(7.3, 3)"></path><!----><!---->
+        </g>
+        <path ng-attr-d="
+            M{{ ::$ctrl.seatWidth + 1 + ($ctrl.strokeWidth / 2) }},{{ ::$ctrl.armRestStartY }}
+            a1,1,0,0,1,1,1
+            V{{ ::$ctrl.seatHeight }}
+            a1,1,0,0,1-1,1
+            h-{{ ::$ctrl.seatWidth }}
+            a1,1,0,0,1-1-1
+            V{{ ::$ctrl.armRestStartY + 1 }}
+            a1,1,0,0,1,1-1
+            h1
+            a1,1,0,0,1,1,1
+            v{{ ::$ctrl.seatCushionY }}
+            a1,1,0,0,0,1,1
+            h{{ ::$ctrl.seatWidth - (3 * 2) }}
+            a1,1,0,0,0,1-1
+            V{{ ::$ctrl.armRestStartY + 1 }}
+            a1,1,0,0,1,1-1Z" fill="#000" ng-attr-stroke="{{ $ctrl.strokeColor }}" stroke-width="1" stroke="#7f1922" d="
+            M23.5,7
+            a1,1,0,0,1,1,1
+            V19
+            a1,1,0,0,1-1,1
+            h-22
+            a1,1,0,0,1-1-1
+            V8
+            a1,1,0,0,1,1-1
+            h1
+            a1,1,0,0,1,1,1
+            v6.83
+            a1,1,0,0,0,1,1
+            h16
+            a1,1,0,0,0,1-1
+            V8
+            a1,1,0,0,1,1-1Z"></path>
+    </svg>
