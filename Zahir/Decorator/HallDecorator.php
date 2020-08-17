@@ -16,5 +16,11 @@ abstract class HallDecorator implements HallInterface {
     }
 
     public abstract function cost();
+
     public abstract function experience();
+
+    public function getTimeOfDay() {
+        return $this->hall->getTimeOfDay();
+    }
+
 }

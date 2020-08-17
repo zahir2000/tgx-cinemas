@@ -1,5 +1,7 @@
 <?php
 
+require_once 'HallDecorator.php';
+require_once 'TIME_OF_DAY.php';
 /**
  * Description of RegularDecorator
  *
@@ -12,11 +14,21 @@ class RegularDecorator extends HallDecorator {
     }
 
     public function cost() {
-        return $this->hall->cost() + 5;
+        $cost = $this->hall->cost();
+
+        if ($this->hall->getTimeOfDay() == TIME_OF_DAY::MORNING) {
+            $cost -= 5;
+        } else if ($this->hall->getTimeOfDay() == TIME_OF_DAY::AFTERNOON) {
+            $cost += 5;
+        } else if ($this->hall->getTimeOfDay() == TIME_OF_DAY::EVENING) {
+            $cost += 10;
+        }
+        
+        return $cost;
     }
 
     public function experience() {
-        return "Regular";
+        return $this->hall->experience() . " Regular";
     }
 
 }
