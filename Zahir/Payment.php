@@ -50,8 +50,8 @@ session_start();
             //Calculate the price of the ticket using Hall Decorator -> 1. Get The Hall Type -> 2. Apply the appropriate decorator
             //Add price element inside the Booking.xml for each seat
             //Have 2 buttons for Payment (paypal and credit card)
-            //Upon submission Add Payment Method to Booking.xml
-            //Proceed to Receipt page
+            //TODO: Upon submission Add Payment Method to Booking.xml
+            //TODO: Proceed to Receipt page
             //This is just an idea. You could have Ticket Decorator for Kids, Adults and Double Seat... Zahir from yesterday: I just added SeatType to hall LOL.
         }
         ?>
