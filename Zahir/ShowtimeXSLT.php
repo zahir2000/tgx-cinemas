@@ -1,8 +1,8 @@
 <?php
 
 class ShowtimeXSLT {
-    private $xml = "showtime.xml";
-    private $xsl = "showtime.xsl";
+    private $xml = "Showtime.xml";
+    private $xsl = "Showtime.xsl";
 
     public function __construct($showtimeId) {
         $this->generateMovieDetails($showtimeId);

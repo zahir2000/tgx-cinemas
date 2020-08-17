@@ -1,0 +1,21 @@
+/* 
+    Created on : Aug 17, 2020, 1:09:08 AM
+    Author     : Zahir
+*/
+
+*{
+    font-family: "Verdana", sans-serif;
+}
+
+.order-summary-section {
+    background-color: #FFF;
+    padding: 40px;
+    box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    transition: all 0.7s ease;
+    width: 90%;
+    /* height: 100vh; */
+    margin: 0 auto;
+    margin-top: 3vh;
+}

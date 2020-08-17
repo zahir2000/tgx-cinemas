@@ -26,14 +26,27 @@ class ShowtimeXPath {
         }
     }
 
+    public function getHallType($showtimeId) {
+        $expr = ('/showtimes/showtime[@id=' . $showtimeId . ']/cinema/hall');
+        $exists = $this->xpath->query($expr);
+
+        if ($exists->length > 0) {
+            foreach ($exists as $hallType) {
+                return $hallType->nodeValue;
+            }
+        }
+        
+        return "";
+    }
+
     public function getDetailsById($showtimeID) {
         $expr = ('/showtimes/showtime[@id=' . $showtimeID . ']');
         $result = $this->xpath->query($expr);
-        
+
         foreach ($result as $item) {
-            echo $item->nodeValue. "<br />";
-            
-            foreach ($item->getElementsByTagName('date') as $a){
+            echo $item->nodeValue . "<br />";
+
+            foreach ($item->getElementsByTagName('date') as $a) {
                 echo $a->nodeValue;
             }
         }

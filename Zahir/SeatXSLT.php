@@ -2,11 +2,13 @@
 
 class SeatXSLT {
 
-    private $xmlFile = 'RegularSeatLayout.xml';
-    private $xmlFileUpdated = 'RegularSeatLayoutSold.xml';
-    private $xslFile = 'RegularSeatLayout.xsl';
+    private $xmlFile = 'SeatLayout/RegularSeatLayout.xml';
+    private $xmlFileUpdated;
+    private $xslFile = 'SeatLayout/RegularSeatLayout.xsl';
 
     public function __construct($showtimeId) {
+        $this->xmlFileUpdated = 'SeatLayout/RegularSeatLayoutSold' . $showtimeId . ".xml";
+
         $this->generateSoldSeats($showtimeId);
         $this->generateSeatLayout();
     }

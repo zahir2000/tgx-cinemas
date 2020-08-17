@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<seats>
+  <seat id="A5">
+    <type>Regular</type>
+  </seat>
+  <seat id="A6">
+    <type>Regular</type>
+  </seat>
+</seats>

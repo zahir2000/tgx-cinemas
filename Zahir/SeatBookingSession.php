@@ -10,18 +10,16 @@ if (isset($_POST['seatId'])) {
     if (!isset($_SESSION["selectedSeats"])) {
         $_SESSION["selectedSeats"] = array();
     }
+    
+    $array = $_SESSION['selectedSeats'];
 
     if ($action == 'add') {
-        $array = $_SESSION['selectedSeats'];
-
-        if (!in_array($uid, $array)) {
+        if (!in_array($uid.$seatType, $array)) {
             $array[] = $uid . $seatType;
             $_SESSION["selectedSeats"] = $array;
         }
     } else if ($action == 'remove') {
-        $array = $_SESSION['selectedSeats'];
-
-        if (($key = array_search($uid, $array)) !== false) {
+        if (($key = array_search($uid.$seatType, $array)) !== false) {
             array_splice($array, $key, 1);
         }
 
