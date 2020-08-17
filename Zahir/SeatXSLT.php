@@ -35,7 +35,7 @@ class SeatXSLT {
         $xpath = new DOMXpath($document);
 
         $query = "SELECT seat "
-                . "FROM Ticket "
+                . "FROM ticket "
                 . "WHERE showtimeID = ? ";
 
         $stmt = $db->getDb()->prepare($query);

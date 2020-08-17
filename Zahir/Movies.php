@@ -116,9 +116,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
             foreach ($movieDates as $d) {
                 if ($d['showDate'] == $date) {
-                    echo "<a class='movie-dates movie-dates-active' href='movies.php?id=$id&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
+                    echo "<a class='movie-dates movie-dates-active' href='Movies.php?id=$id&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
                 } else {
-                    echo "<a class='movie-dates' href='movies.php?id=$id&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
+                    echo "<a class='movie-dates' href='Movies.php?id=$id&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
                 }
             }
             ?>
@@ -165,7 +165,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
             <?php
             $cinemaQuery = "SELECT DISTINCT C.cinemaID, C.name "
-                    . "FROM showtime S, Hall H, Cinema C "
+                    . "FROM showtime S, hall H, cinema C "
                     . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID";
 
             $cinemaStmt = $db->getDb()->prepare($cinemaQuery);
@@ -187,7 +187,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         echo "</button><div class='panel'>";
 
                         $expQuery = "SELECT DISTINCT experience "
-                                . "FROM showtime S, Hall H, cinema C "
+                                . "FROM showtime S, hall H, cinema C "
                                 . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID AND C.cinemaID = ?";
 
                         $expStmt = $db->getDb()->prepare($expQuery);
@@ -206,7 +206,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             echo "<h4>" . $e['experience'] . "</h4>";
 
                             $timeQuery = "SELECT showTime, showtimeID "
-                                    . "FROM showtime S, Hall H, cinema C "
+                                    . "FROM showtime S, hall H, cinema C "
                                     . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID AND C.cinemaID = ?";
 
                             $timeStmt = $db->getDb()->prepare($timeQuery);
@@ -222,7 +222,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                 $showTimeHour = (int) ($showTimeInput / 60);
                                 $showTimeMin = str_pad($showTimeInput % 60, 2, '0', STR_PAD_RIGHT);
 
-                                echo "<a class='movie-times' href='seats.php?id=" . $t['showtimeID'] . "'>" . $showTimeHour . ":" . $showTimeMin . "</a>";
+                                echo "<a class='movie-times' href='Seats.php?id=" . $t['showtimeID'] . "'>" . $showTimeHour . ":" . $showTimeMin . "</a>";
                             }
                         }
 
