@@ -37,7 +37,7 @@ class DatabaseConnection {
     }
     
     public function getMovieDetails($movieID){
-        $query = "SELECT * FROM Movie WHERE movieid = ?";
+        $query = "SELECT * FROM movie WHERE movieid = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(1, $movieID, PDO::PARAM_INT);
         $stmt->execute();
