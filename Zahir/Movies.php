@@ -1,5 +1,6 @@
 <?php
 require_once '../Database/DatabaseConnection.php';
+require_once '../Database/BookingConnection.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +18,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     }
 
     $db = DatabaseConnection::getInstance();
-    $result = $db->getMovieDetails($id);
+    $bookingDb = new BookingConnection();
+    $result = $bookingDb->getMovieDetails($id);
 
     if (!isset($result)) {
         echo "TODO: The ID does not exist";

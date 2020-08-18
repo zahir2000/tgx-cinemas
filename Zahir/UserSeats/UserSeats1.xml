@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <seats>
-  <seat id="A5">
+  <seat id="A2">
     <type>Regular</type>
   </seat>
-  <seat id="A6">
+  <seat id="C5">
     <type>Regular</type>
+  </seat>
+  <seat id="C6">
+    <type>Double</type>
   </seat>
 </seats>

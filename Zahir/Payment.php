@@ -137,6 +137,10 @@ session_start();
             }
 
             $doc->save($bookingFile);
+            
+            //Save Cart to Session
+            
+            $_SESSION['userCart'] = $cart;
 
             //echo "Total: RM" . $cart->calculateTotal();
 
@@ -151,13 +155,13 @@ session_start();
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 0 0.5vh">
+                    <td style="padding: 0 0.5vh; padding-top: 2vh">
                         Regular
                     </td>
-                    <td style="text-align: center">
+                    <td style="text-align: center; padding-top: 2vh">
                         RM <?php echo number_format($regularTicketPrice->cost(), 2) . " X " . $adultsCount ?>
                     </td>
-                    <td style="text-align: right; padding: 0 0.5vh">
+                    <td style="text-align: right; padding: 0 0.5vh; padding-top: 2vh">
                         RM <?php echo number_format($regularTicketPrice->cost() * $adultsCount, 2) ?>
                     </td>
                 </tr>
@@ -234,6 +238,7 @@ session_start();
                         </tr>
                         <tr>
                             <td colspan="2">
+                                <input type="hidden" name="paymentMethod" value="credit" />
                                 <button class="button" style="margin: 2vh 0">Make Payment</button>
                             </td>
                         </tr>
@@ -264,6 +269,7 @@ session_start();
                         </tr>
                         <tr>
                             <td colspan="2">
+                                <input type="hidden" name="paymentMethod" value="paypal" />
                                 <button class="button" style="margin: 2vh 0">Make Payment</button>
                             </td>
                         </tr>

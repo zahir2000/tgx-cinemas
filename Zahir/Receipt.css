@@ -1,0 +1,111 @@
+/* 
+    Created on : Aug 18, 2020, 6:03:29 PM
+    Author     : Zahir
+*/
+
+*{
+    font-family: "Verdana", sans-serif;
+}
+
+.receipt-information {
+    background-color: #FFF;
+    padding: 40px;
+    box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    transition: all 0.7s ease;
+    width: 512px;
+    height: 440px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.dotted {
+    border:none;
+    border:1px dotted #aaa;
+}
+
+.dotted-td {
+    border:none;
+    border-top: 1px dotted #aaa;
+    
+}
+
+.dotted-td-second {
+    border:none;
+    font-weight: 800;
+    background: #eee;
+    border-top: 1px dotted #aaa;
+    border-bottom: 1px dotted #aaa;
+}
+
+.receipt-information img {
+    width: 25px;
+    height: 25px;
+    padding-left: 1vh;
+    vertical-align: middle;
+}
+
+.receipt-information span {
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.receipt-information span i {
+    font-size: 22px;
+    vertical-align: middle;
+    padding-left: 1.5vh;
+    padding-right: 0.5vh;
+}
+
+.receipt-information span img {
+    width: 25px !important;
+    height: 18px !important;
+    padding-left: 1.5vh;
+    padding-right: 0.5vh;
+}
+
+.receipt-information table {
+    width: 100%;
+}
+
+.receipt-information table tr td {
+    text-align: center;
+}
+
+.receipt-information table td{
+    padding-top: 3vh;
+}
+
+.seat{
+    background: black;
+    color: white;
+    padding: 1vh;
+    border-radius: 50%;
+    margin: 0.5vh;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.button {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2.2vh 2px;
+  cursor: pointer;
+  transition: all 0.7s ease;
+  width: 100%;
+}
+
+.button:hover{
+    background-color: black;
+}

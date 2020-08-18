@@ -7,6 +7,7 @@
       <name>TGX Wangsa Walk</name>
       <hall id="5">
         <experience>Deluxe</experience>
+        <experience>LUXE</experience>
       </hall>
     </cinema>
     <movie id="1">
@@ -15,11 +16,22 @@
     </movie>
   </showtime>
   <seats>
-  <seat id="A5">
-    <type>Regular</type>
-  </seat>
-  <seat id="A6">
-    <type>Regular</type>
-  </seat>
-</seats>
+    <seat id="A2">
+      <type>Regular</type>
+      <price>20</price>
+    </seat>
+    <seat id="C5">
+      <type>Regular</type>
+      <price>15</price>
+    </seat>
+    <seat id="C6">
+      <type>Double</type>
+      <price>30</price>
+    </seat>
+  </seats>
+  <payment>
+    <method>PayPal</method>
+    <email>myemail@example.com</email>
+    <amount>65</amount>
+  </payment>
 </booking>

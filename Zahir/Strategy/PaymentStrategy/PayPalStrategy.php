@@ -17,8 +17,13 @@ class PayPalStrategy implements PaymentStrategy {
         $this->password = $password;
     }
 
+    function getEmail() {
+        return $this->email;
+    }
+
     public function pay($amount) {
-        echo "$amount paid using PayPal.";
+        //Store to Database
+        //Delete Booking1.xml and UserSeats1.xml
     }
 
 }

@@ -21,8 +21,12 @@ class CreditCardStrategy implements PaymentStrategy {
         $this->expiryDate = $expiryDate;
     }
     
+    function getName() {
+        return $this->name;
+    }
+   
     public function pay($amount) {
-        echo $amount . " paid with credit/debit card";
+        //Store to Database
     }
 
 }

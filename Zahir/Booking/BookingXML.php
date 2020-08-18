@@ -28,11 +28,16 @@ class BookingXML {
         $booking->loadXML(file_get_contents($this->xmlFile), LIBXML_NOBLANKS);
         $root = $booking->getElementsByTagName('booking')->item(0);
 
+        $checkShowtime = $booking->getElementsByTagName('showtime');
+        foreach ($checkShowtime as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
         if ($this->showtimeExists($showtimeId)) {
             return;
         }
 
-        foreach ($exp->query('/showtimes/showtime[@id=' . $showtimeId . "]") as $item) {
+        foreach ($exp->query('//showtime[@id=' . $showtimeId . "]") as $item) {
             $root->appendChild($booking->importNode($item, TRUE));
         }
 
@@ -75,6 +80,38 @@ class BookingXML {
         } else {
             return false;
         }
+    }
+
+    public function addPaymentMethod($paymentMethod, $credentials, $amount) {
+        $domtree = new DOMDocument('1.0', 'UTF-8');
+        $domtree->formatOutput = true;
+        $domtree->loadXML(file_get_contents($this->xmlFile), LIBXML_NOBLANKS);
+        $root = $domtree->getElementsByTagName('booking')->item(0);
+
+        $checkPayment = $domtree->getElementsByTagName('payment');
+        foreach ($checkPayment as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        /* create payment method element */
+        $payment = $domtree->createElement("payment");
+        $payment = $root->appendChild($payment);
+
+        $payment->appendChild($domtree->createElement('method', $paymentMethod));
+
+        switch (strtolower($paymentMethod)) {
+            case 'paypal':
+                $payment->appendChild($domtree->createElement('email', $credentials));
+                break;
+            case 'credit card':
+                $payment->appendChild($domtree->createElement('name', $credentials));
+                break;
+            default :
+                echo "Invalid Payment Method";
+        }
+
+        $payment->appendChild($domtree->createElement('amount', $amount));
+        $domtree->save($this->xmlFile);
     }
 
     private function append($showtimeDetails) {
