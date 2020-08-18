@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2020 at 11:54 AM
+-- Generation Time: Aug 18, 2020 at 05:36 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `noOfAdults` int(11) NOT NULL,
   `noOfKids` int(11) NOT NULL,
   `paymentMethod` varchar(100) NOT NULL,
+  `credentials` varchar(255) NOT NULL,
+  `totalPrice` decimal(10,2) NOT NULL,
   `userID` int(11) NOT NULL,
   PRIMARY KEY (`bookingID`),
   KEY `booking_user` (`userID`)
@@ -58,8 +60,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`bookingID`, `bookingDate`, `noOfAdults`, `noOfKids`, `paymentMethod`, `userID`) VALUES
-(1, '2020-08-15', 1, 0, 'Credit Card', 1);
+INSERT INTO `booking` (`bookingID`, `bookingDate`, `noOfAdults`, `noOfKids`, `paymentMethod`, `credentials`, `totalPrice`, `userID`) VALUES
+(1, '2020-08-15', 1, 0, 'Credit Card', 'Zahiriddin Rustamov', '15.00', 1);
 
 -- --------------------------------------------------------
 
@@ -94,6 +96,7 @@ DROP TABLE IF EXISTS `hall`;
 CREATE TABLE IF NOT EXISTS `hall` (
   `hallID` int(11) NOT NULL AUTO_INCREMENT,
   `experience` varchar(100) NOT NULL,
+  `basePrice` decimal(10,2) NOT NULL,
   `cinemaID` int(11) NOT NULL,
   PRIMARY KEY (`hallID`),
   KEY `cinemaID` (`cinemaID`)
@@ -103,13 +106,13 @@ CREATE TABLE IF NOT EXISTS `hall` (
 -- Dumping data for table `hall`
 --
 
-INSERT INTO `hall` (`hallID`, `experience`, `cinemaID`) VALUES
-(1, 'Regular', 1),
-(2, 'Regular', 1),
-(3, 'LUXE', 2),
-(4, 'LUXE', 3),
-(5, 'Deluxe', 1),
-(6, 'Deluxe', 3);
+INSERT INTO `hall` (`hallID`, `experience`, `basePrice`, `cinemaID`) VALUES
+(1, 'Regular', '5.00', 1),
+(2, 'Regular', '5.00', 1),
+(3, 'LUXE', '10.00', 2),
+(4, 'LUXE', '10.00', 3),
+(5, 'Deluxe', '10.00', 1),
+(6, 'Deluxe', '15.00', 3);
 
 -- --------------------------------------------------------
 
