@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2020 at 05:36 PM
+-- Generation Time: Aug 18, 2020 at 05:44 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -234,13 +234,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `number` varchar(50) NOT NULL,
   `dob` date NOT NULL,
   `gender` varchar(50) NOT NULL,
-  `photo` varchar(200) NOT NULL,
   `address` varchar(250) NOT NULL,
-  `state` varchar(100) NOT NULL,
-  `creationDate` date NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `lastLoginDate` date NOT NULL,
   PRIMARY KEY (`userID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
@@ -248,8 +244,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userID`, `name`, `email`, `number`, `dob`, `gender`, `photo`, `address`, `state`, `creationDate`, `username`, `password`, `lastLoginDate`) VALUES
-(1, 'Zahir Sher', 'zakisher@gmail.com', '010-8003610', '2000-01-24', 'Male', '', 'Idaman Putera Condo', 'KL', '2020-08-15', 'zahir', '123', '2020-08-15');
+INSERT INTO `user` (`userID`, `name`, `email`, `number`, `dob`, `gender`, `address`, `username`, `password`) VALUES
+(1, 'Zahir Sher', 'zakisher@gmail.com', '010-8003610', '2000-01-24', 'Male', 'Idaman Putera Condo', 'zahir', '123');
 
 -- --------------------------------------------------------
 
