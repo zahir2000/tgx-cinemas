@@ -29,4 +29,18 @@ class BookingConnection {
         }
     }
 
+    public function getMovieDetails($movieID) {
+        $query = "SELECT * FROM movie WHERE movieid = ?";
+        $stmt = $this->db->getDb()->prepare($query);
+        $stmt->bindParam(1, $movieID, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 1) {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
 }
