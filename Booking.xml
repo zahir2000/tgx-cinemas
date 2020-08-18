@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<booking>
+    <showtime id="5">
+        <date>2020-08-20</date>
+        <time>14:00</time>
+        <cinema id="1">
+            <name>TGX Wangsa Walk</name>
+            <hall id="2">
+                <experience>Regular</experience>
+            </hall>
+        </cinema>
+        <movie id="1">
+            <name>Avengers: Infinity War</name>
+            <ageRestriction>13</ageRestriction>
+        </movie>
+    </showtime>
+    <date></date>
+    <adults></adults>
+    <kids></kids>
+    <paymentMethod></paymentMethod>
+    <seats>
+        <seat id="">
+            <type></type>
+            <price></price>
+        </seat>
+    </seats>
+</booking>

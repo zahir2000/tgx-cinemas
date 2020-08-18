@@ -1,0 +1,66 @@
+/* 
+    Created on : Aug 17, 2020, 1:09:08 AM
+    Author     : Zahir
+*/
+
+*{
+    font-family: "Verdana", sans-serif;
+}
+
+.order-summary-section {
+    background-color: #FFF;
+    padding: 40px;
+    box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
+    transition: all 0.7s ease;
+    width: 90%;
+    /* height: 100vh; */
+    margin: 0 auto;
+    margin-top: 3vh;
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: black;
+    color: white;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.button {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: all 0.7s ease;
+  width: 100%;
+}
+
+.button:hover{
+    background-color: black;
+}
