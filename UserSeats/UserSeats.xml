@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<seats>
-  <seat id="C6">
-    <type>Double</type>
-  </seat>
-  <seat id="C5">
-    <type>Regular</type>
-  </seat>
-</seats>
