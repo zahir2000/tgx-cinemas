@@ -8,7 +8,7 @@ class DatabaseConnection {
         $host = 'localhost';
         $dbName = 'tgx_db';
         $user = 'root';
-        $password = '11234566z';
+        $password = '';
 
         // set up DSN
         $dsn = "mysql:host=$host;dbname=$dbName";
@@ -34,21 +34,6 @@ class DatabaseConnection {
         if ($this->db instanceof PDO) {
             return $this->db;
        }
-    }
-    
-    public function getMovieDetails($movieID){
-        $query = "SELECT * FROM movie WHERE movieid = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(1, $movieID, PDO::PARAM_INT);
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 1) {
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        }
-        else{
-            return null;
-        }
     }
     
     public function closeConnection(){
