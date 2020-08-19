@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<showtimes>
+  <showtime id="4">
+    <date>2020-08-22</date>
+    <time>13:00</time>
+    <cinema id="1">
+      <name>TGX Wangsa Walk</name>
+      <hall id="5">
+        <experience>Deluxe</experience>
+        <basePrice>10.00</basePrice>
+      </hall>
+    </cinema>
+    <movie id="1">
+      <name>Avengers: Infinity War</name>
+      <ageRestriction>13</ageRestriction>
+    </movie>
+  </showtime>
+  <showtime id="1">
+    <date>2020-08-20</date>
+    <time>12:00</time>
+    <cinema id="1">
+      <name>TGX Wangsa Walk</name>
+      <hall id="1">
+        <experience>Regular</experience>
+        <basePrice>5.00</basePrice>
+      </hall>
+    </cinema>
+    <movie id="1">
+      <name>Avengers: Infinity War</name>
+      <ageRestriction>13</ageRestriction>
+    </movie>
+  </showtime>
+  <showtime id="5">
+    <date>2020-08-20</date>
+    <time>14:00</time>
+    <cinema id="1">
+      <name>TGX Wangsa Walk</name>
+      <hall id="2">
+        <experience>Regular</experience>
+        <basePrice>5.00</basePrice>
+      </hall>
+    </cinema>
+    <movie id="1">
+      <name>Avengers: Infinity War</name>
+      <ageRestriction>13</ageRestriction>
+    </movie>
+  </showtime>
+  <showtime id="2">
+    <date>2020-08-20</date>
+    <time>12:30</time>
+    <cinema id="2">
+      <name>TGX Suria KLCC</name>
+      <hall id="3">
+        <experience>LUXE</experience>
+        <basePrice>10.00</basePrice>
+      </hall>
+    </cinema>
+    <movie id="1">
+      <name>Avengers: Infinity War</name>
+      <ageRestriction>13</ageRestriction>
+    </movie>
+  </showtime>
+  <showtime id="6">
+    <date>2020-08-24</date>
+    <time>14:00</time>
+    <cinema id="1">
+      <name>TGX Wangsa Walk</name>
+      <hall id="2">
+        <experience>Regular</experience>
+        <basePrice>5.00</basePrice>
+      </hall>
+    </cinema>
+    <movie id="4">
+      <name>Joker</name>
+      <ageRestriction>18</ageRestriction>
+    </movie>
+  </showtime>
+</showtimes>
