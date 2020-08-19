@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cinemas>
+  <cinemas>
+    <cinema id="1">
+      <name>TGX Wangsa Walk</name>
+      <location>2-01, Level 2 Wangsa Walk Mall, Wangsa Avenue, 9, Jalan Wangsa Perdana 1, Bandar Wangsa Maju, 53300 Kuala Lumpur, Wilayah Persekutuan, Malaysia</location>
+    </cinema>
+  </cinemas>
+  <cinemas>
+    <cinema id="2">
+      <name>TGX Suria KLCC</name>
+      <location>Level 3, Suria KLCC, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Wilayah Persekutuan, Malaysia</location>
+    </cinema>
+  </cinemas>
+  <cinemas>
+    <cinema id="3">
+      <name>TGX 1 Utama</name>
+      <location>Level 3, Old Wing, 1 Utama Shopping Centre, 1, Lebuh Bandar Utama, Bandar Utama, 47800 Petaling Jaya, Selangor, Malaysia</location>
+    </cinema>
+  </cinemas>
+</cinemas>
