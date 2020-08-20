@@ -1,14 +1,4 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Aug 15, 2020, 1:26:46 AM
-    Author     : Zahir
-*/
-
-.seats {
+.ticket-selection {
     background-color: #FFF;
     padding: 40px;
     box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
@@ -21,35 +11,12 @@ and open the template in the editor.
     margin-top: 3vh;
 }
 
-.row{
-    display: flex;
-    justify-content: center;
-}
-
-.row-id {
-    padding: 0 5vh;
-}
-
-img {
-    padding-left: 2vh;
-    padding-right: 2vh;
-}
-
-span center {
-    padding-bottom: 3vh;
-}
-
-.seats img {
-    width: 25px;
-    height: 25px;
-}
-
 .button {
     text-align: center;
     padding-top: 4vh;
 }
 
-.button input {
+.button button {
     background-color: grey;
     border: none;
     color: white;
@@ -62,6 +29,6 @@ span center {
     cursor: pointer;
 }
 
-.button input:hover {
+.button button:hover{
     background-color: black;
 }

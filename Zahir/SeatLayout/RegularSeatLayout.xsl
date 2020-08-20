@@ -31,7 +31,7 @@
                 
                 $.ajax({
                 type: "POST",
-                url: 'SeatsSession.php',
+                url: 'Session/SeatsSession.php',
                 data: { seatId : seatId, action : action, seatType : seatType }
                 });
                 
@@ -41,7 +41,7 @@
                 
                 $.ajax({
                 type: "POST",
-                url: 'SeatsSession.php',
+                url: 'Session/SeatsSession.php',
                 data: { seatId : seatId, action : action, seatType : seatType }
                 });
                 }

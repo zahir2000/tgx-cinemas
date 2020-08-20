@@ -50,7 +50,10 @@
                             
                                 <span>
                                     <i class="fas fa-2x fa-glasses"></i>
-                                    <xsl:value-of select='cinema/hall/experience' />
+                                    <xsl:for-each select="cinema/hall/experience">
+                                        <span style="padding-right:0.5vh"><xsl:value-of select='.' /></span>
+                                    </xsl:for-each>
+                                    
                                 </span>
                             
                                 <span>

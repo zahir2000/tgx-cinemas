@@ -1,4 +1,8 @@
 <?php
+require_once 'Session/CheckLogin.php';
+require_once 'Session/SessionHelper.php';
+$token = SessionHelper::generateToken('seatcount_payment');
+
 require_once 'ShowtimeXSLT.php';
 require_once 'ShowtimeXPath.php';
 
@@ -10,24 +14,14 @@ require_once 'Booking/BookingXML.php';
 require_once 'Classes/Booking.php';
 require_once 'Classes/User.php';
 
-session_start();
-
-$_SESSION['userId'] = 1;
-
-/* if (isset($_SESSION['selectedSeats'])) {
-  $array = $_SESSION['selectedSeats'];
-
-  for ($x = 0, $max = count($array); $x < $max; ++$x) {
-  echo $array[$x];
-  }
-  } */
-
-if (!isset($_GET['id'])) {
-    return;
+if (!filter_input(INPUT_GET, 'id')) {
+    header('Location:/Assignment/Simran/Home.php');
 }
 
-$showtimeId = $_GET['id'];
-$userId = $_SESSION['userId'];
+include_once 'Header.php';
+
+$showtimeId = filter_input(INPUT_GET, 'id');
+$userId = SessionHelper::get('userId');
 
 $userSeats = new SelectedSeatsXML($userId);
 $userSeatsCount = new SelectedSeatsXPath($userId);
@@ -46,98 +40,7 @@ $xmlGenShowtime = new ShowtimeXSLT($showtimeId, 'Booking/Booking' . $userId . '.
         <title>TGX Cinemas - Payment</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-        <style>
-            .ticket-selection {
-                background-color: #FFF;
-                padding: 40px;
-                box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
-                -webkit-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
-                -moz-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
-                transition: all 0.7s ease;
-                width: 90%;
-                /* height: 100vh; */
-                margin: 0 auto;
-                margin-top: 3vh;
-            }
-
-            .button {
-                text-align: center;
-                padding-top: 4vh;
-            }
-
-            .button button {
-                background-color: grey;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                transition: all 0.7s ease;
-                cursor: pointer;
-            }
-
-            .button button:hover{
-                background-color: black;
-            }
-        </style>
-
-        <script>
-            var total = <?php echo $userSeatsCount->getRegularSeatCount() ?>;
-            function Adults_ValueChanged(element) {
-                //document.getElementById("kids").max = total - element.value;
-            }
-
-            function Kids_ValueChanged(element) {
-                //document.getElementById("adults").max = total - element.value;
-            }
-
-            $('document').ready(function () {
-                var doubleSeatCount = <?php echo $userSeatsCount->getDoubleSeatCount() ?>;
-                if (doubleSeatCount > 0) {
-                    document.getElementById("doubleSeat").style.display = "block";
-                }
-
-                let adultValue = $('#adults').val();
-                let kidValue = $('#kids').val();
-
-                $('#adults').on('change', function () {
-                    if ($(this).val() > adultValue) {
-                        adultValue = $(this).val();
-                        kidValue--;
-                        document.getElementById("kids").value = kidValue;
-                    } else {
-                        adultValue = $(this).val();
-                        kidValue++;
-                        document.getElementById("kids").value = kidValue;
-                    }
-
-                    value = $(this).val();
-                });
-
-                $('#kids').on('change', function () {
-                    if ($(this).val() > kidValue) {
-                        kidValue = $(this).val();
-
-                        adultValue--;
-                        document.getElementById("adults").value = adultValue;
-
-                    } else {
-                        kidValue = $(this).val();
-                        adultValue++;
-                        document.getElementById("adults").value = adultValue;
-                    }
-
-                    value = $(this).val();
-                });
-
-                if (total > 0) {
-                    document.getElementById("regularSeat").style.display = "block";
-                }
-            });
-        </script>
+        <link rel="stylesheet" type="text/css" href="SeatCount.css"/>
     </head>
     <body>
         <div class="ticket-selection">
@@ -171,7 +74,63 @@ $xmlGenShowtime = new ShowtimeXSLT($showtimeId, 'Booking/Booking' . $userId . '.
                 <div class="button">
                     <button type="submit" id="payment" name="payment">Proceed to Payment</button>
                 </div>
+                <input type="hidden" value="<?php echo $token ?>" id='csrf_token' name='csrf_token'/>
             </form>
         </div>
     </body>
+
+    <script>
+        var total = <?php echo $userSeatsCount->getRegularSeatCount() ?>;
+        function Adults_ValueChanged(element) {
+            //document.getElementById("kids").max = total - element.value;
+        }
+
+        function Kids_ValueChanged(element) {
+            //document.getElementById("adults").max = total - element.value;
+        }
+
+        $('document').ready(function () {
+            var doubleSeatCount = <?php echo $userSeatsCount->getDoubleSeatCount() ?>;
+            if (doubleSeatCount > 0) {
+                document.getElementById("doubleSeat").style.display = "block";
+            }
+
+            let adultValue = $('#adults').val();
+            let kidValue = $('#kids').val();
+
+            $('#adults').on('change', function () {
+                if ($(this).val() > adultValue) {
+                    adultValue = $(this).val();
+                    kidValue--;
+                    document.getElementById("kids").value = kidValue;
+                } else {
+                    adultValue = $(this).val();
+                    kidValue++;
+                    document.getElementById("kids").value = kidValue;
+                }
+
+                value = $(this).val();
+            });
+
+            $('#kids').on('change', function () {
+                if ($(this).val() > kidValue) {
+                    kidValue = $(this).val();
+
+                    adultValue--;
+                    document.getElementById("adults").value = adultValue;
+
+                } else {
+                    kidValue = $(this).val();
+                    adultValue++;
+                    document.getElementById("adults").value = adultValue;
+                }
+
+                value = $(this).val();
+            });
+
+            if (total > 0) {
+                document.getElementById("regularSeat").style.display = "block";
+            }
+        });
+    </script>
 </html>

@@ -2,8 +2,8 @@
 <?xml-stylesheet type="text/xsl" href="RegularSeatLayout.xsl"?>
 <hall>
     <row id="A">
-        <seat id="1">Booked</seat>
-        <seat id="2">Booked</seat>
+        <seat id="1"/>
+        <seat id="2"/>
         <seat id="3"/>
         <seat id="4"/>
         <seat id="5"/>
@@ -15,7 +15,7 @@
         <seat id="2"/>
         <seat id="3"/>
         <seat id="4"/>
-        <seat id="5">Booked</seat>
+        <seat id="5"/>
         <seat id="6"/>
     </row>
     
@@ -24,7 +24,7 @@
         <seat id="2"/>
         <seat id="3"/>
         <seat id="4"/>
-        <seat id="5">Booked</seat>
-        <seat id="6" type="Double">Booked</seat>
+        <seat id="5"/>
+        <seat id="6" type="Double"/>
     </row>
 </hall>

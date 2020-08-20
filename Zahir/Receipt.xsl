@@ -17,7 +17,7 @@
             
             <script type="text/javascript">
                 function goToHome(){
-                window.location.href = "Movies.php?id=" + 1;      
+                window.location.href = "/Assignment/Simran/Home.php";      
                 }
             </script>
             

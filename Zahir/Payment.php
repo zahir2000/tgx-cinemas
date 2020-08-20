@@ -1,4 +1,8 @@
 <?php
+require_once 'Session/CheckLogin.php';
+require_once 'Session/SessionHelper.php';
+$token = SessionHelper::generateToken('receipt');
+
 require_once 'ShowtimeXSLT.php';
 require_once 'ShowtimeXPath.php';
 require_once 'Booking/BookingXML.php';
@@ -19,7 +23,7 @@ require_once 'Strategy/SeatPriceStrategy/RegularSeatStrategy.php';
 
 require_once 'Utility/GeneralUtilities.php';
 
-session_start();
+include_once 'Header.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,38 +35,27 @@ session_start();
     </head>
     <body>
         <?php
-        //echo $_POST['adults'];
-        //Display Order Summary https://i.imgur.com/T7Aje7g.png
-        //Display PayPal and Credit Card Payment
-        //Ticket : https://i.imgur.com/2ikZXWk.png
-        ?>
-
-        <?php
-        if (isset($_GET['id'])) {
-            $showtimeId = $_GET['id'];
-            $userId = $_SESSION['userId'];
-
-            $bookingXML = new BookingXML($userId);
-
-            $xmlGenShowtime = new ShowtimeXSLT($showtimeId, "Booking/Booking" . $userId . ".xml");
-
-            //Generate Booking.xml for the User
-            //Append the Showtime.xml inside the Booking.xml as a Child Node
-            //Append the UsersSeats[userID].xml inside the Booking.xml as a Child node
-            //Calculate the price of the ticket using Hall Decorator -> 1. Get The Hall Type -> 2. Apply the appropriate decorator
-            //Add price element inside the Booking.xml for each seat
-            //Have 2 buttons for Payment (paypal and credit card)
-            //TODO: Upon submission Add Payment Method to Booking.xml
-            //TODO: Proceed to Receipt page
-            //This is just an idea. You could have Ticket Decorator for Kids, Adults and Double Seat... Zahir from yesterday: I just added SeatType to hall LOL.
+        if (!SessionHelper::verifyToken('seatcount_payment')) {
+            header('Location:/Assignment/Simran/Home.php');
         }
+        
+        if (!filter_input(INPUT_GET, 'id')) {
+            header('Location:/Assignment/Simran/Home.php');
+        }
+
+        $showtimeId = filter_input(INPUT_GET, 'id');
+        $userId = SessionHelper::get('userId');
+
+        $bookingXML = new BookingXML($userId);
+
+        $xmlGenShowtime = new ShowtimeXSLT($showtimeId, "Booking/Booking" . $userId . ".xml");
         ?>
 
         <div class="order-summary-section">
             <h3><center>Order Summary</center></h3>
 
             <?php
-            $showXpath = new ShowtimeXPath("Booking/Booking" . $_SESSION['userId'] . ".xml");
+            $showXpath = new ShowtimeXPath("Booking/Booking" . $userId . ".xml");
             $timeOfDay = GeneralUtilities::getTimeOfDay($showXpath->getTime($showtimeId));
 
             $baseHall = new Hall($showXpath->getBasePrice($showtimeId));
@@ -89,13 +82,13 @@ session_start();
             $kidTicketPrice = new Ticket($baseHall->cost(), new KidSeatStrategy());
             $twinTicketPrice = new Ticket($baseHall->cost(), new TwinSeatStrategy());
 
-            $adultsCount = $_POST['adults'];
-            $kidsCount = $_POST['kids'];
-            $twinCount = $_POST['double'];
+            $adultsCount = filter_input(INPUT_POST, 'adults');
+            $kidsCount = filter_input(INPUT_POST, 'kids');
+            $twinCount = filter_input(INPUT_POST, 'double');
 
             $bookingXML->addPeopleCount($adultsCount + $twinCount, $kidsCount);
 
-            $bookingFile = "Booking/Booking" . $_SESSION['userId'] . ".xml";
+            $bookingFile = "Booking/Booking" . $userId . ".xml";
             $doc = new DOMDocument();
             $doc->load($bookingFile);
             $doc->formatOutput = true;
@@ -139,7 +132,7 @@ session_start();
                 foreach ($xpath->evaluate("//seat[type='Double'][$index]") as $seat) {
                     $ticket = new Ticket($baseHall->cost(), new TwinSeatStrategy(), $seat->getAttribute('id'));
                     $cart->addTicket($ticket);
-                    
+
                     foreach ($xpath->evaluate("//seat[type='Double'][$index]/price") as $node) {
                         $node->parentNode->removeChild($node);
                     }
@@ -150,10 +143,10 @@ session_start();
 
             $doc->save($bookingFile);
 
-            //Save Cart to Session
-
-            $_SESSION['userCart'] = $cart;
-
+            $a = serialize($cart);
+            $cartLocation = 'user_cart-' . sha1(base64_encode(random_bytes(10)));
+            file_put_contents("Cart/" . $cartLocation, $a);
+            SessionHelper::add('user_cart', $cartLocation);
             ?>
 
             <table style="width: 100%; margin: 5vh 0">
@@ -253,6 +246,7 @@ session_start();
                             </td>
                         </tr>
                     </table>
+                    <input type="hidden" value="<?php echo $token ?>" id='csrf_token' name='csrf_token'/>
                 </form>
             </div>
 
@@ -284,6 +278,7 @@ session_start();
                             </td>
                         </tr>
                     </table>
+                    <input type="hidden" value="<?php echo $token ?>" id='csrf_token' name='csrf_token'/>
                 </form>
                 </p>            
             </div>

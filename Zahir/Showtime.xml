@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <showtimes>
-  <showtime id="4">
-    <date>2020-08-22</date>
-    <time>13:00</time>
-    <cinema id="1">
-      <name>TGX Wangsa Walk</name>
-      <hall id="5">
-        <experience>Deluxe</experience>
-        <basePrice>10.00</basePrice>
-      </hall>
-    </cinema>
-    <movie id="1">
-      <name>Avengers: Infinity War</name>
-      <ageRestriction>13</ageRestriction>
-    </movie>
-  </showtime>
   <showtime id="1">
     <date>2020-08-20</date>
     <time>12:00</time>
@@ -30,14 +15,15 @@
       <ageRestriction>13</ageRestriction>
     </movie>
   </showtime>
-  <showtime id="5">
-    <date>2020-08-20</date>
-    <time>14:00</time>
+  <showtime id="4">
+    <date>2020-08-22</date>
+    <time>13:00</time>
     <cinema id="1">
       <name>TGX Wangsa Walk</name>
-      <hall id="2">
-        <experience>Regular</experience>
-        <basePrice>5.00</basePrice>
+      <hall id="5">
+        <experience>Deluxe</experience>
+        <experience>LUXE</experience>
+        <basePrice>10.00</basePrice>
       </hall>
     </cinema>
     <movie id="1">
@@ -60,8 +46,8 @@
       <ageRestriction>13</ageRestriction>
     </movie>
   </showtime>
-  <showtime id="6">
-    <date>2020-08-24</date>
+  <showtime id="5">
+    <date>2020-08-20</date>
     <time>14:00</time>
     <cinema id="1">
       <name>TGX Wangsa Walk</name>
@@ -70,9 +56,159 @@
         <basePrice>5.00</basePrice>
       </hall>
     </cinema>
-    <movie id="4">
-      <name>Joker</name>
-      <ageRestriction>18</ageRestriction>
+    <movie id="1">
+      <name>Avengers: Infinity War</name>
+      <ageRestriction>13</ageRestriction>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
+    </movie>
+  </showtime>
+  <showtime id="">
+    <date/>
+    <time>0:00</time>
+    <cinema id="">
+      <name/>
+      <hall id="">
+        <experience/>
+        <basePrice/>
+      </hall>
+    </cinema>
+    <movie id="">
+      <name/>
+      <ageRestriction/>
     </movie>
   </showtime>
 </showtimes>

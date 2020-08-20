@@ -53,7 +53,13 @@ class ShowtimeXML {
         /* elements inside hall */
         $xmlHall->appendChild($domtree->createAttribute('id'));
         $xmlHall->setAttribute('id', $showtimeDetails['hallID']);
-        $xmlHall->appendChild($domtree->createElement('experience', $showtimeDetails['experience']));
+
+        $experience = explode(",", $showtimeDetails['experience']);
+
+        foreach ($experience as $exp) {
+            $xmlHall->appendChild($domtree->createElement('experience', $exp));
+        }
+
         $xmlHall->appendChild($domtree->createElement('basePrice', $showtimeDetails['basePrice']));
 
         /* elements inside movie */

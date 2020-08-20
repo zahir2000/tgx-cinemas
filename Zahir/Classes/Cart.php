@@ -9,8 +9,8 @@ require_once 'Strategy/PaymentStrategy/PaymentStrategy.php';
  */
 class Cart {
 
-    private $tickets;
-    private $showtimeId;
+    public $tickets;
+    public $showtimeId;
 
     function __construct($showtimeId = "") {
         $this->showtimeId = $showtimeId;

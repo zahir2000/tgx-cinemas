@@ -102,7 +102,7 @@ class SessionHelper {
             session_unset();
         } else {
             self::validateKeyInput($key);
-            session_unset($key);
+            unset($_SESSION[$key]);
         }
 
         /* Check session inactivity */
@@ -162,10 +162,9 @@ class SessionHelper {
         /* Start the session */
         self::session();
 
-        if (self::check('userId')) {
+        if (isset($_SESSION['userId'])) {
             if (self::isLoginSessionExpired()) {
                 self::destroy();
-                self::regenerate_session();
                 header("Location:loginPage.php?return=session_expired");
             }
         }
@@ -215,7 +214,7 @@ class SessionHelper {
         }
     }
 
-    private static function regenerate_session() {
+    public static function regenerate_session() {
         session_regenerate_id();
     }
 

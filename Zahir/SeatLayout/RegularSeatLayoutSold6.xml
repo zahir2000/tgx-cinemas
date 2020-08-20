@@ -23,8 +23,8 @@
         <seat id="1"/>
         <seat id="2"/>
         <seat id="3"/>
-        <seat id="4"/>
-        <seat id="5"/>
-        <seat id="6" type="Double"/>
+        <seat id="4">Booked</seat>
+        <seat id="5">Booked</seat>
+        <seat id="6" type="Double">Booked</seat>
     </row>
 </hall>

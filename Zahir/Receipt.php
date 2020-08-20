@@ -1,8 +1,11 @@
 <?php
+require_once 'Classes/Cart.php';
+require_once 'Session/CheckLogin.php';
+require_once 'Session/SessionHelper.php';
+
 require_once 'Booking/BookingXML.php';
 
 require_once 'Classes/Ticket.php';
-require_once 'Classes/Cart.php';
 require_once 'Classes/User.php';
 
 require_once 'Strategy/PaymentStrategy/CreditCardStrategy.php';
@@ -16,10 +19,15 @@ require_once 'Booking/BookingDOMParser.php';
 
 require_once '../Database/BookingConnection.php';
 
-session_start();
+include_once 'Header.php';
 
-$cart = new Cart();
-$cart = $_SESSION['userCart'];
+if (!SessionHelper::verifyToken('receipt')) {
+    header('Location:/Assignment/Simran/Home.php');
+}
+
+$cartLocation = SessionHelper::get('user_cart');
+$a = file_get_contents("Cart/" . $cartLocation);
+$cart = unserialize($a);
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +41,7 @@ $cart = $_SESSION['userCart'];
 
 
         <?php
-        $userId = $_SESSION['userId'];
+        $userId = SessionHelper::get('userId');
         $paymentMethod = filter_input(INPUT_POST, 'paymentMethod');
         $bookingXML = new BookingXML($userId);
 
@@ -52,6 +60,15 @@ $cart = $_SESSION['userCart'];
 
         $receiptXSLT = new ReceiptXSLT($userId);
         $cart->pay($method, $userId, $cart);
+        
+        SessionHelper::remove('selectedSeats');
+        SessionHelper::remove('user_cart');
+        SessionHelper::removeToken('seatcount_payment');
+        SessionHelper::removeToken('receipt');
+        
+        unlink("Cart/" . $cartLocation);
+        unlink("SelectedSeats/SelectedSeats" . $userId . ".xml");
+        unlink("Booking/Booking" . $userId . ".xml");
         ?>
     </body>
 </html>

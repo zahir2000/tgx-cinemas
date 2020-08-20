@@ -9,52 +9,37 @@ require_once 'Classes/Ticket.php';
 
 require_once 'Strategy/SeatPriceStrategy/RegularSeatStrategy.php';
 require_once 'Strategy/SeatPriceStrategy/TwinSeatStrategy.php';
+
+include_once 'Header.php';
+
+if (!filter_input(INPUT_GET, 'id')) {
+    header('Location:/Assignment/Simran/Home.php');
+}
+
+$id = filter_input(INPUT_GET, 'id');
+
+date_default_timezone_set('Asia/Kuala_Lumpur');
+
+if (filter_input(INPUT_GET, 'date')) {
+    $date = filter_input(INPUT_GET, 'date');
+
+    $year = substr($date, 0, 4);
+    $month = substr($date, 5, 2);
+    $day = substr($date, 8, 2);
+
+    if (!checkdate($month, $day, $year)) {
+        header('Location:/Assignment/Simran/Home.php');
+    }
+} else {
+    $date = date("Y-m-d");
+}
+
+$db = DatabaseConnection::getInstance();
+$bookingDb = new BookingConnection();
+$result = $bookingDb->getMovieDetails($id);
 ?>
 
 <!DOCTYPE html>
-
-<?php
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = $_GET['id'];
-
-    date_default_timezone_set('Asia/Kuala_Lumpur');
-
-    if (isset($_GET['date'])) {
-        $date = $_GET['date'];
-    } else {
-        $date = date("Y-m-d");
-    }
-
-    $db = DatabaseConnection::getInstance();
-    $bookingDb = new BookingConnection();
-    $result = $bookingDb->getMovieDetails($id);
-
-    /*
-     * $user = new User("1", "Zahir Sher", "zakisher@gmail.com", "0108003610", "24/01/2000", "Male", "C-4-1, Idaman Putera", "zahir", "123");
-
-      $newBooking = new Booking(date("Y-m-d"), 3, 1, "PayPal", "Zahir Sher", 45.50, $user);
-
-      $ticket1 = new Ticket(12, new RegularSeatStrategy(), "A5");
-      $ticket2 = new Ticket(20, new TwinSeatStrategy(), "A6");
-
-      $cart = new Cart(4);
-      $cart->addTicket($ticket1);
-      $cart->addTicket($ticket2);
-
-      $bookingDb->storeToDatabase($newBooking, $cart);
-     * 
-     */
-
-    if (!isset($result)) {
-        echo "TODO: The ID does not exist";
-    } else {
-        //echo $result['name'];
-    }
-} else {
-    echo "No ID entered!";
-}
-?>
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -163,33 +148,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             } else {
                 $showtimes = NULL;
             }
-            ?>
 
-            <!-- 
-            <form action="" method="POST">
-                <select name="date" required>
-                    <option value="" disabled selected>DATE</option>
-            <?php
-            foreach ($showtimes as $row) {
-                echo "<option value=\"owner1\">" . date("d F Y", strtotime($row['showDate'])) . "</option>";
-            }
-            ?>
-                </select>
-                <select name="cinema" required>
-                    <option value="" disabled selected>CINEMA</option>
-                    <option value="12-3">Wangsa Walk</option>
-                    <option value="13-3">KLCC</option>
-                </select>
-                <select name="experience" required>
-                    <option value="" disabled selected>EXPERIENCE</option>
-                    <option value="12-3">Regular</option>
-                    <option value="13-3">LUXE</option>
-                </select>
-            </form>
-            
-            -->
-
-            <?php
             $cinemaQuery = "SELECT DISTINCT C.cinemaID, C.name "
                     . "FROM showtime S, hall H, cinema C "
                     . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID";
@@ -198,8 +157,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $cinemaStmt->bindParam(1, $id, PDO::PARAM_INT);
             $cinemaStmt->bindParam(2, $date);
             $cinemaStmt->execute();
-
-//print_r($experience);
             ?>
 
             <div style="margin: auto;  width: 80%; padding-top: 2vh; padding-bottom:2vh"><h2 style="margin-top:0">SHOWTIMES</h2>
@@ -248,7 +205,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                 $showTimeHour = (int) ($showTimeInput / 60);
                                 $showTimeMin = str_pad($showTimeInput % 60, 2, '0', STR_PAD_RIGHT);
 
-                                echo "<a class='movie-times' href='Seats.php?id=" . $t['showtimeID'] . "'>" . $showTimeHour . ":" . $showTimeMin . "</a>";
+                                if (SessionHelper::check('userId')) {
+                                    echo "<a class='movie-times' href='Seats.php?id=" . $t['showtimeID'] . "'>" . $showTimeHour . ":" . $showTimeMin . "</a>";
+                                } else {
+                                    echo "<a class='movie-times' disabled='true' onclick='toast()'>" . $showTimeHour . ":" . $showTimeMin . "</a>";
+                                }
                             }
                         }
 
@@ -260,14 +221,25 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 }
                 ?>
 
-                <!--
-                <button class="accordion">Wangsa Walk</button>
-                <div class="panel">
-                    <p>Time 1</p>           
-                </div>
-                -->
             </div>
         </div>
+
+        <div id="snackbar">Please login before making booking.</div>
+
+        <script>
+            function toast() {
+                // Get the snackbar DIV
+                var x = document.getElementById("snackbar");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 3000);
+            }
+        </script>
     </body>
 
     <script>

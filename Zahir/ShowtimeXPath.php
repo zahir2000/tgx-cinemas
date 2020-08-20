@@ -51,8 +51,8 @@ class ShowtimeXPath {
             }
         }
     }
-    
-    public function getBasePrice($showtimeId){
+
+    public function getBasePrice($showtimeId) {
         $expr = ('//showtime[@id=' . $showtimeId . ']/cinema/hall/basePrice');
         $exists = $this->xpath->query($expr);
 
