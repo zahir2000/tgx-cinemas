@@ -124,11 +124,17 @@ class SessionHelper {
         self::session();
         self::regenerate_session();
 
-        self::add('username', $username);
-        self::add('userId', $userId);
-        self::add('user_token', self::generateToken('user_token' . base64_encode(random_bytes(5))));
-        self::add('last_action', time());
-        self::add('last_periodic_update', time());
+        $_SESSION['username'] = $username;
+        $_SESSION['userId'] = $userId;
+        $_SESSION['user_token'] = self::generateToken('user_token' . base64_encode(random_bytes(5)));
+        $_SESSION['last_action'] = time();
+        $_SESSION['last_periodic_update'] = time();
+
+        if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
+            $_SESSION['is_https'] = "on";
+        } else {
+            $_SESSION['is_https'] = "off";
+        }
 
         self::updateToken($username);
     }
@@ -210,8 +216,44 @@ class SessionHelper {
 
         /* Start the session */
         if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+            try {
+                session_start();
+            } catch (Exception $ex) {
+                
+            }
         }
+
+        if (!self::hijacking()) {
+            $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
+            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+        }
+
+        if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
+            $secure = "on";
+        } else {
+            $secure = "off";
+        }
+        
+        if(!isset($_SESSION['is_https'])){
+            $_SESSION['is_https'] = $secure;
+        }
+
+        if ($_SESSION['is_https'] != $secure) {
+            $_SESSION['is_https'] = $secure;
+            self::regenerate_session();
+        }
+    }
+
+    private static function hijacking() {
+        if (!isset($_SESSION['ip_address']) || !isset($_SESSION['user_agent'])) {
+            return false;
+        }
+
+        if ($_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR'] && $_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT']) {
+            return false;
+        }
+
+        return true;
     }
 
     public static function regenerate_session() {
@@ -232,8 +274,8 @@ class SessionHelper {
             /* If the session was inactive for more than [30 minutes] then destroy the session */
             if ($timeDiff >= self::MAX_LIFE) {
                 return true;
-            } 
-            
+            }
+
             self::regenerate_session_periodically();
         }
 

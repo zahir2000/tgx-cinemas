@@ -23,7 +23,16 @@ require_once 'Strategy/SeatPriceStrategy/RegularSeatStrategy.php';
 
 require_once 'Utility/GeneralUtilities.php';
 
+if (!SessionHelper::verifyToken('seatcount_payment')) {
+    header('Location:/Assignment/Simran/Home.php');
+}
+
+if (!filter_input(INPUT_GET, 'id')) {
+    header('Location:/Assignment/Simran/Home.php');
+}
+
 include_once 'Header.php';
+include_once 'BookingTimer.php';
 ?>
 
 <!DOCTYPE html>
@@ -35,12 +44,8 @@ include_once 'Header.php';
     </head>
     <body>
         <?php
-        if (!SessionHelper::verifyToken('seatcount_payment')) {
-            header('Location:/Assignment/Simran/Home.php');
-        }
-        
-        if (!filter_input(INPUT_GET, 'id')) {
-            header('Location:/Assignment/Simran/Home.php');
+        if (!isset($_GET['id'])) {
+            exit(0);
         }
 
         $showtimeId = filter_input(INPUT_GET, 'id');

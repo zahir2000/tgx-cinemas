@@ -18,7 +18,12 @@ if (!filter_input(INPUT_GET, 'id')) {
     header('Location:/Assignment/Simran/Home.php');
 }
 
+if (!isset($_GET['id'])) {
+    exit(0);
+}
+
 include_once 'Header.php';
+include_once 'BookingTimer.php';
 
 $showtimeId = filter_input(INPUT_GET, 'id');
 $userId = SessionHelper::get('userId');

@@ -8,11 +8,16 @@ require_once 'ShowtimeXSLT.php';
 require_once 'Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';
 
-if(!filter_input(INPUT_GET, 'id')){
+if (!filter_input(INPUT_GET, 'id')) {
     header('Location:/Assignment/Simran/Home.php');
 }
 
+if (!isset($_GET['id'])) {
+    exit(0);
+}
+
 include_once 'Header.php';
+include_once 'BookingTimer.php';
 
 SessionHelper::remove('selectedSeats');
 SessionHelper::remove('user_cart');
