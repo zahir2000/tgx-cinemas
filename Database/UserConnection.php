@@ -28,4 +28,19 @@ class UserConnection {
         $stmt->bindParam(9, $password);
         $stmt->execute();
     }
+    
+    public function getUserAccount($username, $password){
+        $query = "SELECT username, password FROM user WHERE username = $username AND password = $password";
+        $stmt = $this->db->getDb()->prepare($query);
+        $stmt->bindParam(8, $username, PDO::PARAM_STR);
+        $stmt->bindParam(9, $password, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        if($stmt->rowCount() == 1){
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }else{
+            return null;
+        }
+    }
 }

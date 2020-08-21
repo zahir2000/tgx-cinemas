@@ -45,9 +45,7 @@ require_once '../Database/UserConnection.php';
             
         </form>
         <?php
-        
-            $option = ['cost' =>12];
-            if(isset($_POST['submit'])){
+                if(isset($_POST['submit'])){
                 $name = trim($_POST['name']);
                 $email = trim($_POST['email']);
                 $number = trim($_POST['number']);

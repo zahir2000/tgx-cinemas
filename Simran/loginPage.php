@@ -1,9 +1,8 @@
+<?php
+require_once '../Database/DatabaseConnection.php';
+require_once '../Database/UserConnection.php';
+?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -21,12 +20,21 @@ and open the template in the editor.
             <p>Password : 
             <input type="password" name="password" id="password" size="15" /></p>
             
-            <button type="submit" name="login">Login</button>
+            <button type="submit" name="submit">Login</button>
         </form>
         <?php
         } else{
             $username = trim($_POST['username']);
-            $password = trim($_POST['password']);
+            $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+            
+            $db = DatabaseConnection::getInstance();
+            $getUser = new UserConnection();
+            $getUser->getUserAccount($username, $password);
+            
+            echo "Welcome $username";
+            
+            $db->closeConnection();
+            
         }
         ?>
     </body>
