@@ -1,26 +1,12 @@
 <?php
 
+require_once 'Token.php';
+require_once 'CustomException.php';
+
 /**
- * Description of SessionHelper
- *
+ * <p><b>Session Helper</b> is a class dedicated for session management.</P>
  * @author Zahir
  */
-class InvalidKeyException extends Exception {
-    
-}
-
-class DisabledSessionException extends Exception {
-    
-}
-
-class ExpiredSessionException extends Exception {
-    
-}
-
-class EmptyKeyException extends Exception {
-    
-}
-
 class SessionHelper {
 
     const MAX_LIFE = 1800; //30 min
@@ -223,18 +209,23 @@ class SessionHelper {
             }
         }
 
-        if (!self::hijacking()) {
+        if (!self::valid_user()) {
             $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
             $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+            session_regenerate_id();
         }
+        
+        self::https();
+    }
 
+    private static function https() {
         if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
             $secure = "on";
         } else {
             $secure = "off";
         }
-        
-        if(!isset($_SESSION['is_https'])){
+
+        if (!isset($_SESSION['is_https'])) {
             $_SESSION['is_https'] = $secure;
         }
 
@@ -244,7 +235,7 @@ class SessionHelper {
         }
     }
 
-    private static function hijacking() {
+    private static function valid_user() {
         if (!isset($_SESSION['ip_address']) || !isset($_SESSION['user_agent'])) {
             return false;
         }
@@ -410,54 +401,6 @@ class SessionHelper {
                 unset($_COOKIE[$cookieKey]);
             }
         }
-    }
-
-}
-
-class Token {
-
-    private $key;
-    private $expiryTime;
-    private $sessionToken;
-    private $cookieToken;
-
-    function __construct($key = "", $expiryTime = "", $sessionToken = "", $cookieToken = "") {
-        $this->key = $key;
-        $this->expiryTime = $expiryTime;
-        $this->sessionToken = $sessionToken;
-        $this->cookieToken = $cookieToken;
-    }
-
-    function getKey() {
-        return $this->key;
-    }
-
-    function getExpiryTime() {
-        return $this->expiryTime;
-    }
-
-    function getSessionToken() {
-        return $this->sessionToken;
-    }
-
-    function getCookieToken() {
-        return $this->cookieToken;
-    }
-
-    function setKey($key): void {
-        $this->key = $key;
-    }
-
-    function setExpiryTime($expiryTime): void {
-        $this->expiryTime = $expiryTime;
-    }
-
-    function setSessionToken($sessionToken): void {
-        $this->sessionToken = $sessionToken;
-    }
-
-    function setCookieToken($cookieToken): void {
-        $this->cookieToken = $cookieToken;
     }
 
 }

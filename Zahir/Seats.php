@@ -18,7 +18,11 @@ if (!isset($_GET['id'])) {
 
 include_once 'Header.php';
 include_once 'BookingTimer.php';
+?>
 
+<title>TGX Cinemas - Seat Selection</title>
+
+<?php
 SessionHelper::remove('selectedSeats');
 SessionHelper::remove('user_cart');
 

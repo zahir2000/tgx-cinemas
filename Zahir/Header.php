@@ -2,7 +2,7 @@
 require_once 'Session/CheckToken.php';
 
 require_once '../Simran/Logout.php';
-SessionHelper::removeToken('logout');
+//SessionHelper::removeToken('logout');
 
 if (!SessionHelper::check('userId')) {
     $action = "/Assignment/Simran/loginPage.php";
