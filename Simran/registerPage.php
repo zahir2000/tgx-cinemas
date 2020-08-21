@@ -1,9 +1,9 @@
+<?php
+require_once '../Database/DatabaseConnection.php';
+require_once '../Database/UserConnection.php';
+?>
+
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -40,13 +40,14 @@ and open the template in the editor.
             <p>Password: 
             <input type="password" name="password" id="password" size="15" /></p>
             
-            <p>Confirm Password:
-            <input type="password" name="cPassword" id="cPassword" size="15"/></p>
-            
+         
             <button type="submit" name="register">Register</button>
             
         </form>
         <?php
+        
+            $option = ['cost' =>12];
+            
             } else{
                 $name = trim($_POST['name']);
                 $email = trim($_POST['email']);
@@ -55,8 +56,10 @@ and open the template in the editor.
                 $gender = $_POST['gender'];
                 $address = trim($_POST['address']);
                 $username = trim($_POST['name']);
-                $password = trim($_POST['password']);
-                $cPassword = trim($_POST['cPassword']);
+                $password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT, $option);
+                //$cPassword = trim($_POST['cPassword']);
+                
+                
                 
                 //if($password == $cPassword){
                 //    $password = $cPassword;
@@ -65,7 +68,10 @@ and open the template in the editor.
                 //}
                 
                 $db = databaseConnection::getInstance();
-                $db->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
+                $userDb = new UserConnection();
+                $addNewUser = $userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
+                echo "<p>Registration Successful</p>";
+                $db->closeConnection();
                         
             }
         ?>
