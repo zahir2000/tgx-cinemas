@@ -10,14 +10,14 @@ require_once 'DatabaseConnection.php';
 class UserConnection {
     private $db;
     
-    public function __construct($db) {
+    public function __construct() {
         $this->db = DatabaseConnection::getInstance();
     }
     
     public function addUser($name, $email, $number, $dob, $gender, $address, $username, $password){
         $query = "INSERT INTO user(name, email, number, dob, gender, address, username, password)" 
-                 . "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->db->setDb()->prepare($query);
+                 . "VALUES ('$name', '$email', '$number', '$dob', '$gender', '$address', '$username', '$password')";
+        $stmt = $this->db->getDb()->prepare($query);
         $stmt->bindParam(2, $name);
         $stmt->bindParam(3, $email);
         $stmt->bindParam(4, $number);

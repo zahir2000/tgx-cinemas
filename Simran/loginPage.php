@@ -14,7 +14,7 @@ and open the template in the editor.
         if ((!isset($_POST['username'])) || !isset($_POST['password'])){
         ?>
         <h1>Customer Login</h1>
-        <form action="login.php" method="POST">
+        <form action="loginPage.php" method="POST">
             <p>Username : 
             <input type="text" name="username" id="username" size="15" /></p>
             

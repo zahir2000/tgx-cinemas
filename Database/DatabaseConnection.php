@@ -36,10 +36,6 @@ class DatabaseConnection {
        }
     }
     
-    public function setDb($db): void {
-        $this->db = $db;
-    }
-    
     public function closeConnection(){
         $this->db = null;
     }
