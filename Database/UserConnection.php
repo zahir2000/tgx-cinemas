@@ -16,24 +16,24 @@ class UserConnection {
     
     public function addUser($name, $email, $number, $dob, $gender, $address, $username, $password){
         $query = "INSERT INTO user(name, email, number, dob, gender, address, username, password)" 
-                 . "VALUES ('$name', '$email', '$number', '$dob', '$gender', '$address', '$username', '$password')";
+                 . "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->getDb()->prepare($query);
-        $stmt->bindParam(2, $name);
-        $stmt->bindParam(3, $email);
-        $stmt->bindParam(4, $number);
-        $stmt->bindParam(5, $dob);
-        $stmt->bindParam(6, $gender);
-        $stmt->bindParam(7, $address);
-        $stmt->bindParam(8, $username);
-        $stmt->bindParam(9, $password);
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $email);
+        $stmt->bindParam(3, $number);
+        $stmt->bindParam(4, $dob);
+        $stmt->bindParam(5, $gender);
+        $stmt->bindParam(6, $address);
+        $stmt->bindParam(7, $username);
+        $stmt->bindParam(8, $password);
         $stmt->execute();
     }
     
     public function getUserAccount($username, $password){
-        $query = "SELECT username, password FROM user WHERE username = $username AND password = $password";
+        $query = "SELECT username, password FROM user WHERE username = ? AND password = ?";
         $stmt = $this->db->getDb()->prepare($query);
-        $stmt->bindParam(8, $username, PDO::PARAM_STR);
-        $stmt->bindParam(9, $password, PDO::PARAM_STR);
+        $stmt->bindParam(1, $username, PDO::PARAM_STR);
+        $stmt->bindParam(2, $password, PDO::PARAM_STR);
         $stmt->execute();
         
         if($stmt->rowCount() == 1){
