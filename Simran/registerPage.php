@@ -64,7 +64,7 @@ require_once '../Database/UserConnection.php';
                 //}
                 
                 $db = databaseConnection::getInstance();
-                $userDb = new UserConnection();
+                $userDb = UserConnection::getInstance();
                 $userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
                 echo "<p>Registration Successful</p>";
                 $db->closeConnection();

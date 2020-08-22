@@ -8,10 +8,18 @@
 require_once 'DatabaseConnection.php';
 
 class UserConnection {
+    private static $instance;
     private $db;
     
-    public function __construct() {
+    private function __construct() {
         $this->db = DatabaseConnection::getInstance();
+    }
+    
+    public static function getInstance(){
+        if(self::$instance == null){
+            self::$instance = new UserConnection();
+        }
+        return self::$instance;
     }
     
     public function addUser($name, $email, $number, $dob, $gender, $address, $username, $password){
@@ -44,8 +52,8 @@ class UserConnection {
         }
     }
     
-    public function getUserDetails($userID){
-        $query = "SELECT userID, name, email, number, dob, gender, address FROM user WHERE userID = ?";
+    public function getUserDetails(){
+        $query = "SELECT userID, name, email, number, dob, gender, address FROM user";
         $stmt = $this->db->getDb()->prepare($query);
         $stmt->execute();
         

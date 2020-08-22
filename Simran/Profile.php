@@ -1,9 +1,8 @@
+<?php
+require_once '../Database/UserConnection.php';
+require_once 'ProfileXML.php';
+?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,8 +10,23 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        $profileDb = new UserConnection();
-        $profileDetails = $profileDb->getUserDetails($userID)
+        
+        $profileDb = UserConnection::getInstance();
+        $profileDetails = $profileDb->getUserDetails();
+        
+        $profileXML = new ProfileXML($profileDetails);
+        
+        $docXML = new DOMDocument();
+        $docXML->load('Profile.xml');
+        
+        $docXSL = new DOMDocument();
+        $docXSL->load('Profile.xsl');
+        
+        $process = new XSLTProcessor();
+        $process->registerPHPFunctions();
+        $process->importStylesheet($docXSL);
+        
+        echo $process->transformToXml($docXML);
         ?>
     </body>
 </html>

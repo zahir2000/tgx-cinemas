@@ -1,35 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="Profile.xsl"?>
-
 <user>
-    <user id="1">
-        <name>Simran</name>
-        <email>simran.nijhar@gmail.com</email>
-        <number>01128182986</number>
-        <dob>1999/12/10</dob>
-        <gender>Female</gender>
-        <address>No. 6, Jalan 11/154D, Taman Desa Cheras, 56000 Kuala Lumpur</address>
-        <username>simranijhar</username>
-        <password>simran10</password>
+  <user>
+    <user id="">
+      <name/>
+      <email/>
+      <number/>
+      <dob/>
+      <gender/>
+      <address/>
     </user>
-    <user id="2">
-        <name>Andy</name>
-        <email>andy9999@gmail.com</email>
-        <number>0123456789</number>
-        <dob>1999/02/10</dob>
-        <gender>Male</gender>
-        <address>No. 6, Jalan 11/154D, Taman Hemsworth, 56000 Kuala Lumpur</address>
-        <username>andymandy</username>
-        <password>andysicko9999</password>
-    </user>
-    <user id="3">
-        <name>Amanda</name>
-        <email>imamamanda@gmail.com</email>
-        <number>01154628956</number>
-        <dob>2001/01/02</dob>
-        <gender>Female</gender>
-        <address>No. 6, Jalan 11/154D, Taman Desa Cheras, 56000 Utah</address>
-        <username>aaaamanda</username>
-        <password>dracoamanda01</password>
-    </user>
+  </user>
 </user>

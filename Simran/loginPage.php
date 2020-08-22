@@ -28,7 +28,7 @@ require_once '../Database/UserConnection.php';
             $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
             
             $db = DatabaseConnection::getInstance();
-            $getUser = new UserConnection();
+            $getUser = UserConnection::getInstance();
             $getUser->getUserAccount($username, $password);
             
             echo "Welcome $username";
