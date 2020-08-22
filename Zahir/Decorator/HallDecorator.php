@@ -1,6 +1,6 @@
 <?php
 
-require_once 'HallInterface.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/HallInterface.php';
 
 /**
  * Description of HallDecorator

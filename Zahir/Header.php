@@ -2,7 +2,7 @@
 SessionHelper::login_session();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/CheckToken.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Simran/Logout.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Logout.php';
 
 if (!SessionHelper::check('userId')) {
     $action = "/Assignment/Simran/loginPage.php";
@@ -40,7 +40,7 @@ if (!SessionHelper::check('userId')) {
                 box-sizing: content-box
             }
 
-            .header-panel button{
+            .header-panel .button{
                 border: 1px solid #ccc;
                 padding: 3vh;
                 margin-right: 2vh;
@@ -57,7 +57,7 @@ if (!SessionHelper::check('userId')) {
                 transition: all 0.7s ease;
             }
 
-            .header-panel button:hover{
+            .header-panel .button:hover{
                 background-color: white;
                 color: black;
             }
@@ -82,7 +82,8 @@ if (!SessionHelper::check('userId')) {
                         </a>
                     </div>
                     <div>
-                        <button name="logout" style="float: right"><i class="fas fa-sign-out-alt"></i> <?php echo $button ?></button>
+                        <button name="logout" class="button" style="float: right"><i class="fas fa-sign-out-alt"></i> <?php echo $button ?></button>
+                        <a href="#" class="button" name="profile" style="float: right"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </form>

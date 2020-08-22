@@ -1,6 +1,11 @@
 <?php
 
-require_once 'DayTime.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/DayTime.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Classes/Hall.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/GeneralUtilities.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/LuxeDecorator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/RegularDecorator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/DeluxeDecorator.php';
 
 /**
  * Description of GeneralUtilities
@@ -27,18 +32,63 @@ final class GeneralUtilities {
          */
 
         $timeInInt = self::getTimeInInt($time);
-        
+
         if ($timeInInt >= 0 && $timeInInt <= 719) {
             return DayTime::MORNING;
-        }
-        else if ($timeInInt >= 720 && $timeInInt <= 1079){
+        } else if ($timeInInt >= 720 && $timeInInt <= 1079) {
             return DayTime::AFTERNOON;
-        }
-        else if ($timeInInt >= 1080 && $timeInInt <= 1439){
+        } else if ($timeInInt >= 1080 && $timeInInt <= 1439) {
             return DayTime::EVENING;
         }
-        
+
         return null;
+    }
+
+    public static function getIntTimeOfDay($time) {
+        if ($time >= 0 && $time <= 719) {
+            return DayTime::MORNING;
+        } else if ($time >= 720 && $time <= 1079) {
+            return DayTime::AFTERNOON;
+        } else if ($time >= 1080 && $time <= 1439) {
+            return DayTime::EVENING;
+        }
+
+        return null;
+    }
+
+    public static function calculatePrice($result) {
+        $resultNew = array();
+        
+        foreach ($result as $r) {
+            $basePrice = $r['basePrice'];
+            $time = $r['showTime'];
+
+            $baseHall = new Hall($basePrice);
+            $timeOfDay = self::getIntTimeOfDay($time);
+
+            $hallType = explode(',', $r['experience']);
+
+            foreach ($hallType as $h) {
+                switch ($h) {
+                    case "Deluxe":
+                        $baseHall = new DeluxeDecorator($baseHall, $timeOfDay);
+                        break;
+                    case "LUXE":
+                        $baseHall = new LuxeDecorator($baseHall, $timeOfDay);
+                        break;
+                    case "Regular":
+                        $baseHall = new RegularDecorator($baseHall, $timeOfDay);
+                        break;
+                    default:
+                        echo "No Hall Type Found!";
+                }
+            }
+
+            $r['price'] = $baseHall->cost();
+            $resultNew[] = $r;
+        }
+        
+        return $resultNew;
     }
 
 }
