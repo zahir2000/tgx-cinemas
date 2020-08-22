@@ -138,12 +138,25 @@ function fetchShowTime($movieId, $date, $cinemaId, $experience) {
             }
             return $con->getShowExperiences($movieId, $date, $cinemaId, false);
         }
-        return $con->getShowCinemas($movieId, $date, false);
-    } else {
-        if(isset($cinemaId) && !empty($cinemaId)){
-            
+
+        if (isset($experience) && !empty($experience)) {
+            return $con->getShowTime($movieId, $date, "", $experience);
         }
-        
-        return $con->getShowDates($movieId, false);
+
+        return $con->getShowCinemas($movieId, $date, false);
     }
+
+    if (isset($cinemaId) && !empty($cinemaId)) {
+        if (isset($experience) && !empty($experience)) {
+            return $con->getShowTime($movieId, "", $cinemaId, $experience);
+        }
+
+        return $con->getShowExperiences($movieId, "", $cinemaId, false);
+    }
+
+    if (isset($experience) && !empty($experience)) {
+        return $con->getShowTime($movieId, "", "", $experience);
+    }
+
+    return $con->getShowDates($movieId, false);
 }
