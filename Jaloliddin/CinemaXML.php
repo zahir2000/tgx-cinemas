@@ -30,26 +30,17 @@ class CinemaXML {
         $domtree->formatOutput = true;
         $domtree->loadXML(file_get_contents($this->file), LIBXML_NOBLANKS);
         $root = $domtree->getElementsByTagName('cinemas')->item(0);
-
-
-
         //
         $xmlCinemas = $domtree->createElement("cinemas");
         $xmlCinemas = $root->appendChild($xmlCinemas);
 
         //
-
-
-
         $xmlCinemas->appendChild($xmlCinema = $domtree->createElement('cinema'));
-
         //
         $xmlCinema->appendChild($domtree->createAttribute('id'));
         $xmlCinema->setAttribute('id', $cinema['cinemaID']);
         $xmlCinema->appendChild($domtree->createElement('name', $cinema['name']));
         $xmlCinema->appendChild($domtree->createElement('location', $cinema['location']));
-
-
         //
         $domtree->save($this->file);
     }
