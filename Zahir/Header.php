@@ -1,7 +1,7 @@
 <?php
-require_once 'Session/CheckToken.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/CheckToken.php';
 
-require_once '../Simran/Logout.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment//Simran/Logout.php';
 //SessionHelper::removeToken('logout');
 
 if (!SessionHelper::check('userId')) {
@@ -37,6 +37,7 @@ if (!SessionHelper::check('userId')) {
                 /* height: 100vh; */
                 margin: 0 auto;
                 margin-top: 3vh;
+                box-sizing: content-box
             }
 
             .header-panel button{
@@ -64,7 +65,7 @@ if (!SessionHelper::check('userId')) {
     </head>
     <body>
         <header>
-            <form action="<?php echo $action ?>" method="POST">
+            <form action="<?php echo $action ?>" method="POST" style="box-sizing: content-box">
                 <?php
                 if (SessionHelper::check('userId')) {
                     echo "<input type='hidden' value=" . SessionHelper::generateToken('logout') . " id='csrf_token' name='csrf_token' />";
@@ -76,8 +77,8 @@ if (!SessionHelper::check('userId')) {
 
                 <div class='header-panel'>
                     <div>
-                        <a href="/Assignment/Simran/Home.php">
-                            <img src='../img/tgx-logo.png' alt="Logo" />
+                        <a href="/Assignment/Home.php">
+                            <img src='/Assignment/img/tgx-logo.png' alt="Logo" />
                         </a>
                     </div>
                     <div>

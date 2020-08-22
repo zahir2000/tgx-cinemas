@@ -13,7 +13,7 @@ require_once 'Strategy/SeatPriceStrategy/TwinSeatStrategy.php';
 include_once 'Header.php';
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Simran/Home.php');
+    header('Location:/Assignment/Home.php');
 }
 
 $id = filter_input(INPUT_GET, 'id');
@@ -28,7 +28,7 @@ if (filter_input(INPUT_GET, 'date')) {
     $day = substr($date, 8, 2);
 
     if (!checkdate($month, $day, $year)) {
-        header('Location:/Assignment/Simran/Home.php');
+        header('Location:/Assignment/Home.php');
     }
 } else {
     $date = date("Y-m-d");
@@ -114,7 +114,8 @@ $result = $bookingDb->getMovieDetails($id);
 
         <div class="booking-panel-form">
             <?php
-            $queryDate = "SELECT DISTINCT showDate FROM showtime WHERE movieid = ?";
+            $queryDate = "SELECT DISTINCT showDate FROM showtime WHERE movieid = ? ORDER BY showDate";
+            //$queryDate = "SELECT DISTINCT showDate FROM showtime WHERE movieid = ? AND showDate >= CURDATE() ORDER BY showDate";
             $stmtDate = $db->getDb()->prepare($queryDate);
             $stmtDate->bindParam(1, $id, PDO::PARAM_INT);
             $stmtDate->execute();
@@ -138,7 +139,7 @@ $result = $bookingDb->getMovieDetails($id);
         <div class="booking-panel-form" style="margin-bottom: 5vh">
 
             <?php
-            $query = "SELECT * FROM showtime WHERE movieid = ?";
+            /*$query = "SELECT * FROM showtime WHERE movieid = ?";
             $stmt = $db->getDb()->prepare($query);
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -147,7 +148,7 @@ $result = $bookingDb->getMovieDetails($id);
                 $showtimes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 $showtimes = NULL;
-            }
+            }*/
 
             $cinemaQuery = "SELECT DISTINCT C.cinemaID, C.name "
                     . "FROM showtime S, hall H, cinema C "

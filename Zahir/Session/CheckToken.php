@@ -1,7 +1,7 @@
 <?php
 
-require_once 'SessionHelper.php';
-require_once '../Database/DatabaseConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/SessionHelper.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/DatabaseConnection.php';
 
 if (SessionHelper::check('username')) {
     $db = DatabaseConnection::getInstance();

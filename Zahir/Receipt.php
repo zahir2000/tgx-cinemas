@@ -22,7 +22,7 @@ require_once '../Database/BookingConnection.php';
 include_once 'Header.php';
 
 if (!SessionHelper::verifyToken('receipt')) {
-    header('Location:/Assignment/Simran/Home.php');
+    header('Location:/Assignment/Home.php');
 }
 
 $cartLocation = SessionHelper::get('user_cart');

@@ -7,7 +7,7 @@ if (isset($_GET['confirm'])) {
     SessionHelper::removeToken('seatcount_payment');
     SessionHelper::removeToken('receipt');
 
-    header('Location:/Assignment/Simran/Home.php');
+    header('Location:/Assignment/Home.php');
 }
 ?>
 

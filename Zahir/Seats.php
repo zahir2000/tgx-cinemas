@@ -9,7 +9,7 @@ require_once 'Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Simran/Home.php');
+    header('Location:/Assignment/Home.php');
 }
 
 if (!isset($_GET['id'])) {

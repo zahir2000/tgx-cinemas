@@ -24,11 +24,11 @@ require_once 'Strategy/SeatPriceStrategy/RegularSeatStrategy.php';
 require_once 'Utility/GeneralUtilities.php';
 
 if (!SessionHelper::verifyToken('seatcount_payment')) {
-    header('Location:/Assignment/Simran/Home.php');
+    header('Location:/Assignment/Home.php');
 }
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Simran/Home.php');
+    header('Location:/Assignment/Home.php');
 }
 
 include_once 'Header.php';

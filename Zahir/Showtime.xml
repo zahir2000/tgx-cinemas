@@ -46,4 +46,20 @@
       <ageRestriction>13</ageRestriction>
     </movie>
   </showtime>
+  <showtime id="9">
+    <date>2020-08-26</date>
+    <time>17:00</time>
+    <cinema id="1">
+      <name>TGX Wangsa Walk</name>
+      <hall id="5">
+        <experience>Deluxe</experience>
+        <experience>LUXE</experience>
+        <basePrice>10.00</basePrice>
+      </hall>
+    </cinema>
+    <movie id="6">
+      <name>John Wick: Chapter 3</name>
+      <ageRestriction>18</ageRestriction>
+    </movie>
+  </showtime>
 </showtimes>

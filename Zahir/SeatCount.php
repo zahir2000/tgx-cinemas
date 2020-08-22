@@ -15,7 +15,7 @@ require_once 'Classes/Booking.php';
 require_once 'Classes/User.php';
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Simran/Home.php');
+    header('Location:/Assignment/Home.php');
 }
 
 if (!isset($_GET['id'])) {
