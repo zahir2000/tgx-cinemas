@@ -1,6 +1,7 @@
 <?php
 require_once '../Database/DatabaseConnection.php';
 require_once '../Database/UserConnection.php';
+require_once 'Authentication.php';
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +54,7 @@ require_once '../Database/UserConnection.php';
                 $gender = $_POST['gender'];
                 $address = trim($_POST['address']);
                 $username = trim($_POST['username']);
-                $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+                $password = trim($_POST['password']);
                 //$cPassword = trim($_POST['cPassword']);
                               
                 
@@ -63,11 +64,13 @@ require_once '../Database/UserConnection.php';
                     
                 //}
                 
-                $db = databaseConnection::getInstance();
-                $userDb = UserConnection::getInstance();
-                $userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
-                echo "<p>Registration Successful</p>";
-                $db->closeConnection();
+                
+                
+                //$db = databaseConnection::getInstance();
+                //$userDb = UserConnection::getInstance();
+                //$userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
+                //echo "<p>Registration Successful</p>";
+                //$db->closeConnection();
             }
         ?>
     </body>
