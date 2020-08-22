@@ -46,31 +46,31 @@ require_once 'Authentication.php';
             
         </form>
         <?php
-                if(isset($_POST['submit'])){
-                $name = trim($_POST['name']);
-                $email = trim($_POST['email']);
-                $number = trim($_POST['number']);
-                $dob = $_POST['dob'];
-                $gender = $_POST['gender'];
-                $address = trim($_POST['address']);
-                $username = trim($_POST['username']);
-                $password = trim($_POST['password']);
-                //$cPassword = trim($_POST['cPassword']);
+            if(isset($_POST['submit']) || isset($_POST['gender'])){
+            $name = trim($_POST['name']);
+            $email = trim($_POST['email']);
+            $number = trim($_POST['number']);
+            $dob = $_POST['dob'];
+            $gender = $_POST['gender'];
+            $address = trim($_POST['address']);
+            $username = trim($_POST['username']);
+            $password = trim($_POST['password']);
+            //$cPassword = trim($_POST['cPassword']);
                               
                 
-                //if($password == $cPassword){
-                //    $password = $cPassword;
-                //}else{
+            //if($password == $cPassword){
+            //    $password = $cPassword;
+            //}else{
                     
-                //}
+            //}
                 
+            Authentication::authenticateRegister($name, $email, $number, $dob, $gender, $address, $username, $password);
                 
-                
-                //$db = databaseConnection::getInstance();
-                //$userDb = UserConnection::getInstance();
-                //$userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
-                //echo "<p>Registration Successful</p>";
-                //$db->closeConnection();
+            //$db = databaseConnection::getInstance();
+            //$userDb = UserConnection::getInstance();
+            //$userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
+            //echo "<p>Registration Successful</p>";
+            //$db->closeConnection();
             }
         ?>
     </body>
