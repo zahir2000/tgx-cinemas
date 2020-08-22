@@ -3,6 +3,7 @@
 require_once '../../lib/nusoap.php';
 require_once '../../Database/DatabaseConnection.php';
 require_once '../../Database/BookingConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/GeneralUtilities.php';
 
 $server = new nusoap_server();
 
@@ -26,6 +27,7 @@ $server->wsdl->addComplexType('return_array_php',
             'cinemaName' => array('cinemaName' => 'cinemaName', 'type' => 'xsd:string'),
             'hallID' => array('hallID' => 'hallID', 'type' => 'xsd:int'),
             'experience' => array('experience' => 'experience', 'type' => 'xsd:string'),
+            'price' => array('price' => 'price', 'type' => 'xsd:decimal')
         )
 );
 
@@ -134,29 +136,29 @@ function fetchShowTime($movieId, $date, $cinemaId, $experience) {
     if (isset($date) && !empty($date)) {
         if (isset($cinemaId) && !empty($cinemaId)) {
             if (isset($experience) && !empty($experience)) {
-                return $con->getShowTime($movieId, $date, $cinemaId, $experience);
+                return GeneralUtilities::calculatePrice($con->getShowTime($movieId, $date, $cinemaId, $experience));
             }
-            return $con->getShowExperiences($movieId, $date, $cinemaId, false);
+            return GeneralUtilities::calculatePrice($con->getShowExperiences($movieId, $date, $cinemaId, false));
         }
 
         if (isset($experience) && !empty($experience)) {
-            return $con->getShowTime($movieId, $date, "", $experience);
+            return GeneralUtilities::calculatePrice($con->getShowTime($movieId, $date, "", $experience));
         }
 
-        return $con->getShowCinemas($movieId, $date, false);
+        return GeneralUtilities::calculatePrice($con->getShowCinemas($movieId, $date, false));
     }
 
     if (isset($cinemaId) && !empty($cinemaId)) {
         if (isset($experience) && !empty($experience)) {
-            return $con->getShowTime($movieId, "", $cinemaId, $experience);
+            return GeneralUtilities::calculatePrice($con->getShowTime($movieId, "", $cinemaId, $experience));
         }
 
-        return $con->getShowExperiences($movieId, "", $cinemaId, false);
+        return GeneralUtilities::calculatePrice($con->getShowExperiences($movieId, "", $cinemaId, false));
     }
 
     if (isset($experience) && !empty($experience)) {
-        return $con->getShowTime($movieId, "", "", $experience);
+        return GeneralUtilities::calculatePrice($con->getShowTime($movieId, "", "", $experience));
     }
 
-    return $con->getShowDates($movieId, false);
+    return GeneralUtilities::calculatePrice($con->getShowDates($movieId, false));
 }
