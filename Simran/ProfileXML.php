@@ -17,7 +17,7 @@ class ProfileXML {
     private $xmlFile = "Profile.xml";
     
     public function __construct($profileDetails) {
-        $this->readFromXML($this->xmlFile);
+        $this->createXML();
         $this->append($profileDetails);
     }
     

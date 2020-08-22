@@ -25,15 +25,15 @@ require_once '../Database/UserConnection.php';
         <?php
         } else{
             $username = trim($_POST['username']);
-            $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+            $password = trim($_POST['password']);
             
-            $db = DatabaseConnection::getInstance();
-            $getUser = UserConnection::getInstance();
-            $getUser->getUserAccount($username, $password);
+            //$db = DatabaseConnection::getInstance();
+            //$getUser = UserConnection::getInstance();
+            //$getUser->getUserAccount($username, $password);
             
-            echo "Welcome $username";
+            //echo "Welcome $username";
             
-            $db->closeConnection();
+            //$db->closeConnection();
             
         }
         ?>

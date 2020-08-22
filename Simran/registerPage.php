@@ -64,7 +64,7 @@ require_once 'Authentication.php';
                     
             //}
                 
-            Authentication::authenticateRegister($name, $email, $number, $dob, $gender, $address, $username, $password);
+            Authentication::validateRegister($name, $email, $number, $dob, $gender, $address, $username, $password);
                 
             //$db = databaseConnection::getInstance();
             //$userDb = UserConnection::getInstance();

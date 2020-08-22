@@ -22,7 +22,7 @@ class ProfileXPath {
     }
     
     public function checkID($userID) {
-        $expr = ('/user/user[@id=' . $userID . ']');
+        $expr = ('//user[@id=' . $userID . ']');
         $exists = $this->xpath->query($expr);
         
         if ($exists->length > 0) {
@@ -33,7 +33,7 @@ class ProfileXPath {
     }
     
     public function getUserDetails($userID) {
-        $expr = ('/user/user[@id=' . $userID . ']');
+        $expr = ('//user/user[@id=' . $userID . ']');
         $result = $this->xpath->query($expr);
         
         foreach ($result as $item) {

@@ -49,6 +49,7 @@ class UserConnection {
             return $result;
         }else{
             return null;
+            echo "Username or password does not match!";
         }
     }
     
