@@ -16,7 +16,7 @@ $server = new Server();
 if ($stmt->rowCount() > 0) {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach($result as $row) {
+    foreach ($result as $row) {
         $username = $row["username"];
         $password = $row["password"];
         $server->register($username, $password);
