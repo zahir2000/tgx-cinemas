@@ -43,4 +43,17 @@ class UserConnection {
             return null;
         }
     }
+    
+    public function getUserDetails($userID){
+        $query = "SELECT userID, name, email, number, dob, gender, address FROM user WHERE userID = ?";
+        $stmt = $this->db->getDb()->prepare($query);
+        $stmt->execute();
+        
+        if($stmt->rowCount() > 0){
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }else {
+            return null;
+        }
+    }
 }
