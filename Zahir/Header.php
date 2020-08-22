@@ -1,8 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/CheckToken.php';
+SessionHelper::login_session();
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment//Simran/Logout.php';
-//SessionHelper::removeToken('logout');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/CheckToken.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Simran/Logout.php';
 
 if (!SessionHelper::check('userId')) {
     $action = "/Assignment/Simran/loginPage.php";

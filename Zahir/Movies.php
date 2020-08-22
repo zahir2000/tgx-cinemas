@@ -1,4 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/SessionHelper.php';
+
 require_once '../Database/DatabaseConnection.php';
 require_once '../Database/BookingConnection.php';
 
@@ -16,7 +18,7 @@ if (!filter_input(INPUT_GET, 'id')) {
     header('Location:/Assignment/Home.php');
 }
 
-$id = filter_input(INPUT_GET, 'id');
+$movieId = filter_input(INPUT_GET, 'id');
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
@@ -35,8 +37,8 @@ if (filter_input(INPUT_GET, 'date')) {
 }
 
 $db = DatabaseConnection::getInstance();
-$bookingDb = new BookingConnection();
-$result = $bookingDb->getMovieDetails($id);
+$con = new BookingConnection();
+$result = $con->getMovieDetails($movieId);
 ?>
 
 <!DOCTYPE html>
@@ -114,94 +116,37 @@ $result = $bookingDb->getMovieDetails($id);
 
         <div class="booking-panel-form">
             <?php
-            $queryDate = "SELECT DISTINCT showDate FROM showtime WHERE movieid = ? ORDER BY showDate";
-            //$queryDate = "SELECT DISTINCT showDate FROM showtime WHERE movieid = ? AND showDate >= CURDATE() ORDER BY showDate";
-            $stmtDate = $db->getDb()->prepare($queryDate);
-            $stmtDate->bindParam(1, $id, PDO::PARAM_INT);
-            $stmtDate->execute();
-
-            if ($stmtDate->rowCount() != 0) {
-                $movieDates = $stmtDate->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                $movieDates = NULL;
-            }
+            $movieDates = $con->getShowDates($movieId);
 
             foreach ($movieDates as $d) {
                 if ($d['showDate'] == $date) {
-                    echo "<a class='movie-dates movie-dates-active' href='Movies.php?id=$id&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
+                    echo "<a class='movie-dates movie-dates-active' href='Movies.php?id=$movieId&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
                 } else {
-                    echo "<a class='movie-dates' href='Movies.php?id=$id&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
+                    echo "<a class='movie-dates' href='Movies.php?id=$movieId&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
                 }
             }
             ?>
         </div>
 
         <div class="booking-panel-form" style="margin-bottom: 5vh">
-
-            <?php
-            /*$query = "SELECT * FROM showtime WHERE movieid = ?";
-            $stmt = $db->getDb()->prepare($query);
-            $stmt->bindParam(1, $id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            if ($stmt->rowCount() != 0) {
-                $showtimes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                $showtimes = NULL;
-            }*/
-
-            $cinemaQuery = "SELECT DISTINCT C.cinemaID, C.name "
-                    . "FROM showtime S, hall H, cinema C "
-                    . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID";
-
-            $cinemaStmt = $db->getDb()->prepare($cinemaQuery);
-            $cinemaStmt->bindParam(1, $id, PDO::PARAM_INT);
-            $cinemaStmt->bindParam(2, $date);
-            $cinemaStmt->execute();
-            ?>
-
             <div style="margin: auto;  width: 80%; padding-top: 2vh; padding-bottom:2vh"><h2 style="margin-top:0">SHOWTIMES</h2>
                 <?php
-                if ($cinemaStmt->rowCount() != 0) {
-                    $cinemas = $cinemaStmt->fetchAll(PDO::FETCH_ASSOC);
-
+                $cinemas = $con->getShowCinemas($movieId, $date);
+                
+                if (isset($cinemas) && count($cinemas) > 0) {
                     foreach ($cinemas as $c) {
                         echo "<button class='accordion'>";
                         echo $c['name'];
                         echo "</button><div class='panel'>";
 
-                        $expQuery = "SELECT DISTINCT experience "
-                                . "FROM showtime S, hall H, cinema C "
-                                . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID AND C.cinemaID = ?";
-
-                        $expStmt = $db->getDb()->prepare($expQuery);
-                        $expStmt->bindParam(1, $id, PDO::PARAM_INT);
-                        $expStmt->bindParam(2, $date);
-                        $expStmt->bindParam(3, $c['cinemaID'], PDO::PARAM_INT);
-                        $expStmt->execute();
-
-                        if ($expStmt->rowCount() != 0) {
-                            $experience = $expStmt->fetchAll(PDO::FETCH_ASSOC);
-                        } else {
-                            $experience = NULL;
-                        }
+                        $experience = $con->getShowExperiences($movieId, $date, $c['cinemaID']);
 
                         foreach ($experience as $e) {
                             echo "<h4>" . $e['experience'] . "</h4>";
 
-                            $timeQuery = "SELECT showTime, showtimeID "
-                                    . "FROM showtime S, hall H, cinema C "
-                                    . "WHERE movieid = ? AND showDate = ? AND S.hallID = H.hallID AND H.cinemaID = C.cinemaID AND C.cinemaID = ?";
+                            $showtimes = $con->getShowTime($movieId, $date, $c['cinemaID'], $e['experience']);
 
-                            $timeStmt = $db->getDb()->prepare($timeQuery);
-                            $timeStmt->bindParam(1, $id, PDO::PARAM_INT);
-                            $timeStmt->bindParam(2, $date);
-                            $timeStmt->bindParam(3, $c['cinemaID'], PDO::PARAM_INT);
-                            $timeStmt->execute();
-
-                            //str_pad("1234567", 8, '0', STR_PAD_LEFT);
-
-                            foreach ($timeStmt as $t) {
+                            foreach ($showtimes as $t) {
                                 $showTimeInput = $t['showTime'];
                                 $showTimeHour = (int) ($showTimeInput / 60);
                                 $showTimeMin = str_pad($showTimeInput % 60, 2, '0', STR_PAD_RIGHT);

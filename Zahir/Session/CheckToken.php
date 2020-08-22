@@ -20,6 +20,7 @@ if (SessionHelper::check('username')) {
 
         if (SessionHelper::get('user_token') != $dbToken) {
             SessionHelper::remove();
+            SessionHelper::removeToken('logout');
             SessionHelper::destroy();
             
             header('Location:/Assignment/Simran/loginPage.php?duplicate=user');

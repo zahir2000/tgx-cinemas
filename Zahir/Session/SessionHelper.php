@@ -9,7 +9,7 @@ require_once 'CustomException.php';
  */
 class SessionHelper {
 
-    const MAX_LIFE = 1800; //30 min
+    const MAX_LIFE = 3600; //1 HOUR
     const PERIODIC_LIFE = 300;
     const TOKEN_LIFE = 900;
 
@@ -20,11 +20,11 @@ class SessionHelper {
         /* Start the session */
         self::session();
 
+        /* Update last action time for inactivity */
+        $_SESSION['last_action'] = time();
+
         /* Create the session */
         $_SESSION[$key] = $value;
-
-        /* Check session inactivity */
-        self::checkTimeout();
 
         /* Return value */
         return $value;
@@ -56,11 +56,11 @@ class SessionHelper {
         /* Start the session */
         self::session();
 
+        /* Update last action time for inactivity */
+        $_SESSION['last_action'] = time();
+
         /* Check if session key exists */
         if (isset($_SESSION[$key])) {
-
-            /* Check session inactivity */
-            self::checkTimeout();
 
             /* If the session is multidimensional */
             if ($key2 != null) {
@@ -83,6 +83,9 @@ class SessionHelper {
         /* Start the session */
         self::session();
 
+        /* Update last action time for inactivity */
+        $_SESSION['last_action'] = time();
+
         /* Unset the a session date */
         if (empty($key)) {
             session_unset();
@@ -90,9 +93,6 @@ class SessionHelper {
             self::validateKeyInput($key);
             unset($_SESSION[$key]);
         }
-
-        /* Check session inactivity */
-        self::checkTimeout();
     }
 
     public static function destroy() {
@@ -114,7 +114,7 @@ class SessionHelper {
         $_SESSION['userId'] = $userId;
         $_SESSION['user_token'] = self::generateToken('user_token' . base64_encode(random_bytes(5)));
         $_SESSION['last_action'] = time();
-        $_SESSION['last_periodic_update'] = time();
+        $_SESSION['login_time'] = time();
 
         if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
             $_SESSION['is_https'] = "on";
@@ -156,8 +156,9 @@ class SessionHelper {
 
         if (isset($_SESSION['userId'])) {
             if (self::isLoginSessionExpired()) {
-                self::destroy();
-                header("Location:loginPage.php?return=session_expired");
+                self::regenerate_session();
+                //self::destroy();
+                //header("Location:loginPage.php?return=session_expired");
             }
         }
     }
@@ -166,7 +167,7 @@ class SessionHelper {
         /* Start the session */
         self::session();
 
-        if (self::check('last_action') && self::check('userId')) {
+        if (isset($_SESSION['last_action']) && isset($_SESSION['userId'])) {
             if (self::timeout()) {
                 return true;
             }
@@ -175,22 +176,14 @@ class SessionHelper {
         return false;
     }
 
-    //Maybe use the generateToken with this
-    public static function logout($query) {
+    public static function logout() {
 
         /* Start the session */
         self::session();
-
-        /* Hash compare the session token with the query */
-        if (hash_equals($_SESSION['user_token'], $query)) {
-
-            /* Destroy session if matches */
-            session_destroy();
-
-            /* Return to Home page */
-            header('Location: loginPage.php');
-            exit;
-        }
+        self::removeToken('logout');
+        self::remove();
+        self::destroy();
+        header('Location:/Assignment/Simran/loginPage.php?session=dead');
     }
 
     private static function session() {
@@ -214,7 +207,7 @@ class SessionHelper {
             $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
             session_regenerate_id();
         }
-        
+
         self::https();
     }
 
@@ -253,9 +246,15 @@ class SessionHelper {
 
     private static function timeout() {
 
-        /* $_SESSION['session_age'] = The time the session was last used 
-         * Check if it exists
-         */
+        if(isset($_SESSION['login_time'])){
+            $loginTime = time() - $_SESSION['login_time'];
+            
+            if($loginTime >= self::MAX_LIFE){
+                self::logout();
+                return;
+            }
+        }
+        
         if (isset($_SESSION['last_action'])) {
             $session_age = $_SESSION['last_action'];
 
@@ -267,7 +266,7 @@ class SessionHelper {
                 return true;
             }
 
-            self::regenerate_session_periodically();
+            //self::regenerate_session_periodically();
         }
 
         /* If it was not inactive for more than [30 minutes], update the time the session was used to current time */

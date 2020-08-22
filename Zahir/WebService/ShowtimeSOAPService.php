@@ -47,12 +47,47 @@ $server->wsdl->addComplexType('return_movie_array',
         )
 );
 
+$server->wsdl->addComplexType(
+        'cinemaArray', // MySoapObjectArray
+        'complexType', 'array', '', 'SOAP-ENC:Array',
+        array(),
+        array(array('ref' => 'SOAP-ENC:arrayType', 'wsdl:arrayType' => 'tns:return_cinema_array[]')), 'tns:return_cinema_array'
+);
+
+$server->wsdl->addComplexType('return_cinema_array',
+        'complexType',
+        'struct',
+        'all',
+        '',
+        array(
+            'cinemaName' => array('cinemaName' => 'cinemaName', 'type' => 'xsd:string'),
+            'cinemaID' => array('cinemaID' => 'cinemaID', 'type' => 'xsd:int')
+        )
+);
+
+$server->wsdl->addComplexType(
+        'experienceArray', // MySoapObjectArray
+        'complexType', 'array', '', 'SOAP-ENC:Array',
+        array(),
+        array(array('ref' => 'SOAP-ENC:arrayType', 'wsdl:arrayType' => 'tns:return_experience_array[]')), 'tns:return_experience_array'
+);
+
+$server->wsdl->addComplexType('return_experience_array',
+        'complexType',
+        'struct',
+        'all',
+        '',
+        array(
+            'experience' => array('experience' => 'experience', 'type' => 'xsd:string'),
+        )
+);
+
 $server->register(
-        'fetchShowtimeDetails',
-        array('movieID' => 'xsd:string'),
+        'fetchShowTime',
+        array('movieID' => 'xsd:int', 'date' => 'xsd:date', 'cinemaID' => 'xsd:int', 'experience' => 'xsd:string'),
         array('return' => 'tns:showtimeArray'),
         'urn:showtimesAPI',
-        'urn:showtimesAPI#fetchShowtimeDetails');
+        'urn:showtimesAPI#fetchShowTime');
 
 $server->register(
         'fetchMovies',
@@ -61,33 +96,54 @@ $server->register(
         'urn:showtimesAPI',
         'urn:showtimesAPI#fetchMovies');
 
+$server->register(
+        'fetchCinemas',
+        array(),
+        array('return' => 'tns:cinemaArray'),
+        'urn:showtimesAPI',
+        'urn:showtimesAPI#fetchCinemas');
+
+$server->register(
+        'fetchExperiences',
+        array(),
+        array('return' => 'tns:experienceArray'),
+        'urn:showtimesAPI',
+        'urn:showtimesAPI#fetchExperiences');
+
 $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : "";
 @$server->service(file_get_contents("php://input"));
-
-function fetchShowtimeDetails($movieID) {
-    $db = DatabaseConnection::getInstance();
-
-    $queryDate = "SELECT S.showTime, S.showDate, C.name as cinemaName, H.hallID, H.experience "
-            . "FROM showtime S, movie M, hall H, cinema C "
-            . "WHERE S.movieID = ? AND S.movieID = M.movieID "
-            . "AND S.hallID = H.hallID "
-            . "AND H.cinemaID = C.cinemaID "
-            . "ORDER BY C.name, H.hallID, S.showDate, S.showTime;";
-
-    $stmtDate = $db->getDb()->prepare($queryDate);
-    $stmtDate->bindParam(1, $movieID, PDO::PARAM_STR);
-    $stmtDate->execute();
-
-    if ($stmtDate->rowCount() != 0) {
-        $showtime = $stmtDate->fetchAll(PDO::FETCH_ASSOC);
-    } else {
-        $showtime = NULL;
-    }
-
-    return $showtime;
-}
 
 function fetchMovies() {
     $con = new BookingConnection();
     return $con->getMovies();
+}
+
+function fetchCinemas() {
+    $con = new BookingConnection();
+    return $con->getCinemas();
+}
+
+function fetchExperiences() {
+    $con = new BookingConnection();
+    return $con->getExperiences();
+}
+
+function fetchShowTime($movieId, $date, $cinemaId, $experience) {
+    $con = new BookingConnection();
+
+    if (isset($date) && !empty($date)) {
+        if (isset($cinemaId) && !empty($cinemaId)) {
+            if (isset($experience) && !empty($experience)) {
+                return $con->getShowTime($movieId, $date, $cinemaId, $experience);
+            }
+            return $con->getShowExperiences($movieId, $date, $cinemaId, false);
+        }
+        return $con->getShowCinemas($movieId, $date, false);
+    } else {
+        if(isset($cinemaId) && !empty($cinemaId)){
+            
+        }
+        
+        return $con->getShowDates($movieId, false);
+    }
 }
