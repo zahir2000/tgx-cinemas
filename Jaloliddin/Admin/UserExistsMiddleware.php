@@ -19,20 +19,15 @@ class UserExistsMiddleware extends Middleware {
         $this->server = $server;
     }
 
-    public function check(string $email, string $password): bool {
-        if (!$this->server->hasEmail($email)) {
-            //echo "UserExistsMiddleware: This email is not registered!\n";
-
+    public function check(string $username, string $password): bool {
+        if (!$this->server->hasUsername($username)) {
             return false;
         }
 
-        if (!$this->server->isValidPassword($email, $password)) {
-            //echo "UserExistsMiddleware: Wrong password!\n";
-
+        if (!$this->server->isValidPassword($username, $password)) {
             return false;
         }
-
-        return parent::check($email, $password);
+        return parent::check($username, $password);
     }
 
 }

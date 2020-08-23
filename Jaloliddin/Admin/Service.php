@@ -3,8 +3,7 @@
 require_once 'Server.php';
 require_once 'ThrottlingMiddleware.php';
 require_once 'UserExistsMiddleware.php';
-require_once 'RoleCheckMiddleware.php';
-require_once '../../Database/DatabaseConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/DatabaseConnection.php';
 
 $connect = DatabaseConnection::getInstance();
 $query = "SELECT * FROM admin";
@@ -29,8 +28,7 @@ if ($stmt->rowCount() > 0) {
 // chains depending on its needs.
 $middleware = new ThrottlingMiddleware(2);
 $middleware
-        ->linkWith(new UserExistsMiddleware($server))
-        ->linkWith(new RoleCheckMiddleware());
+        ->linkWith(new UserExistsMiddleware($server));
 
 // The server gets a chain from the client code.
 $server->setMiddleware($middleware);

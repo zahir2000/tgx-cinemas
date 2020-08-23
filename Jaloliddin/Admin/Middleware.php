@@ -25,12 +25,12 @@ abstract class Middleware {
      * subclass can fall back to the parent implementation if it can't process a
      * request.
      */
-    public function check(string $email, string $password): bool {
+    public function check(string $username, string $password): bool {
         if (!$this->next) {
             return true;
         }
 
-        return $this->next->check($email, $password);
+        return $this->next->check($username, $password);
     }
 
 }
