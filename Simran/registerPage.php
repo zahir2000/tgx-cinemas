@@ -41,8 +41,8 @@ $error = '';
                  </div>
                  <div class="form-group">
                      <label>Gender</label><br/>
-                     <input type="radio" name="gender" id="female" class="radio-line, radio-line" required/>Female
-                     <input type="radio" name="gender" id="male" class="radio-line" required/>Male
+                     <input type="radio" name="gender" id="female" value="female" class="radio-line, radio-line" required/>Female
+                     <input type="radio" name="gender" id="male" value="male" class="radio-line" required/>Male
                  </div>
                  <div class="form-group">
                      <label>Address</label>
@@ -83,12 +83,22 @@ $error = '';
            $cPassword = filter_var(trim($_POST['cPassword']), FILTER_SANITIZE_STRING);
            
            if($password != $cPassword){
-               $error = "Password Did Not Match!";
+               echo "Password Did Not Match!";
            }else{
-               $password = $cPassword;
+               if(Authentication::validatePassword($password)){
+                   $db = DatabaseConnection::getInstance();
+                   $userDb = UserConnection::getInstance();
+                   $userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, password_hash($password, PASSWORD_DEFAULT));
+                   
+                   echo "Registration Successful!";
+                   
+                   $db->closeConnection();
+               }else{
+                   echo "Registration Unsuccessful. Please follow standards of password!";
+               }         
            }
            
-           Authentication::validatePassword($name, $email, $number, $dob, $gender, $address, $username, $password);
+           
                 
             //$db = databaseConnection::getInstance();
             //$userDb = UserConnection::getInstance();
