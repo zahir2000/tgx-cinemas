@@ -1,6 +1,7 @@
 <?php
 require_once '../Database/DatabaseConnection.php';
 require_once '../Database/UserConnection.php';
+require_once 'Authentication.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,7 @@ require_once '../Database/UserConnection.php';
     </head>
     <body>
         <?php
-        if ((!isset($_POST['username'])) || !isset($_POST['password'])){
+        
         ?>
         <h1>Customer Login</h1>
         <form action="loginPage.php" method="POST">
@@ -23,7 +24,8 @@ require_once '../Database/UserConnection.php';
             <button type="submit" name="submit">Login</button>
         </form>
         <?php
-        } else{
+        //} else{
+        if (isset($_POST['submit']) || isset($_POST['username']) || isset($_POST['password'])){
             $username = trim($_POST['username']);
             $password = trim($_POST['password']);
             
@@ -34,7 +36,7 @@ require_once '../Database/UserConnection.php';
             //echo "Welcome $username";
             
             //$db->closeConnection();
-            
+            Authentication::authenticateLogin($username, $password);
         }
         ?>
     </body>

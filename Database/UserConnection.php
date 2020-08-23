@@ -37,11 +37,38 @@ class UserConnection {
         $stmt->execute();
     }
     
-    public function getUserAccount($username, $password){
-        $query = "SELECT username, password FROM user WHERE username = ? AND password = ?";
+    public function getUserAccount($username){
+        $query = "SELECT username, password FROM user WHERE username = ?";
         $stmt = $this->db->getDb()->prepare($query);
         $stmt->bindParam(1, $username, PDO::PARAM_STR);
-        $stmt->bindParam(2, $password, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        if($stmt->rowCount() == 1){
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        }else{
+            $result = "No such username or password";
+            echo $result;
+        }
+    }
+    
+    public function getUserDetails($userID){
+        $query = "SELECT name, email, number, dob, gender, address FROM user WHERE userID = ?";
+        $stmt = $this->db->getDb()->prepare($query);
+        $stmt->bindParam(1, $userID, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        if($stmt->rowCount() == 1){
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }else {
+            return null;
+        }
+    }
+    
+    /*public function getUsername($username){
+        $query = "SELECT userID FROM user WHERE username = ?";
+        $stmt = $this->db->getDb()->prepare($query);
+        $stmt->bindParam(1, $username, PDO::PARAM_STR);
         $stmt->execute();
         
         if($stmt->rowCount() == 1){
@@ -49,20 +76,6 @@ class UserConnection {
             return $result;
         }else{
             return null;
-            echo "Username or password does not match!";
         }
-    }
-    
-    public function getUserDetails(){
-        $query = "SELECT userID, name, email, number, dob, gender, address FROM user";
-        $stmt = $this->db->getDb()->prepare($query);
-        $stmt->execute();
-        
-        if($stmt->rowCount() > 0){
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }else {
-            return null;
-        }
-    }
+    }*/
 }
