@@ -33,7 +33,12 @@ class Authentication {
             $db = DatabaseConnection::getInstance();
             $getUserDb = UserConnection::getInstance();
             $result = $getUserDb->getUserAccount($username);
-            $pass = $result['password'];
+            
+            if($result != null){
+                $pass = $result['password'];
+            }else{
+                $pass = '';
+            }
             
             if(password_verify($password, $pass)){
                 echo "Login Successful";

@@ -6,7 +6,7 @@ require_once 'Authentication.php';
 $name = $email = $number = $dob = $gender = $address = $username = $password = $cPassword = "";
 $nameErr = $emailErr = $numberErr = $dobErr = $genderErr = $addressErr = $usernameErr = $passwordErr = $cPasswordErr = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+//if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 
 <!DOCTYPE html>
@@ -70,13 +70,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                  </div>
                  <div class="form-group <?php echo (!empty($passwordErr)) ? 'has_error' : '';?>">
                      <label>Password</label>
-                     <input type="text" name="password" id="password" class="form-control" value="<?php echo $password;?>"/>
+                     <input type="password" name="password" id="password" class="form-control" value="<?php echo $password;?>"/>
                      <span class="help-block"><?php echo $passwordErr;?>                      
                      </span>
                  </div>
                  <div class="form-group <?php echo (!empty($cPasswordErr)) ? 'has_error' : '';?>">
                      <label>Confirm Password</label>
-                     <input type="text" name="cpassword" id="cpassword" class="form-control" value="<?php echo $cPassword;?>"/>
+                     <input type="password" name="cpassword" id="cpassword" class="form-control" value="<?php echo $cPassword;?>"/>
                      <span class="help-block"><?php echo $cPasswordErr;?>                      
                      </span>
                  </div>
@@ -88,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
              </form>  
         </div>
         <?php
-        }
+        //}
            // if(isset($_POST['submit']) || isset($_POST['gender'])){
           //  $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
           //  $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_STRING);
