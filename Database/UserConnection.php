@@ -57,7 +57,7 @@ class UserConnection {
         $stmt->bindParam(1, $userID, PDO::PARAM_STR);
         $stmt->execute();
         
-        if($stmt->rowCount() > 1){
+        if($stmt->rowCount() > 0){
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
         }else {
