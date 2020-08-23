@@ -1,11 +1,14 @@
 <?php
 
+require_once 'MovieInterface.php';
+
 /**
  * Description of Movie
  *
  * @author Venessa Choo Wei Ling
  */
-class Movie {
+class Movie implements MovieInterface {
+
     private $movieID;
     private $name;
     private $poster;
@@ -20,7 +23,7 @@ class Movie {
     private $director;
     private $distributor;
     private $synopsis;
-    
+
     public function __construct($movieID, $name, $poster, $length, $status, $genre, $language, $subtitle, $ageRestriction, $releaseDate, $cast, $director, $distributor, $synopsis) {
         $this->movieID = $movieID;
         $this->name = $name;
@@ -149,4 +152,22 @@ class Movie {
     public function setSynopsis($synopsis): void {
         $this->synopsis = $synopsis;
     }
+
+    public function toString() {
+        return 'ID: ' . $this->getMovieID() .
+                ', Name: ' . $this->getName() .
+                ', Poster: ' . $this->getPoster() .
+                ', Length: ' . $this->getLength() .
+                ', Status: ' . $this->getStatus() .
+                ', Genre: ' . $this->getGenre() .
+                ', Language: ' . $this->getLanguage() .
+                ', Subtitle: ' . $this->getSubtitle() .
+                ', Age Restriction: ' . $this->getAgeRestriction() .
+                ', Release Date: ' . $this->getReleaseDate() .
+                ', Cast: ' . $this->getCast() .
+                ', Director: ' . $this->getDirector() .
+                ', Distributor: ' . $this->getDistributor() .
+                ', Synopsis: ' . $this->getSynopsis();
+    }
+
 }
