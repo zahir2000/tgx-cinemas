@@ -25,7 +25,7 @@ class ThrottlingMiddleware extends Middleware {
      * objects. For instance, a middleware can change the order of checks by
      * running its check after all the others.
      */
-    public function check(string $email, string $password): bool {
+    public function check(string $username, string $password): bool {
         if (time() > $this->currentTime + 60) {
             $this->request = 0;
             $this->currentTime = time();
@@ -38,7 +38,7 @@ class ThrottlingMiddleware extends Middleware {
             die();
         }
 
-        return parent::check($email, $password);
+        return parent::check($username, $password);
     }
 
 }

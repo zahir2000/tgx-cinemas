@@ -17,26 +17,26 @@ class Server {
     }
 
     /**
-     * The server gets the email and password from the client and sends the
+     * The server gets the username and password from the client and sends the
      * authorization request to the middleware.
      */
-    public function logIn(string $email, string $password): bool {
-        if ($this->middleware->check($email, $password)) {
+    public function logIn(string $username, string $password): bool {
+        if ($this->middleware->check($username, $password)) {
             return true;
         }
         return false;
     }
 
-    public function register(string $email, string $password): void {
-        $this->users[$email] = $password;
+    public function register(string $username, string $password): void {
+        $this->users[$username] = $password;
     }
 
-    public function hasEmail(string $email): bool {
-        return isset($this->users[$email]);
+    public function hasUsername(string $username): bool {
+        return isset($this->users[$username]);
     }
 
-    public function isValidPassword(string $email, string $password): bool {
-        return $this->users[$email] === $password;
+    public function isValidPassword(string $username, string $password): bool {
+        return $this->users[$username] === $password;
     }
 
 }

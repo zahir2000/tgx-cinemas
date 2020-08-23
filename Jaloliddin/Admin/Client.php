@@ -2,11 +2,12 @@
 require_once 'Server.php';
 require_once 'ThrottlingMiddleware.php';
 require_once 'UserExistsMiddleware.php';
-require_once 'RoleCheckMiddleware.php';
 require_once 'Service.php';
 
 $status = "";
 $message = "";
+
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,10 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
         <title>Administrator Login</title>
     </head>
     <body>
@@ -27,20 +31,22 @@ and open the template in the editor.
          * The client code.
          */
         if (isset($_POST['login'])) {
-            $email = $_POST['email'];
+            $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $success = $server->logIn($email, $password);
+            $success = $server->logIn($username, $password);
 
             if ($success) {
                 $message = "Authorization has been successful!\n";
                 $status = "success";
-                session_start();
-                $_SESSION["email"] = $email;
+
+                $_SESSION["username"] = $username;
                 $_SESSION["password"] = $password;
 
-                if (isset($_SESSION["email"])) {
+                if (isset($_SESSION["username"])) {
                     header('Location:AdminDashboard.php?status=' . $status);
+                }else{
+                    header('Location:Client.php');
                 }
             } else {
                 $message = "Login Failed! Authorized Personnel Only!";
@@ -60,9 +66,9 @@ and open the template in the editor.
         <div class="container">
             <form method="POST" name="form">
                 <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-control-lg" placeholder="e.g. someone@example.com" name="email" id="email" required>
+                        <input type="text" class="form-control form-control-lg" placeholder="e.g. someone@example.com" name="username" id="username" required>
                     </div>
                 </div>
                 <div class="form-group row">
