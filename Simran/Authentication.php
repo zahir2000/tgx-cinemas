@@ -7,6 +7,7 @@ require_once '../Database/UserConnection.php';
  * @author Harrsimran Kaur
  */
 class Authentication {
+
        
     public function __construct() {
         
@@ -32,14 +33,14 @@ class Authentication {
             $db = DatabaseConnection::getInstance();
             $getUserDb = UserConnection::getInstance();
             $result = $getUserDb->getUserAccount($username);
-            //$user = $result['username'];
             $pass = $result['password'];
             
             if(password_verify($password, $pass)){
                 echo "Login Successful";
+                
             }else{
                 echo "Login Unsuccessful! Username or password is invalid!";
-            }    
+            }
             
             $db->closeConnection();
             

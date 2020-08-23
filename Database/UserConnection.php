@@ -46,8 +46,7 @@ class UserConnection {
         if($stmt->rowCount() == 1){
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
         }else{
-            $result = "No such username or password";
-            echo $result;
+            return null;
         }
     }
     
