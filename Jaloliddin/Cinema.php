@@ -1,4 +1,4 @@
-i dun<?php
+<?php
 require_once 'CinemaConnection.php';
 require_once 'CinemaXML.php';
 ?>
