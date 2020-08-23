@@ -2,6 +2,8 @@
 
 require_once 'PaymentStrategy.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/BookingConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/UserConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Classes/User.php';
 
 /**
  * Description of CreditCardStrategy
@@ -38,7 +40,9 @@ class CreditCardStrategy implements PaymentStrategy {
         $a = file_get_contents("Cart/" . $cartLocation);
         $cart = unserialize($a);
 
-        $user = new User(1, "Zahir Sher", "zakisher@gmail.com", "0108003610", "24/01/2000", "Male", "C-4-1, Idaman Putera", "zahir", "123");
+        $userCon = UserConnection::getInstance();
+        $result = $userCon->getUserDetails(SessionHelper::get('userId'));
+        $user = new User(SessionHelper::get('userId'), $result['name'], $result['email'], $result['number'], $result['dob'], $result['gender'], $result['address']);
 
         $bookingDOM = new BookingDOMParser($userId);
         $booking = $bookingDOM->retrieveBookingDetails();

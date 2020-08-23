@@ -29,9 +29,9 @@
     </row>
     
     <row id="D">
-        <seat id="1"/>
-        <seat id="2"/>
-        <seat id="3"/>
+        <seat id="1">Booked</seat>
+        <seat id="2">Booked</seat>
+        <seat id="3">Booked</seat>
         <seat id="4"/>
         <seat id="5"/>
         <seat id="6"/>

@@ -14,10 +14,8 @@ class User {
     private $dob;
     private $gender;
     private $address;
-    private $username;
-    private $password;
 
-    function __construct($userId = "", $name = "", $email = "", $number = "", $dob = "", $gender = "", $address = "", $username = "", $password = "") {
+    function __construct($userId = "", $name = "", $email = "", $number = "", $dob = "", $gender = "", $address = "") {
         $this->userId = $userId;
         $this->name = $name;
         $this->email = $email;
@@ -25,8 +23,6 @@ class User {
         $this->dob = $dob;
         $this->gender = $gender;
         $this->address = $address;
-        $this->username = $username;
-        $this->password = $password;
     }
     
     function getUserId() {
@@ -61,14 +57,6 @@ class User {
         return $this->address;
     }
 
-    function getUsername() {
-        return $this->username;
-    }
-
-    function getPassword() {
-        return $this->password;
-    }
-
     function setName($name): void {
         $this->name = $name;
     }
@@ -92,13 +80,16 @@ class User {
     function setAddress($address): void {
         $this->address = $address;
     }
-
-    function setUsername($username): void {
-        $this->username = $username;
+    
+    public function __toString() {
+        return $this->userId . "<br/>"
+                . $this->name . "<br/>"
+                . $this->email  . "<br/>"
+                . $this->number  . "<br/>"
+                . $this->dob  . "<br/>"
+                . $this->gender  . "<br/>"
+                . $this->address  . "<br/>";
     }
 
-    function setPassword($password): void {
-        $this->password = $password;
-    }
 
 }
