@@ -4,15 +4,16 @@ require_once 'Classes/Movie.php';
 require_once 'XML/MovieXML.php';
 
 $movieConn = new MovieConnection();
-$movieFullList = $movieConn->getAllMovie();
-$movieList = $movieConn->getAllMovie();
+$movieListWeb = $movieConn->getAllMovieForWeb();
+$movieListXML = $movieConn->getAllMovieForXML();
 
 $movieXML = new MovieXML();
 
 // check the movieName whether is POST
 if (filter_input(INPUT_POST, 'movieName')) {
     $movieName = trim(filter_input(INPUT_POST, 'movieName'));
-    $movieList = $movieConn->getSearchedMovie($movieName);
+    $movieListWeb = $movieConn->getSearchedMovieForWeb($movieName);
+    $movieListXML = $movieConn->getSearchedMovieForXML($movieName);
 }
 ?>
 
@@ -51,20 +52,21 @@ if (filter_input(INPUT_POST, 'movieName')) {
 
             <h1>TGX Cinemas Movies From DB</h1>
 
-            <br />
-
-            <div class = "row">
+            <!-- return result of array -->
+            <!-- remove hidden to show, add hidden to hide -->
+            <div class = "row" hidden>
                 <?php
-                if (is_array($movieList) || is_object($movieList)) {
-                    foreach ($movieList as $movie) {
+                if (is_array($movieListXML) || is_object($movieListXML)) {
+                    foreach ($movieListXML as $movieForXML) {
                         ?>
                         <div class="col-3">
                             <div class = "card">
-                                <img class="card-img-top" src="../<?php echo $movie['poster'] ?>" alt="">
+                                <img class="card-img-top" src="../<?php echo $movieForXML['poster'] ?>" alt="">
                                 <div class = "card-body">
-                                    <h5 class = "card-title"><?php echo $movie['name'] ?></h5>
-                                    <p class = "card-text text-truncate"><?php echo $movie['synopsis'] ?></p>
-<!--                                    <a href = "#" class = "btn btn-secondary">View</a>-->
+                                    <h5 class = "card-title"><?php echo $movieForXML['name'] ?></h5>
+                                        <p class = "card-text text-truncate"><?php echo $movieForXML['synopsis'] ?></p>
+                                    <p class = "card-text"><?php echo $movieForXML['releaseDate'] ?></p>
+                                    <a href = "#" class = "btn btn-secondary" hidden="true">View</a>
                                 </div>
                             </div>
                         </div>
@@ -78,20 +80,46 @@ if (filter_input(INPUT_POST, 'movieName')) {
 
             <hr />
 
+            <!-- return list of Movie -->
+            <div class = "row">
+                <?php
+                try {
+                    if (is_array($movieListWeb) || is_object($movieListWeb)) {
+                        foreach ($movieListWeb as $movieForWeb) {
+                            ?>
+                            <div class="col-3">
+                                <div class = "card">
+                                    <img class="card-img-top" src="../<?php echo $movieForWeb->getPoster() ?>" alt="">
+                                    <div class = "card-body">
+                                        <h5 class = "card-title"><?php echo $movieForWeb->getName() ?></h5>
+                                        <p class = "card-text text-truncate"><?php echo $movieForWeb->getSynopsis() ?></p>
+                                        <p class = "card-text"><?php echo $movieForWeb->getReleaseDate() ?></p>
+                                        <a href = "#" class = "btn btn-secondary" hidden="true">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo 'Sorry... Not record found for ' . $movieName;
+                    }
+                } catch (Exception $ex) {
+                    echo 'Sorry... Not record found for ' . $movieName;
+                }
+                ?>
+            </div>
+
+            <hr />
+
             <!-- create xml file -->
             <?php
-            if (is_array($movieList) || is_object($movieList)) {
-                $movieXML->createXMLFile($movieList);
+            if (is_array($movieListXML) || is_object($movieListXML)) {
+                $movieXML->createXMLFile($movieListXML);
             }
             ?>
 
             <!-- read from xml -->
             <?php
-            // check the movieName whether is POST
-//            if (filter_input(INPUT_POST, 'movieName')) {
-//                $movieName = trim(filter_input(INPUT_POST, 'movieName'));
-//                $movieXML->readFromXMLByName($movieName);
-//            }
             $movieXML->readFromXML();
             ?>
         </div>
