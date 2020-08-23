@@ -11,8 +11,7 @@
                     Manage Movies</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Add New Movie</a>
-                    <a class="dropdown-item" href="#">Edit Existing Movie</a>
-                    <a class="dropdown-item" href="#">Delete Existing Movie</a>
+                    <a class="dropdown-item" href="/tgx-cinemas/Jaloliddin/FetchMovieDetails.php">Display Existing Movie</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -21,7 +20,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Add Cinema Details</a>
-                    <a class="dropdown-item" href="../Cinema.php">Display Cinema Details</a>
+                    <a class="dropdown-item" href="/tgx-cinemas/Jaloliddin/Cinema.php">Display Cinema Details</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -37,9 +36,8 @@
         </ul>
         <div class="md-form my-0">
             <form action="Logout.php">
-                <a href="Logout.php" class="btn btn-light"><strong>Logout</strong></a>
+                <a href="/tgx-cinemas/Jaloliddin/Admin/Logout.php" class="btn btn-light"><strong>Logout</strong></a>
             </form>
-
         </div>
     </div>
 </nav>

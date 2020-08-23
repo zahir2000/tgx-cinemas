@@ -85,7 +85,6 @@ and open the template in the editor.
                         <?php } ?>
                     </div>
                 </div>
-
             </form>
         </div>
     </body>
