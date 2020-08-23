@@ -1,6 +1,7 @@
 <?php
 require_once '../Database/DatabaseConnection.php';
 require_once '../Database/UserConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
 /**
  * Description of Authentication
  *
@@ -26,7 +27,6 @@ class Authentication {
     public static function authenticateLogin($username, $password){
         if(!empty($username) && !empty($password)){
                        
-            $db = DatabaseConnection::getInstance();
             $getUserDb = UserConnection::getInstance();
             $result = $getUserDb->getUserAccount($username);
             
@@ -37,16 +37,18 @@ class Authentication {
             }
             
             if(password_verify($password, $pass)){
+                SessionHelper::login($username, $result['userID']);
                 echo "Login Successful";
+                return true;
                 
             }else{
                 echo "Login Unsuccessful! Username or password is invalid!";
+                return false;
             }
-            
-            $db->closeConnection();
             
         }else{
             echo "Do not leave the fields blank!";
+            return false;
         }
     }
     
