@@ -83,7 +83,7 @@ if (!SessionHelper::check('userId')) {
                     </div>
                     <div>
                         <button name="logout" class="button" style="float: right"><i class="fas fa-sign-out-alt"></i> <?php echo $button ?></button>
-                        <a href="#" class="button" name="profile" style="float: right"><i class="far fa-user"></i></a>
+                        <a href="/tgx-cinemas/Simran/Profile.php" class="button" name="profile" style="float: right"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </form>

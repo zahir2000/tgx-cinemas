@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <users>
-  <user id="">
-    <name/>
-    <email/>
-    <number/>
-    <dob/>
-    <gender/>
-    <address/>
+  <user id="9">
+    <name>Ninja</name>
+    <email>ninja@gmail.com</email>
+    <number>01128182986</number>
+    <dob>1999-10-12</dob>
+    <gender>male</gender>
+    <address>no.6, Jalan 9558, Taman Orkid, 56000 Kuala Lumpur</address>
   </user>
 </users>

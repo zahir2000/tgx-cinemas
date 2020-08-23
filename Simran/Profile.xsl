@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output method="html"/>
     <xsl:template match="/">
         <html>
             <head>
@@ -24,8 +25,8 @@
                 <th>Gender</th>
                 <th>Address</th>
             </tr>
-            <xsl:for-each select="user">
-                <xsl:sort select="@id" order="ascending"/>
+            <xsl:for-each select="//user">
+                <xsl:sort select="@id"/>
                 <tr>
                     <td>
                         <xsl:value-of select="@id"/>
