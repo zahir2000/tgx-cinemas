@@ -4,11 +4,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/HallDecor
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Utility/DayTime.php';
 
 /**
- * Description of DeluxeDecorator
- *
  * @author Zahir
  */
-class DeluxeDecorator extends HallDecorator {
+class ImaxDecorator extends HallDecorator {
 
     public function __construct($hall, $timeOfDay) {
         parent::__construct($hall, $timeOfDay);
@@ -18,18 +16,18 @@ class DeluxeDecorator extends HallDecorator {
         $cost = $this->hall->cost();
 
         if ($this->getTimeOfDay() == DayTime::MORNING) {
-            $cost -= 5;
+            $cost -= 3;
         } else if ($this->getTimeOfDay() == DayTime::AFTERNOON) {
-            $cost += 5;
+            $cost += 9;
         } else if ($this->getTimeOfDay() == DayTime::EVENING) {
-            $cost += 10;
+            $cost += 13;
         }
         
         return $cost;
     }
 
     public function experience() {
-        return $this->hall->experience() . " Deluxe";
+        return $this->hall->experience() . " IMAX";
     }
 
 }

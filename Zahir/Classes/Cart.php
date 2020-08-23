@@ -9,8 +9,9 @@ require_once 'Strategy/PaymentStrategy/PaymentStrategy.php';
  */
 class Cart {
 
-    public $tickets;
-    public $showtimeId;
+    private $tickets;
+    private $showtimeId;
+    private $paymentStrategy;
 
     function __construct($showtimeId = "") {
         $this->showtimeId = $showtimeId;
@@ -36,6 +37,14 @@ class Cart {
     function setShowtimeId($showtimeId): void {
         $this->showtimeId = $showtimeId;
     }
+    
+    function getPaymentStrategy() {
+        return $this->paymentStrategy;
+    }
+
+    function setPaymentStrategy($paymentStrategy): void {
+        $this->paymentStrategy = $paymentStrategy;
+    }
 
     function calculateTotal() {
         $sum = 0;
@@ -45,9 +54,8 @@ class Cart {
         return $sum;
     }
 
-    public function pay($paymentMethod, $userId, $cart) {
-        $amount = $this->calculateTotal();
-        $paymentMethod->pay($userId, $cart);
+    public function pay($userId) {
+        $this->paymentStrategy->pay($userId);
     }
 
 }

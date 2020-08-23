@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Zahiriddin Rustamov
+ */
 require_once 'Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';
 
@@ -18,7 +21,7 @@ require_once 'Classes/Booking.php';
 require_once 'Classes/User.php';
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Home.php');
+    header('Location:/tgx-cinemas/Home.php');
 }
 
 if (!isset($_GET['id'])) {

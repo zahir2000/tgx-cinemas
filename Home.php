@@ -1,12 +1,12 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/SessionHelper.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/BookingConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/BookingConnection.php';
 
 if(isset($_GET['booking'])){
     echo "Session Expired!";
 }
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Header.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Header.php';
 ?>
 
 <html>
@@ -49,13 +49,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Header.php';
 
                         <div class="col-md-3 pt-5">
                             <div class="card" style="width: 18rem;">
-                                <a href="/Assignment/Zahir/Movies.php?id=<?php echo $movie['movieID'] ?>">
-                                    <img class="card-img-top movies-panel-img" src="<?php echo "/Assignment/" . $movie['poster'] ?>" alt="Card image cap">
+                                <a href="/tgx-cinemas/Zahir/Movies.php?id=<?php echo $movie['movieID'] ?>">
+                                    <img class="card-img-top movies-panel-img" src="<?php echo "/tgx-cinemas/" . $movie['poster'] ?>" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $movie['movieName'] ?></h5>
                                     <p class="card-text"><?php echo substr($movie['synopsis'], 0, 75) . "..." ?></p>
-                                    <a href="/Assignment/Zahir/Movies.php?id=<?php echo $movie['movieID'] ?>" class="btn btn-dark btn-block">Book Now</a>
+                                    <a href="/tgx-cinemas/Zahir/Movies.php?id=<?php echo $movie['movieID'] ?>" class="btn btn-dark btn-block">Book Now</a>
                                 </div>
                             </div>
                         </div>

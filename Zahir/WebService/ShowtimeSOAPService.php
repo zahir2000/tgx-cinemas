@@ -1,9 +1,9 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/lib/nusoap.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/DatabaseConnection.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/BookingConnection.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/GeneralUtilities.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/lib/nusoap.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/DatabaseConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/BookingConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Utility/GeneralUtilities.php';
 
 $server = new nusoap_server();
 

@@ -27,11 +27,11 @@ require_once 'Strategy/SeatPriceStrategy/RegularSeatStrategy.php';
 require_once 'Utility/GeneralUtilities.php';
 
 if (!isset($_SERVER['HTTP_REFERER']) || !SessionHelper::verifyToken($_SERVER['HTTP_REFERER'])) {
-    header('Location:/Assignment/Home.php?csrf_token=invalid');
+    header('Location:/tgx-cinemas/Home.php?csrf_token=invalid');
 }
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Home.php?id=missing');
+    header('Location:/tgx-cinemas/Home.php?id=missing');
 }
 
 include_once 'Header.php';

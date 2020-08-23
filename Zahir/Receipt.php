@@ -20,13 +20,13 @@ require_once 'Booking/BookingDOMParser.php';
 include_once 'Header.php';
 
 if (!SessionHelper::verifyToken($_SERVER['HTTP_REFERER'])) {
-    header('Location:/Assignment/Home.php');
+    header('Location:/tgx-cinemas/Home.php');
 }
 
 if (SessionHelper::check('user_cart')) {
     $cartLocation = SessionHelper::get('user_cart');
 } else {
-    header('Location:/Assignment/Home.php?receipt=error');
+    header('Location:/tgx-cinemas/Home.php?receipt=error');
 }
 
 $a = file_get_contents("Cart/" . $cartLocation);
@@ -62,7 +62,8 @@ $cart = unserialize($a);
         }
 
         $receiptXSLT = new ReceiptXSLT($userId);
-        $cart->pay($method, $userId, $cart);
+        $cart->setPaymentStrategy($method);
+        $cart->pay($userId);
 
         SessionHelper::remove('selectedSeats');
         SessionHelper::remove('user_cart');

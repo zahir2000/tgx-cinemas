@@ -1,11 +1,11 @@
 <?php
 SessionHelper::login_session();
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/CheckToken.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Logout.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/CheckToken.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Logout.php';
 
 if (!SessionHelper::check('userId')) {
-    $action = "/Assignment/Simran/loginPage.php";
+    $action = "/tgx-cinemas/Simran/loginPage.php";
 } else {
     $action = "?a=submit";
 }
@@ -77,8 +77,8 @@ if (!SessionHelper::check('userId')) {
 
                 <div class='header-panel'>
                     <div>
-                        <a href="/Assignment/Home.php">
-                            <img src='/Assignment/img/tgx-logo.png' alt="Logo" />
+                        <a href="/tgx-cinemas/Home.php">
+                            <img src='/tgx-cinemas/img/tgx-logo.png' alt="Logo" />
                         </a>
                     </div>
                     <div>

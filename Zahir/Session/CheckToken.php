@@ -1,7 +1,7 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/SessionHelper.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/DatabaseConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/DatabaseConnection.php';
 
 if (SessionHelper::check('username')) {
     $db = DatabaseConnection::getInstance();
@@ -23,7 +23,7 @@ if (SessionHelper::check('username')) {
             SessionHelper::removeToken('logout');
             SessionHelper::destroy();
             
-            header('Location:/Assignment/Simran/loginPage.php?duplicate=user');
+            header('Location:/tgx-cinemas/Simran/loginPage.php?duplicate=user');
         }
     }
 }

@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of ShowtimeXPath
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class ShowtimeXPath {
 

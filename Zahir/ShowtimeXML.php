@@ -4,9 +4,7 @@ require_once 'ShowtimeXPath.php';
 require_once 'Utility/GeneralUtilities.php';
 
 /**
- * Description of BookingXMLBuilder
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class ShowtimeXML {
 

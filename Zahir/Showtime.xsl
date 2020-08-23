@@ -3,9 +3,8 @@
 <!--
     Document   : Showtime.xsl
     Created on : August 14, 2020, 11:18 PM
-    Author     : Zahir
-    Description:
-        Purpose of transformation follows.
+    Author     : Zahiriddin Rustamov
+    Description: Display movie details based on showtimeId.
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">

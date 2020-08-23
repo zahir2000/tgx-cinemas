@@ -6,5 +6,5 @@
  */
 interface PaymentStrategy {
 
-    public function pay($userId, $cart);
+    public function pay($userId);
 }

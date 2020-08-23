@@ -1,14 +1,19 @@
 <?php
 
+/**
+ * @author Zahiriddin Rustamov
+ */
+
 class ShowtimeXSLT {
     private $xml;
     private $xsl = "Showtime.xsl";
 
     public function __construct($showtimeId, $xml = "") {
-        if(empty($xml))
+        if(empty($xml)){
             $this->xml = "Showtime.xml";
-        else
+        } else {
             $this->xml = $xml;
+        }
         
         $this->generateMovieDetails($showtimeId);
     }

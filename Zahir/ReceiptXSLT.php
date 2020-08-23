@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of ReceiptXSLT
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class ReceiptXSLT {
 

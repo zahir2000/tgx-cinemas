@@ -1,11 +1,11 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/DayTime.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Classes/Hall.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/GeneralUtilities.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/LuxeDecorator.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/RegularDecorator.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/DeluxeDecorator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Utility/DayTime.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Classes/Hall.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Utility/GeneralUtilities.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/LuxeDecorator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/RegularDecorator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/DeluxeDecorator.php';
 
 /**
  * Description of GeneralUtilities

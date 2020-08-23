@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/HallInterface.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/HallInterface.php';
 
 /**
  * Description of HallDecorator
@@ -17,7 +17,7 @@ abstract class HallDecorator implements HallInterface {
         $this->timeOfDay = $timeOfDay;
     }
     
-    function getTimeOfDay() {
+    protected function getTimeOfDay() {
         return $this->timeOfDay;
     }
 

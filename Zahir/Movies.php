@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/SessionHelper.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
 
 require_once '../Database/DatabaseConnection.php';
 require_once '../Database/BookingConnection.php';
@@ -15,7 +15,7 @@ require_once 'Strategy/SeatPriceStrategy/TwinSeatStrategy.php';
 include_once 'Header.php';
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Home.php');
+    header('Location:/tgx-cinemas/Home.php');
 }
 
 $movieId = filter_input(INPUT_GET, 'id');
@@ -30,7 +30,7 @@ if (filter_input(INPUT_GET, 'date')) {
     $day = substr($date, 8, 2);
 
     if (!checkdate($month, $day, $year)) {
-        header('Location:/Assignment/Home.php');
+        header('Location:/tgx-cinemas/Home.php');
     }
 } else {
     $date = date("Y-m-d");

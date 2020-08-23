@@ -7,7 +7,7 @@ if (isset($_GET['confirm'])) {
     SessionHelper::removeToken('seatcount_payment');
     SessionHelper::removeToken('receipt');
 
-    header('Location:/Assignment/Home.php?booking=expired');
+    header('Location:/tgx-cinemas/Home.php?booking=expired');
 }
 
 if (SessionHelper::check('booking_timer')) {
@@ -65,7 +65,7 @@ if (SessionHelper::check('booking_timer')) {
                 document.getElementById("second").innerHTML = pad((maxInactivity - secondsSinceLastActivity) % 60, 2);
 
                 if (secondsSinceLastActivity >= maxInactivity) {
-                    location.href = '/Assignment/Zahir/BookingTimer.php?confirm=yes';
+                    location.href = '/tgx-cinemas/Zahir/BookingTimer.php?confirm=yes';
                 }
             }, 1000);
         }

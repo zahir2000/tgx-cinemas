@@ -1,7 +1,7 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Decorator/HallDecorator.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/DayTime.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/HallDecorator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Utility/DayTime.php';
 
 /**
  * Description of LuxeDecorator

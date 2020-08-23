@@ -1,7 +1,11 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/ShowtimeXPath.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/BookingConnection.php';
+/**
+ * @author Zahiriddin Rustamov
+ */
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/ShowtimeXPath.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/BookingConnection.php';
 
 class SeatsXSLT {
 
@@ -11,14 +15,14 @@ class SeatsXSLT {
     private $hall = "";
 
     public function __construct($showtimeId) {
-        $showtimeXpath = new ShowtimeXPath($_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Showtime.xml');
+        $showtimeXpath = new ShowtimeXPath($_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Showtime.xml');
         $hallType = $showtimeXpath->getHallType($showtimeId);
 
         foreach ($hallType as $hall) {
             $this->hall = $this->hall . $hall;
         }
 
-        $this->xmlFile = $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/SeatLayout/Templates/' . $this->hall . 'SeatLayout.xml';
+        $this->xmlFile = $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/SeatLayout/Templates/' . $this->hall . 'SeatLayout.xml';
 
         $this->generateSoldSeats($showtimeId);
         $this->generateSeatLayout();
@@ -60,7 +64,7 @@ class SeatsXSLT {
             }
         }
 
-        $this->xmlFileUpdated = $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/SeatLayout/Booked/' . $this->hall . 'SeatLayoutSold' . $showtimeId . '.xml';
+        $this->xmlFileUpdated = $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/SeatLayout/Booked/' . $this->hall . 'SeatLayoutSold' . $showtimeId . '.xml';
         $document->save($this->xmlFileUpdated);
         $db->closeConnection();
     }

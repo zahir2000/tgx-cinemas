@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Zahiriddin Rustamov
+ */
 require_once '../Database/BookingConnection.php';
 require_once 'ShowtimeXML.php';
 require_once 'SeatsXSLT.php';
@@ -9,7 +11,7 @@ require_once 'Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Home.php');
+    header('Location:/tgx-cinemas/Home.php');
 }
 
 if (!isset($_GET['id'])) {

@@ -17,7 +17,7 @@
             
             <script type="text/javascript">
                 function goToHome(){
-                window.location.href = "/Assignment/Home.php";      
+                window.location.href = "/tgx-cinemas/Home.php";      
                 }
             </script>
             

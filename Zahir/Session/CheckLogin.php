@@ -4,5 +4,5 @@ require_once 'SessionHelper.php';
 
 if(!SessionHelper::check('username')){
     SessionHelper::destroy();
-    header('Location:/Assignment/Simran/loginPage.php');
+    header('Location:/tgx-cinemas/Simran/loginPage.php');
 }
