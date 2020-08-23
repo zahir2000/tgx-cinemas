@@ -38,7 +38,7 @@ class UserConnection {
     }
     
     public function getUserAccount($username){
-        $query = "SELECT username, password FROM user WHERE username = ?";
+        $query = "SELECT username, password, userID FROM user WHERE username = ?";
         $stmt = $this->db->getDb()->prepare($query);
         $stmt->bindParam(1, $username, PDO::PARAM_STR);
         $stmt->execute();

@@ -1,5 +1,4 @@
 <?php
-require_once '../Database/DatabaseConnection.php';
 require_once '../Database/UserConnection.php';
 require_once 'Authentication.php';
 ?>
@@ -36,7 +35,9 @@ require_once 'Authentication.php';
             //echo "Welcome $username";
             
             //$db->closeConnection();
-            Authentication::authenticateLogin($username, $password);
+            if(Authentication::authenticateLogin($username, $password)){
+                header('Location:/tgx-cinemas/Home.php');
+            }
         }
         ?>
     </body>
