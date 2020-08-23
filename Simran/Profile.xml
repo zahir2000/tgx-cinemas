@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<user>
-  <user>
-    <user id="">
-      <name/>
-      <email/>
-      <number/>
-      <dob/>
-      <gender/>
-      <address/>
-    </user>
+<users>
+  <user id="">
+    <name/>
+    <email/>
+    <number/>
+    <dob/>
+    <gender/>
+    <address/>
   </user>
-</user>
+</users>

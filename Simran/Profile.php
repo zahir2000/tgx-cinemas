@@ -1,6 +1,7 @@
 <?php
 require_once '../Database/UserConnection.php';
 require_once 'ProfileXML.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@ require_once 'ProfileXML.php';
         <?php
         
         $profileDb = UserConnection::getInstance();
-        $profileDetails = $profileDb->getUserDetails();
+        $profileDetails = $profileDb->getUserDetails(SessionHelper::get('userId'));
         
         $profileXML = new ProfileXML($profileDetails);
         

@@ -33,12 +33,10 @@ class ProfileXML {
         $domtree = new DOMDocument('1.0', 'UTF-8');
         $domtree->formatOutput = true;
         $domtree->loadXML(file_get_contents($this->xmlFile), LIBXML_NOBLANKS);
-        $root = $domtree->getElementsByTagName('user')->item(0);
+        $root = $domtree->getElementsByTagName('users')->item(0);
         
         $xmlProfile = $domtree->createElement("user");
         $xmlProfile = $root->appendChild($xmlProfile);
-        
-        $xmlProfile->appendChild($xmlProfile = $domtree->createElement('user'));
         
         $xmlProfile->appendChild($domtree->createAttribute('id'));
         $xmlProfile->setAttribute('id', $profileDetails['userID']);
@@ -56,7 +54,7 @@ class ProfileXML {
         $domtree = new DOMDocument('1.0', 'UTF-8');
         $domtree->formatOutput = true;
         
-        $xmlProfile = $domtree->createElement("user");
+        $xmlProfile = $domtree->createElement("users");
         $xmlProfile = $domtree->appendChild($xmlProfile);
         $domtree->save($this->xmlFile);
     }

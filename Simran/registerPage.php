@@ -61,7 +61,7 @@ $error = '';
                      <input type="password" name="cPassword" id="cPassword" class="form-control" required/>
                  </div>
                  <div class="form-group">
-                     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit">
+                     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Register">
                      <input type="reset" class="btn btn-default" value="Reset"> 
                  </div>
                  <p>Already have an account? <a href="loginPage.php">Login Here</a>.</p>
@@ -97,14 +97,6 @@ $error = '';
                    echo "Registration Unsuccessful. Please follow standards of password!";
                }         
            }
-           
-           
-                
-            //$db = databaseConnection::getInstance();
-            //$userDb = UserConnection::getInstance();
-            //$userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, $password);
-            //echo "<p>Registration Successful</p>";
-            //$db->closeConnection();
         }
         ?>
     </body>

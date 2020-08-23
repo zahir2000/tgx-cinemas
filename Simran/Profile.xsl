@@ -23,8 +23,6 @@
                 <th>Date Of Birth</th>
                 <th>Gender</th>
                 <th>Address</th>
-                <th>Username</th>
-                <th>Password</th>
             </tr>
             <xsl:for-each select="user">
                 <xsl:sort select="@id" order="ascending"/>
@@ -49,12 +47,6 @@
                     </td>
                     <td>
                         <xsl:value-of select="address"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="username"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="password"/>
                     </td>
                 </tr>
             </xsl:for-each>

@@ -52,12 +52,12 @@ class UserConnection {
     }
     
     public function getUserDetails($userID){
-        $query = "SELECT name, email, number, dob, gender, address FROM user WHERE userID = ?";
+        $query = "SELECT userID, name, email, number, dob, gender, address FROM user WHERE userID = ?";
         $stmt = $this->db->getDb()->prepare($query);
         $stmt->bindParam(1, $userID, PDO::PARAM_STR);
         $stmt->execute();
         
-        if($stmt->rowCount() == 1){
+        if($stmt->rowCount() > 1){
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
         }else {
