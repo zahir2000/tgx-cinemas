@@ -4,14 +4,9 @@ require_once 'ThrottlingMiddleware.php';
 require_once 'UserExistsMiddleware.php';
 require_once 'RoleCheckMiddleware.php';
 require_once 'Service.php';
-//require_once 'DatabaseConnection.php';
-
-//$connect = DatabaseConnection::getInstance();
 
 $status = "";
 $message = "";
-
-//echo password_hash('admin', PASSWORD_BCRYPT);
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +18,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <title>Admin Login</title>
     </head>
     <body>
@@ -33,16 +29,19 @@ and open the template in the editor.
         if (isset($_POST['login'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
-            
-            //$email= strip_tags(mysql_real_escape_string($connect, trim($email)));
-            //$password = strip_tags(mysql_real_escape_string($connect, trim($password)));
 
             $success = $server->logIn($email, $password);
 
             if ($success) {
                 $message = "Authorization has been successful!\n";
                 $status = "success";
-                header('Location:AdminDashboard.php?status=' . $status);
+                session_start();
+                $_SESSION["email"] = $email;
+                $_SESSION["password"] = $password;
+
+                if (isset($_SESSION["email"])) {
+                    header('Location:AdminDashboard.php?status=' . $status);
+                }
             } else {
                 $message = "Login Failed! Authorized Personnel Only!";
                 $status = "failed";
@@ -50,12 +49,44 @@ and open the template in the editor.
             }
         }
         ?>
-        <form method="POST" name="form" action="">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" required>
-            <input type="password" name="password" id="password" required>
-            <button type="submit" name='login' class="btn btn-dark">Login</button>
-        </form>
-        <p><?php echo $message ?></p>
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Admin Login Page</h1>
+                <p class="lead">Welcome to the admin login page. Please enter your login details to gain access.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <form method="POST" name="form">
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-lg" placeholder="e.g. someone@example.com" name="email" id="email" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-7">
+                        <input placeholder="Enter Password" class="form-control form-control-lg" type="password" name="password" id="password" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-9">
+                        <button type="submit" name='login' class="btn btn-dark btn-block">Login</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-9">
+                        <?php if ($status == "failed") { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $message; ?>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </body>
 </html>
