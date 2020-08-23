@@ -1,7 +1,10 @@
 <?php
 require_once 'Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';
-$token = SessionHelper::generateToken('seatcount_payment');
+
+$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$token = SessionHelper::generateToken($url);
 
 require_once 'ShowtimeXSLT.php';
 require_once 'ShowtimeXPath.php';
@@ -59,12 +62,12 @@ $xmlGenShowtime = new ShowtimeXSLT($showtimeId, 'Booking/Booking' . $userId . '.
                     <h3>Regular Seat</h3>
                     <div style="padding-bottom: 2vh;">
                         <label for = "adults">Classic:</label>
-                        <input type = "number" id = "adults" name="adults" step = "1" min="1" max="<?php echo $userSeatsCount->getRegularSeatCount() ?>" value="<?php echo $userSeatsCount->getRegularSeatCount() ?>">
+                        <input type = "number" id = "adults" name="adults" step = "1" min="0" max="<?php echo $userSeatsCount->getRegularSeatCount() ?>" value="<?php echo $userSeatsCount->getRegularSeatCount() ?>">
                     </div>
 
                     <div>
                         <label for = "kids">Kids:</label>
-                        <input type = "number" id= "kids" name="kids" step = "1" min="0" value="0" max="<?php echo ($userSeatsCount->getRegularSeatCount() - 1) ?>">
+                        <input type = "number" id= "kids" name="kids" step = "1" min="0" value="0" max="<?php if($userSeatsCount->getRegularSeatCount() > 0){ echo ($userSeatsCount->getRegularSeatCount() - 1); } else { echo 0; } ?>">
                     </div>
                 </div>
 
@@ -85,7 +88,7 @@ $xmlGenShowtime = new ShowtimeXSLT($showtimeId, 'Booking/Booking' . $userId . '.
     </body>
 
     <script>
-        var total = <?php echo $userSeatsCount->getRegularSeatCount() ?>;
+        var total = <?php if($userSeatsCount->getRegularSeatCount() > 0) {echo $userSeatsCount->getRegularSeatCount(); } else { echo 0; } ?>;
         function Adults_ValueChanged(element) {
             //document.getElementById("kids").max = total - element.value;
         }

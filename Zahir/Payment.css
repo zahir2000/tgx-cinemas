@@ -46,7 +46,7 @@
     transition: max-height 0.2s ease-out;
 }
 
-.button {
+.button-payment {
   background-color: grey;
   border: none;
   color: white;
@@ -61,6 +61,6 @@
   width: 100%;
 }
 
-.button:hover{
+.button-payment:hover{
     background-color: black;
 }

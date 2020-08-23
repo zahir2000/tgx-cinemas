@@ -1,8 +1,8 @@
 <?php
 
-require_once '../../lib/nusoap.php';
-require_once '../../Database/DatabaseConnection.php';
-require_once '../../Database/BookingConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/lib/nusoap.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/DatabaseConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/BookingConnection.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Utility/GeneralUtilities.php';
 
 $server = new nusoap_server();
@@ -10,7 +10,7 @@ $server = new nusoap_server();
 $server->configureWSDL("Showtimes Web Service", "urn:showtimesAPI");
 
 $server->wsdl->addComplexType(
-        'showtimeArray', // MySoapObjectArray
+        'showtimeArray',
         'complexType', 'array', '', 'SOAP-ENC:Array',
         array(),
         array(array('ref' => 'SOAP-ENC:arrayType', 'wsdl:arrayType' => 'tns:return_array_php[]')), 'tns:return_array_php'
@@ -116,22 +116,22 @@ $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : "";
 @$server->service(file_get_contents("php://input"));
 
 function fetchMovies() {
-    $con = new BookingConnection();
+    $con = BookingConnection::getInstance();
     return $con->getMovies();
 }
 
 function fetchCinemas() {
-    $con = new BookingConnection();
+    $con = BookingConnection::getInstance();
     return $con->getCinemas();
 }
 
 function fetchExperiences() {
-    $con = new BookingConnection();
+    $con = BookingConnection::getInstance();
     return $con->getExperiences();
 }
 
 function fetchShowTime($movieId, $date, $cinemaId, $experience) {
-    $con = new BookingConnection();
+    $con = BookingConnection::getInstance();
 
     if (isset($date) && !empty($date)) {
         if (isset($cinemaId) && !empty($cinemaId)) {

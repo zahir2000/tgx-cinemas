@@ -17,15 +17,18 @@ require_once 'Strategy/SeatPriceStrategy/RegularSeatStrategy.php';
 require_once 'ReceiptXSLT.php';
 require_once 'Booking/BookingDOMParser.php';
 
-require_once '../Database/BookingConnection.php';
-
 include_once 'Header.php';
 
-if (!SessionHelper::verifyToken('receipt')) {
+if (!SessionHelper::verifyToken($_SERVER['HTTP_REFERER'])) {
     header('Location:/Assignment/Home.php');
 }
 
-$cartLocation = SessionHelper::get('user_cart');
+if (SessionHelper::check('user_cart')) {
+    $cartLocation = SessionHelper::get('user_cart');
+} else {
+    header('Location:/Assignment/Home.php?receipt=error');
+}
+
 $a = file_get_contents("Cart/" . $cartLocation);
 $cart = unserialize($a);
 ?>
@@ -60,12 +63,12 @@ $cart = unserialize($a);
 
         $receiptXSLT = new ReceiptXSLT($userId);
         $cart->pay($method, $userId, $cart);
-        
+
         SessionHelper::remove('selectedSeats');
         SessionHelper::remove('user_cart');
         SessionHelper::removeToken('seatcount_payment');
         SessionHelper::removeToken('receipt');
-        
+
         unlink("Cart/" . $cartLocation);
         unlink("SelectedSeats/SelectedSeats" . $userId . ".xml");
         unlink("Booking/Booking" . $userId . ".xml");

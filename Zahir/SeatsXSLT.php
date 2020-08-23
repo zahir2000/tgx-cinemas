@@ -1,13 +1,24 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/ShowtimeXPath.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/BookingConnection.php';
+
 class SeatsXSLT {
 
-    private $xmlFile = 'SeatLayout/RegularSeatLayout.xml';
+    private $xmlFile = 'SeatLayout/Templates/RegularSeatLayout.xml';
     private $xmlFileUpdated;
     private $xslFile = 'SeatLayout/RegularSeatLayout.xsl';
+    private $hall = "";
 
     public function __construct($showtimeId) {
-        $this->xmlFileUpdated = 'SeatLayout/RegularSeatLayoutSold' . $showtimeId . ".xml";
+        $showtimeXpath = new ShowtimeXPath($_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Showtime.xml');
+        $hallType = $showtimeXpath->getHallType($showtimeId);
+
+        foreach ($hallType as $hall) {
+            $this->hall = $this->hall . $hall;
+        }
+
+        $this->xmlFile = $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/SeatLayout/Templates/' . $this->hall . 'SeatLayout.xml';
 
         $this->generateSoldSeats($showtimeId);
         $this->generateSeatLayout();
@@ -34,17 +45,10 @@ class SeatsXSLT {
         $document->load($this->xmlFile);
         $xpath = new DOMXpath($document);
 
-        $query = "SELECT seat "
-                . "FROM ticket "
-                . "WHERE showtimeID = ? ";
+        $con = BookingConnection::getInstance();
+        $result = $con->getBookedSeats($showtimeId);
 
-        $stmt = $db->getDb()->prepare($query);
-        $stmt->bindParam(1, $showtimeId, PDO::PARAM_INT);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        if (!is_null($result)) {
             foreach ($result as $seat) {
                 $row = $seat['seat'][0];
                 $seatNo = $seat['seat'][1];
@@ -56,6 +60,7 @@ class SeatsXSLT {
             }
         }
 
+        $this->xmlFileUpdated = $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/SeatLayout/Booked/' . $this->hall . 'SeatLayoutSold' . $showtimeId . '.xml';
         $document->save($this->xmlFileUpdated);
         $db->closeConnection();
     }

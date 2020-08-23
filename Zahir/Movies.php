@@ -37,7 +37,7 @@ if (filter_input(INPUT_GET, 'date')) {
 }
 
 $db = DatabaseConnection::getInstance();
-$con = new BookingConnection();
+$con = BookingConnection::getInstance();
 $result = $con->getMovieDetails($movieId);
 ?>
 
@@ -120,9 +120,9 @@ $result = $con->getMovieDetails($movieId);
 
             foreach ($movieDates as $d) {
                 if ($d['showDate'] == $date) {
-                    echo "<a class='movie-dates movie-dates-active' href='Movies.php?id=$movieId&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
+                    echo "<a class='movie-dates movie-dates-active' href='Movies.php?id=$movieId&date=" . $d['showDate'] . "'>" . date('d F Y', strtotime($d['showDate'])) . "</a>";
                 } else {
-                    echo "<a class='movie-dates' href='Movies.php?id=$movieId&date=" . $d['showDate'] . "'>" . $d['showDate'] . "</a>";
+                    echo "<a class='movie-dates' href='Movies.php?id=$movieId&date=" . $d['showDate'] . "'>" . date('d F Y', strtotime($d['showDate'])) . "</a>";
                 }
             }
             ?>

@@ -16,6 +16,11 @@ if (!isset($_GET['id'])) {
     exit(0);
 }
 
+SessionHelper::remove('selectedSeats');
+SessionHelper::remove('user_cart');
+SessionHelper::remove('booking_timer');
+SessionHelper::add('booking_timer', time());
+
 include_once 'Header.php';
 include_once 'BookingTimer.php';
 ?>
@@ -23,10 +28,7 @@ include_once 'BookingTimer.php';
 <title>TGX Cinemas - Seat Selection</title>
 
 <?php
-SessionHelper::remove('selectedSeats');
-SessionHelper::remove('user_cart');
-
-$db = new BookingConnection();
+$db = BookingConnection::getInstance();
 $showtimeId = filter_input(INPUT_GET, 'id');
 $showtimeDetails = $db->getShowTimeDetails($showtimeId);
 

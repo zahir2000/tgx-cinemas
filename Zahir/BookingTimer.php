@@ -7,7 +7,13 @@ if (isset($_GET['confirm'])) {
     SessionHelper::removeToken('seatcount_payment');
     SessionHelper::removeToken('receipt');
 
-    header('Location:/Assignment/Home.php');
+    header('Location:/Assignment/Home.php?booking=expired');
+}
+
+if (SessionHelper::check('booking_timer')) {
+    $bookingTimeLeft = time() - SessionHelper::get('booking_timer');
+} else {
+    $bookingTimeLeft = 60 * 10;
 }
 ?>
 
@@ -49,7 +55,7 @@ if (isset($_GET['confirm'])) {
     <script type="text/javascript">
         function BookingWatcher() {
             var secondsSinceLastActivity = 0;
-            var maxInactivity = 60 * 10;
+            var maxInactivity = <?php echo (600 - $bookingTimeLeft) ?>;
             document.getElementById("minute").innerHTML = pad(Math.floor(maxInactivity / 60), 2);
             document.getElementById("second").innerHTML = pad(Math.floor(maxInactivity % 60), 2);
 

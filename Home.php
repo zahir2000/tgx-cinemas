@@ -1,6 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Session/SessionHelper.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/BookingConnection.php';
+
+if(isset($_GET['booking'])){
+    echo "Session Expired!";
+}
+
 include_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Header.php';
 ?>
 
@@ -34,7 +39,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Zahir/Header.php';
     </head>
     <body>
         <?php
-        $con = new BookingConnection();
+        $con = BookingConnection::getInstance();
         $movies = $con->getMovies();
         ?>
         <div>

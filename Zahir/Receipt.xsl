@@ -119,7 +119,7 @@
                     </div>
                     
                     <center>
-                        <input class="button" type="button" onclick="goToHome()" value="Back to Home Page"/>
+                        <input class="button-receipt" type="button" onclick="goToHome()" value="Back to Home Page"/>
                     </center>
                 </div>
             </body>

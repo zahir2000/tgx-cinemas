@@ -1,7 +1,10 @@
 <?php
 require_once 'Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';
-$token = SessionHelper::generateToken('receipt');
+
+$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$token = SessionHelper::generateToken($url);
 
 require_once 'ShowtimeXSLT.php';
 require_once 'ShowtimeXPath.php';
@@ -23,12 +26,12 @@ require_once 'Strategy/SeatPriceStrategy/RegularSeatStrategy.php';
 
 require_once 'Utility/GeneralUtilities.php';
 
-if (!SessionHelper::verifyToken('seatcount_payment')) {
-    header('Location:/Assignment/Home.php');
+if (!isset($_SERVER['HTTP_REFERER']) || !SessionHelper::verifyToken($_SERVER['HTTP_REFERER'])) {
+    header('Location:/Assignment/Home.php?csrf_token=invalid');
 }
 
 if (!filter_input(INPUT_GET, 'id')) {
-    header('Location:/Assignment/Home.php');
+    header('Location:/Assignment/Home.php?id=missing');
 }
 
 include_once 'Header.php';
@@ -132,7 +135,8 @@ include_once 'BookingTimer.php';
             }
 
             for ($i = 0; $i < $twinCount; $i++) {
-                $index = ++$i;
+                $index = $i;
+                $index++;
 
                 foreach ($xpath->evaluate("//seat[type='Double'][$index]") as $seat) {
                     $ticket = new Ticket($baseHall->cost(), new TwinSeatStrategy(), $seat->getAttribute('id'));
@@ -247,7 +251,7 @@ include_once 'BookingTimer.php';
                         <tr>
                             <td colspan="2">
                                 <input type="hidden" name="paymentMethod" value="credit" />
-                                <button class="button" style="margin: 2vh 0">Make Payment</button>
+                                <button class="button-payment" style="margin: 2vh 0">Make Payment</button>
                             </td>
                         </tr>
                     </table>
@@ -279,7 +283,7 @@ include_once 'BookingTimer.php';
                         <tr>
                             <td colspan="2">
                                 <input type="hidden" name="paymentMethod" value="paypal" />
-                                <button class="button" style="margin: 2vh 0">Make Payment</button>
+                                <button class="button-payment" style="margin: 2vh 0">Make Payment</button>
                             </td>
                         </tr>
                     </table>

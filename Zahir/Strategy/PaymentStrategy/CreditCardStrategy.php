@@ -1,6 +1,7 @@
 <?php
 
 require_once 'PaymentStrategy.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Assignment/Database/BookingConnection.php';
 
 /**
  * Description of CreditCardStrategy
@@ -37,7 +38,7 @@ class CreditCardStrategy implements PaymentStrategy {
         $booking = $bookingDOM->retrieveBookingDetails();
         $booking->setUser($user);
         
-        $storeToDb = new BookingConnection();
+        $storeToDb = BookingConnection::getInstance();
         $storeToDb->storeToDatabase($booking, $cart);
     }
 
