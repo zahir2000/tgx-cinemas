@@ -1,7 +1,7 @@
 <?php
 require_once 'Authentication.php';
 require '../lib/nusoap.php';
-$client = new nusoap_client("http://localhost:8000/tgx-cinemas/Simran/service.php?wsdl");
+$client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsdl");
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,8 @@ $client = new nusoap_client("http://localhost:8000/tgx-cinemas/Simran/service.ph
                 </div>
                 <div class="form-group">
                     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Login"/>
-                </div> 
+                </div>
+                <p>Do Not Have An Account? <a href="registerPage.php">Register Here</a>!</p>
             </form>
         </div>
         <?php

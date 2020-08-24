@@ -37,16 +37,16 @@ class Authentication {
             
             if(password_verify($password, $pass)){
                 SessionHelper::login($username, $result['userID']);
-                //echo "Login Successful";
+                echo "Login Successful";
                 return $result['userID'];
                 
             }else{
-                //echo "Login Unsuccessful! Username or password is invalid!";
+                echo "Login Unsuccessful! Username or password is invalid!";
                 return false;
             }
             
         }else{
-            //echo "Do not leave the fields blank!";
+            echo "Do not leave the fields blank!";
             return false;
         }
     }
