@@ -1,7 +1,8 @@
 <?php
-require_once $_SERVER('DOCUMENT_ROOT') . '/tgx-cinemas/Simran/SecureCodingPrac/Authentication.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Simran/SecureCodingPrac/Authentication.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/lib/nusoap.php';
-$client = new nusoap_client("http://localhost/tgx-cinemas/Simran/WebService/service.php?wsdl");
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
+$client = new nusoap_client("http://localhost:8000/tgx-cinemas/Simran/WebService/service.php?wsdl");
 ?>
 <!DOCTYPE html>
 <html>

@@ -36,6 +36,12 @@ class DatabaseConnection {
        }
     }
     
+     public function getLastInsertId() {
+        if ($this->db instanceof PDO) {
+            return $this->db->lastInsertId();
+        }
+    }
+    
     public function closeConnection(){
         $this->db = null;
     }
