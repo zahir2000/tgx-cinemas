@@ -5,7 +5,7 @@ include '../MovieConnection.php';
 /**
  * Description of MovieAPI
  *
- * @author: Venessa Choo Wei Ling
+ * @author: Choo Wei Ling
  */
 if (!empty($_GET['movieName'])) {
     $movieConn = new MovieConnection();

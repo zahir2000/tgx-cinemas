@@ -5,7 +5,7 @@ require_once 'Logger.php';
 /**
  * Description of FileLogger
  *
- * @author: Venessa Choo Wei Ling
+ * @author: Choo Wei Ling
  */
 class FileLogger implements Logger {
 

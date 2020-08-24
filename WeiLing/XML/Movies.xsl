@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    @author: Venessa Choo Wei Ling
+    @author: Choo Wei Ling
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:php="http://php.net/xsl" 

@@ -5,7 +5,7 @@ require_once 'MovieInterface.php';
 /**
  * Description of Movie
  *
- * @author Venessa Choo Wei Ling
+ * @author Choo Wei Ling
  */
 class Movie implements MovieInterface {
 

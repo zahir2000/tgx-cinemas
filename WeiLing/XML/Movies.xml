@@ -49,22 +49,6 @@
     <distributor>Universal Pictures</distributor>
     <synopsis>Dominic Toretto and his crew join forces to battle the most skilled assassin and high-performance driver they've ever encountered -- his forsaken brother.</synopsis>
   </movie>
-  <movie movieID="4">
-    <movieID>4</movieID>
-    <name>Joker</name>
-    <poster>img/joker.jpg</poster>
-    <length>122</length>
-    <status/>
-    <genre>Drama,Crime</genre>
-    <language>English</language>
-    <subtitle>English,Chinese</subtitle>
-    <ageRestriction>18</ageRestriction>
-    <releaseDate>2020-08-22</releaseDate>
-    <cast>Joaquin Phoenix, Robert De Niro</cast>
-    <director>Todd Phillips</director>
-    <distributor>Warner Bros. Pictures</distributor>
-    <synopsis>Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.</synopsis>
-  </movie>
   <movie movieID="102">
     <movieID>102</movieID>
     <name>The Angry Birds Movie 2</name>
@@ -80,22 +64,6 @@
     <director>Thurop Van Orman</director>
     <distributor>Sony Pictures</distributor>
     <synopsis>Bird and Piggy Islands are under threat when Zeta, the leader of Eagle Island, wants to occupy them. Red must join forces with Leonard's team to thwart her bold schemes and save their homes.</synopsis>
-  </movie>
-  <movie movieID="101">
-    <movieID>101</movieID>
-    <name>The Nun</name>
-    <poster>img/thenun.jpg</poster>
-    <length>96</length>
-    <status>Upcoming</status>
-    <genre>Horror</genre>
-    <language>English</language>
-    <subtitle>English, Chinese</subtitle>
-    <ageRestriction>18</ageRestriction>
-    <releaseDate>2021-01-29</releaseDate>
-    <cast>Taissa Farmiga, Bonnie Aarons</cast>
-    <director>Corin Hardy</director>
-    <distributor>Warner Bros. Pictures</distributor>
-    <synopsis>When a young nun at a cloistered abbey in Romania takes her own life, a priest with a haunted past and a novitiate on the threshold of her final vows are sent by the Vatican to investigate. Together, they uncover the order's unholy secret. Risking not only their lives but their faith and their very souls, they confront a malevolent force in the form of a demonic nun.</synopsis>
   </movie>
   <movie movieID="103">
     <movieID>103</movieID>

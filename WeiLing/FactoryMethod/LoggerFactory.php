@@ -3,7 +3,7 @@
 /**
  * Description of LoggerFactory
  * 
- * @author: Venessa Choo Wei Ling
+ * @author: Choo Wei Ling
  */
 interface LoggerFactory {
 

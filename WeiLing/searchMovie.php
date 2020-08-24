@@ -19,7 +19,7 @@ if (filter_input(INPUT_POST, 'movieName')) {
 
 <!DOCTYPE html>
 <!--
-    @author: Venessa Choo Wei Ling
+    @author: Choo Wei Ling
 -->
 <html>
     <head>

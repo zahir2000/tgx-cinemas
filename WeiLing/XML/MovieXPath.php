@@ -3,7 +3,7 @@
 /**
  * Description of MovieXPath
  *
- * @author: Venessa Choo Wei Ling
+ * @author: Choo Wei Ling
  */
 class MovieXPath {
     private $xpath;

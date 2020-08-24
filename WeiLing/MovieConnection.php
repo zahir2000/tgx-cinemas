@@ -1,8 +1,8 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/DatabaseConnection.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Venessa/Classes/Movie.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Venessa/FactoryMethod/FileLoggerFactory.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/WeiLing/Classes/Movie.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/WeiLing/FactoryMethod/FileLoggerFactory.php';
 
 /**
  * Description of MovieConnection

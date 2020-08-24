@@ -1,12 +1,12 @@
 <?php
 
 require_once 'MovieXPath.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Venessa/FactoryMethod/FileLoggerFactory.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/WeiLing/FactoryMethod/FileLoggerFactory.php';
 
 /**
  * Description of MovieXML
  *
- * @author: Venessa Choo Wei Ling
+ * @author: Choo Wei Ling
  */
 class MovieXML {
 
