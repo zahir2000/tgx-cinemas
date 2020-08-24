@@ -1,7 +1,5 @@
 <?php
-require_once '../Database/DatabaseConnection.php';
-require_once '../Database/UserConnection.php';
-require_once 'Authentication.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Simran/SecureCodingPrac/Authentication.php';
 
 $error = '';
 
@@ -82,19 +80,9 @@ $error = '';
            $cPassword = filter_var(trim($_POST['cPassword']), FILTER_SANITIZE_STRING);
            
            if($password != $cPassword){
-               echo "Password Did Not Match!";
+               echo "Passwords Do Not Match!";
            }else{
-               if(Authentication::validatePassword($password)){
-                   $db = DatabaseConnection::getInstance();
-                   $userDb = UserConnection::getInstance();
-                   $userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, password_hash($password, PASSWORD_DEFAULT));
-                   
-                   echo "Registration Successful!";
-                   
-                   $db->closeConnection();
-               }else{
-                   echo "Registration Unsuccessful. Please follow standards of password!";
-               }         
+               Authentication::validatePassword($name, $email, $number, $dob, $gender, $address, $username, $password);         
            }
         }
         ?>

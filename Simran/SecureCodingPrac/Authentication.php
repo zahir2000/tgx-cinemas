@@ -13,13 +13,18 @@ class Authentication {
         
     }
     
-    public static function validatePassword($password){
+    public static function validatePassword($name, $email, $number, $dob, $gender, $address, $username, $password){
         if(preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%])[0-9A-Za-z!@#$%]{8,16}$/', $password)) {                         
+            $db = DatabaseConnection::getInstance();
+            $userDb = UserConnection::getInstance();
+            $userDb->addUser($name, $email, $number, $dob, $gender, $address, $username, password_hash($password, PASSWORD_DEFAULT));
+                   
+            echo "Registration Successful!";
+                   
+            $db->closeConnection();
             
-            return true;
         }else{
-            return false;
-
+            echo "Registration Unsuccessful. Please follow standards of password!";
         }          
     }
     
@@ -37,21 +42,13 @@ class Authentication {
             
             if(password_verify($password, $pass)){
                 SessionHelper::login($username, $result['userID']);
-                echo "Login Successful";
                 return $result['userID'];
                 
             }else{
-                echo "Login Unsuccessful! Username or password is invalid!";
                 return false;
             }
-            
         }else{
-            echo "Do not leave the fields blank!";
             return false;
         }
     }
-    
-    
-
-
 }
