@@ -1,36 +1,8 @@
 <?php
 require_once '../lib/nusoap.php';
 require_once '../Database/DatabaseConnection.php';
-
-function authenticateLoginService($username, $password){
-    if(!empty($username) && !empty($password)){
-        $con = DatabaseConnection::getInstance();
-        
-        $query = "SELECT username, password, userID FROM user WHERE username = ?";
-        $stmt = $con->getDb()->prepare($query);
-        $stmt->bindParam(1, "username", PDO::PARAM_STR);
-        $stmt->execute();
-        
-        if($stmt->rowCount() > 0){
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        }else{
-            $result = null;
-        }
-
-        if(password_verify($password, $result['password'])){
-            SessionHelper::login($username, $result['userID']);
-            echo "Login Successful";
-            return true;
-        }else{
-            echo "Login Unsuccessful!Username or password is invalid!";
-            return false;
-        }
-        
-    }else{
-        echo "Please Do Not Leave Any Fields Blank!";
-        return false;
-    }         
-}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Simran/Authentication.php';
 
 $server = new nusoap_server();
 
@@ -39,8 +11,20 @@ $server->configureWSDL("service", "urn:service");
 $server->register("authenticateLoginService",
         array("username" => "xsd:string",
             "password" => "xsd:string"),
-        array("result" => "xsd:Boolean"),
+        array("result" => "xsd:int"),
         'urn:service',
         'urn:service#authenticateLoginService');
 
-$server->service(file_get_contents("php://input"));
+$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : "";
+@$server->service(file_get_contents("php://input"));
+
+function authenticateLoginService($username, $password){
+    if(!empty($username) && !empty($password)){
+        $result = Authentication::authenticateLogin($username, $password);
+        return $result;
+    }else{
+        echo "Please Do Not Leave Any Fields Blank!";
+        return true;
+    }         
+}
+

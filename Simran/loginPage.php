@@ -1,7 +1,7 @@
 <?php
 require_once 'Authentication.php';
 require '../lib/nusoap.php';
-$client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsdl");
+$client = new nusoap_client("http://localhost:8000/tgx-cinemas/Simran/service.php?wsdl");
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,9 +41,13 @@ $client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsd
             //    header('Location:/tgx-cinemas/Home.php');
             //}
             
-            $result = $client->call("authenticateLoginService", array($username, $password));
-            if($result == true){
+            $result = $client->call("authenticateLoginService", array("username" => $username, "password" => $password));
+            print_r($result);
+            
+            if($result != 0){
                 echo "Successful login!";
+                SessionHelper::login($username, $result);
+                header('Location:/tgx-cinemas/Home.php');
             }else{
                 echo "Unsuccessful login!";
             }
