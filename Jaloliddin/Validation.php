@@ -7,59 +7,58 @@
  */
 class Validation {
 
-    static $errors = true;
-
-    static function check($array, $on = false) {
-        if ($on === false) {
-            $on = $_REQUEST;
+    static function isEmpty($array, $method = false) {
+        if ($method === false) {
+            $method = $_REQUEST;
         }
         foreach ($array as $value) {
-            if (empty($on[$value])) {
-                self::throwError('Data is missing', 900);
+            if (empty($method[$value])) {
+                return false;
             }
         }
+        return true;
     }
 
-    static function int($val) {
-        $val = filter_var($val, FILTER_VALIDATE_INT);
-        if ($val === false) {
-            self::throwError('Invalid Integer', 901);
+    static function isInteger($val) {
+        return $val = filter_var($val, FILTER_VALIDATE_INT);
+    }
+
+    //removes all tags/special characters from a string
+    static function cleanString($val) {
+        return $val = filter_var($val, FILTER_SANITIZE_STRING);
+    }
+
+    static function isBool($val) {
+        return $val = filter_var($val, FILTER_VALIDATE_BOOLEAN);
+    }
+
+    static function isEmail($val) {
+        return $val = filter_var($val, FILTER_VALIDATE_EMAIL);
+    }
+
+    static function isUrl($val) {
+        return $val = filter_var($val, FILTER_VALIDATE_URL);
+    }
+
+    static function isDate($date) {
+        $array = explode('/', $date);
+        if (count($array) == 3) {
+            if (checkdate($array[0], $array[1], $array[2])) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
-        return $val;
     }
 
-    static function str($val) {
-        if (!is_string($val)) {
-            self::throwError('Invalid String', 902);
-        }
-        $val = trim(htmlspecialchars($val));
-        return $val;
-    }
-
-    static function bool($val) {
-        $val = filter_var($val, FILTER_VALIDATE_BOOLEAN);
-        return $val;
-    }
-
-    static function email($val) {
-        $val = filter_var($val, FILTER_VALIDATE_EMAIL);
-        if ($val === false) {
-            self::throwError('Invalid Email', 903);
-        }
-        return $val;
-    }
-
-    static function url($val) {
-        $val = filter_var($val, FILTER_VALIDATE_URL);
-        if ($val === false) {
-            self::throwError('Invalid URL', 904);
-        }
-        return $val;
-    }
-
-    static function throwError($error = 'Error In Processing', $errorCode = 0) {
-        if (self::$errors === true) {
-            throw new Exception($error, $errorCode);
+    static function isCreditCardValid($number) {
+        $regexPattern = "^4[0-9]{12}(?:[0-9]{3})?$";
+        if (preg_match($regexPattern, $number)) {
+            return true;
+        }else{
+            return false;
         }
     }
 

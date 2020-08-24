@@ -10,7 +10,7 @@
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Manage Movies</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="">Add New Movie</a>
+                    <a class="dropdown-item" href="/tgx-cinemas/Jaloliddin/AddMovie.php">Add New Movie</a>
                     <a class="dropdown-item" href="/tgx-cinemas/Jaloliddin/FetchMovieDetails.php">Display Existing Movie</a>
                 </div>
             </li>

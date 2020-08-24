@@ -12,9 +12,9 @@ if (!isset($_SESSION["username"])) {
 }
 
 if (isset($_POST['submit'])) {
-    $name = Validation::str($_POST['name']);
-
-    if (!$name) {
+    if (Validation::isEmpty(['name'], $_POST)) {
+        $name = $_POST['name'];
+    } else {
         $error = "Name cannot be empty!";
     }
 
@@ -44,9 +44,9 @@ if (isset($_POST['submit'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="Jaloliddin.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
     </head>
     <body>
         <?php include ('Utilities/navigation.php'); ?>
@@ -55,19 +55,29 @@ if (isset($_POST['submit'])) {
             <p class="lead">Enter movie name and click search button!</p>    
         </div>
         <div class="container-fluid">
-            <form method="POST" name="form" class="form-inline">
-                <?php if ($error) { ?> 
-                    <div class="alert alert-danger fade in">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <strong>Error!</strong>&nbsp;<?php echo $error; ?> 
-                    </div>
-                <?php } ?>
-
-                <div class="form-group mb-2">
-                    <label for="name" class="sr-only">Name</label>
-                    <input type="text" class="form-control" placeholder="e.g. Joker" name="name" id="name" required>
+            <form method="POST" name="form">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2"><strong>Name:</strong></label>
                 </div>
-                <button type="submit" name='submit' class="btn btn-dark mb-2">Search</button>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" placeholder="e.g. Joker" name="name" id="name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <button type="submit" name='submit' class="btn btn-dark btn-block">Search</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <?php if (!empty($error)) { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $error; ?>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
             </form>
         </div>
 

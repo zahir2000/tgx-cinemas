@@ -26,30 +26,32 @@ session_start();
          * The client code.
          */
         if (isset($_POST['login'])) {
-            if (!Validation::check(['username', 'password'], $_POST)) {
+            if (Validation::isEmpty(['username', 'password'], $_POST)) {
                 $username = $_POST['username'];
                 $password = $_POST['password'];
 
                 $success = $server->logIn($username, $password);
-            }
 
-            if ($success) {
-                //$message = "Authorization has been successful!\n";
-                $status = "success";
+                if ($success) {
+                    //$message = "Authorization has been successful!\n";
+                    $status = "success";
 
-                $_SESSION["username"] = $username;
-                $_SESSION["password"] = $password;
+                    $_SESSION["username"] = $username;
+                    $_SESSION["password"] = $password;
 
-                if (isset($_SESSION["username"])) {
-                    header('Location:AdminDashboard.php?status=' . $status);
+                    if (isset($_SESSION["username"])) {
+                        header('Location:AdminDashboard.php?status=' . $status);
+                    } else {
+                        $server->check($username, $password);
+                        header('Location:Client.php');
+                    }
                 } else {
-                    $server->check($username, $password);
-                    header('Location:Client.php');
+                    $message = "Login Failed! Authorized Personnel Only!";
+                    $status = "failed";
                 }
             } else {
-                $message = "Login Failed! Authorized Personnel Only!";
+                $message = "Login Failed! Username or password cannot be blank!";
                 $status = "failed";
-                //header('Location:AdminDashboard.php?status=' . $status);
             }
         }
         ?>
@@ -66,13 +68,13 @@ session_start();
                 <div class="form-group row">
                     <label for="username" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-control-lg" placeholder="Enter Username" name="username" id="username" required>
+                        <input type="text" class="form-control form-control-lg" placeholder="Enter Username" name="username" id="username">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-7">
-                        <input placeholder="Enter Password" class="form-control form-control-lg" type="password" name="password" id="password" required>
+                        <input placeholder="Enter Password" class="form-control form-control-lg" type="password" name="password" id="password">
                     </div>
                 </div>
                 <div class="form-group row">
