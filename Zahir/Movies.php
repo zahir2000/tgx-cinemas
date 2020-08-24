@@ -46,7 +46,7 @@ $result = $con->getMovieDetails($movieId);
     <head>
         <meta charset="UTF-8">
         <title>TGX Cinemas - <?php echo $result['name'] ?></title>
-        <link rel="stylesheet" href="Movies.css">
+        <link rel="stylesheet" href="/tgx-cinemas/Zahir/css/Movies.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous">
     </head>
     <body>

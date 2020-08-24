@@ -11,7 +11,7 @@
     <xsl:output method="html"/> 
     <xsl:template match="/">
         <html>
-            <link rel="stylesheet" type="text/css" href="Showtime.css"/>
+            <link rel="stylesheet" type="text/css" href="/tgx-cinemas/Zahir/css/Showtime.css"/>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous"/>
             
             <body>

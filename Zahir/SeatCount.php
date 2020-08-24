@@ -51,7 +51,7 @@ $xmlGenShowtime = new ShowtimeXSLT($showtimeId, 'Booking/Booking' . $userId . '.
         <title>TGX Cinemas - Seat Selection</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="SeatCount.css"/>
+        <link rel="stylesheet" type="text/css" href="/tgx-cinemas/Zahir/css/SeatCount.css"/>
     </head>
     <body>
         <div class="ticket-selection">

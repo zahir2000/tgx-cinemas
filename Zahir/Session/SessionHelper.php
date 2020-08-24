@@ -19,13 +19,14 @@ class SessionHelper {
      * Post-Condition: 
      * Return: 
      */
-    
+
     /* Description: Add a new variable to the session using the key-value supplied.
      * Pre-Condition: The key is not empty and a string.
      * Post-Condition: The key is added to the session.
      *                 The last action time is set to current time.
      * Return: Return the value added to the session.
      */
+
     public static function add($key, $value) {
 
         /* Validate for empty and non-string key */
@@ -49,6 +50,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: If the key exists, returns the value of the key. Otherwise, returns null.
      */
+
     public static function get($key, $key2 = null) {
 
         /* Pass the key(s) for checking if they exist */
@@ -70,6 +72,7 @@ class SessionHelper {
      * Post-Condition: The last action time is set to current time.
      * Return: Returns true if the key exists, otherwise returns false.
      */
+
     public static function check($key, $key2 = null) {
 
         /* Validate for empty and non-string key */
@@ -105,6 +108,7 @@ class SessionHelper {
      * Post-Condition: The last action time is set to current time.
      * Return: None.
      */
+
     public static function remove($key = "") {
 
         /* Start the session */
@@ -128,6 +132,7 @@ class SessionHelper {
      * Post-Condition: The session is destroyed and the CSRF token cookies are deleted.
      * Return: None.
      */
+
     public static function destroy() {
 
         /* Ensure the session exists */
@@ -146,6 +151,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: None.
      */
+
     public static function login($username, $userId) {
 
         /* Start the session */
@@ -177,6 +183,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: None.
      */
+
     private static function updateToken($username) {
         $userToken = self::get('user_token');
 
@@ -190,6 +197,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: None.
      */
+
     public static function login_session() {
 
         /* Start the session */
@@ -212,6 +220,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: Returns true if the session is expired, otherwise returns false.
      */
+
     private static function isLoginSessionExpired() {
 
         /* Start the session */
@@ -233,6 +242,7 @@ class SessionHelper {
      * Post-Condition: Return the user to the login page.
      * Return: None.
      */
+
     public static function logout() {
 
         /* Start the session */
@@ -247,11 +257,12 @@ class SessionHelper {
         header('Location:/tgx-cinemas/Simran/loginPage.php?session=dead');
     }
 
-    /* Description: Starts a session. Checks whether the user is valid regarding their IP and agent. If they are not valid, store their new IP and agent to the session.
+    /* Description: Starts a session. Checks whether the user is valid regarding their IP and agent.
      * Pre-Condition: The session is not disabled. The session does not exist.
-     * Post-Condition: Session is started. Check whether the user's protocol (http/https) is changed.
+     * Post-Condition: Session is started. Check whether the user is valid and the protocol (http/https) is changed.
      * Return: None.
      */
+
     private static function session() {
 
         /* Check if session is disabled */
@@ -268,16 +279,8 @@ class SessionHelper {
             }
         }
 
-        /* Check if the user is NOT valid */
-        if (!self::valid_user()) {
-
-            /* Update user ip and agent */
-            $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
-            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-
-            /* Regenerate user session */
-            session_regenerate_id();
-        }
+        /* Check if the user is valid */
+        self::valid_user();
 
         /* Check whether the protocol (http/https) is changed */
         self::https();
@@ -288,6 +291,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: None.
      */
+
     private static function https() {
 
         /* Get current protocol */
@@ -311,28 +315,31 @@ class SessionHelper {
             $_SESSION['is_https'] = $secure;
 
             /* Regenerate user session */
-            self::regenerate_session();
+            session_regenerate_id();
         }
     }
 
-    /* Description: Checks whether the user's IP address and agent has been modified. The condition checks IP address and agent as AND tag to ensure even if the user's IP changes, the agent shouldn't normally.
+    /* Description: Checks whether the user's IP address or agent has been modified.
      * Pre-Condition: The IP address and agent of user exists in the session.
      * Post-Condition: None.
-     * Return: Returns true if the user is valid, otherwise return false.
+     * Return: None.
      */
+
     private static function valid_user() {
 
-        /* If the user IP and agent is not found */
-        if (!isset($_SESSION['ip_address']) || !isset($_SESSION['user_agent'])) {
-            return false;
+        /* If the user IP and agent does not exist */
+        if (!isset($_SESSION['ip_address']) && !isset($_SESSION['user_agent'])) {
+            $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
+            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+        } else {
+            
+            /* If the current IP or agent of user does not match the one stored in session */
+            if ($_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR'] || $_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT']) {
+                session_destroy();
+                self::destroy_csrf_cookies();
+                header('Location:/tgx-cinemas/Simran/loginPage.php?session=agent_changed');
+            }
         }
-
-        /* If the current IP and agent of user does not match the one stored in session */
-        if ($_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR'] && $_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT']) {
-            return false;
-        }
-
-        return true;
     }
 
     /* Description: Regenerates the current session.
@@ -340,6 +347,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: None.
      */
+
     public static function regenerate_session() {
         session_regenerate_id();
     }
@@ -349,6 +357,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: Returns true if the user has been inactive, otherwise returns false
      */
+
     private static function timeout() {
 
         /* Check for the user login time */
@@ -390,6 +399,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: If the key is empty or is not a string, throws an exception.
      */
+
     private static function validateKeyInput($key) {
 
         /* Validation checking for empty and non-string session variable */
@@ -408,13 +418,14 @@ class SessionHelper {
      * So generation of session and cookie tokens ensures that even if the attacker manages to get hold of the cookie, the session will still not allow them to modify any data.
      * The session token is passed in POST as a hidden input and the next page will check the session token with the postback token and the session stored cookie with the cookie in the header.
      */
-    
+
 
     /* Description: Generates a CSRF token based on the key supplied. Only generates a new key if the key has not been generated before. This will allow the user to open many tabs at once.
      * Pre-Condition: The supplied key is not empty and is a string.
      * Post-Condition: None.
      * Return: Returns the token value for the session.
      */
+
     public static function generateToken($key) {
 
         /* Validate for empty and non-string key */
@@ -443,6 +454,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: Returns the value of the CSRF token.
      */
+
     private static function getToken($key) {
 
         /* Retreive the token stored in session */
@@ -454,6 +466,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: If the cookie that matches the key is present, returns the cookie value. Otherwise, returns empty string.
      */
+
     private static function getCookie($key) {
 
         /* Validate for empty and non-string key */
@@ -476,6 +489,7 @@ class SessionHelper {
      * Post-Condition: The token is stored in the session.
      * Return: Returns the token object.
      */
+
     private static function createToken($key) {
 
         /* Create new token for page */
@@ -500,6 +514,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: Returns the generated cookie name.
      */
+
     private static function generateCookieName($key) {
 
         /* Validate for empty and non-string key */
@@ -517,6 +532,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: Returns true if successfully verified, otherwise, returns false.
      */
+
     public static function verifyToken($key) {
 
         /* Validate for empty and non-string key */
@@ -560,6 +576,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: True if the hash value matches, otherwise returns false.
      */
+
     private static function compareHash($token1, $token2) {
 
         /* Compare hash values of two tokens */
@@ -571,6 +588,7 @@ class SessionHelper {
      * Post-Condition: The CSRF cookie is deleted.
      * Return: None.
      */
+
     public static function removeToken($key) {
 
         /* Validate for empty and non-string key */
@@ -588,6 +606,7 @@ class SessionHelper {
      * Post-Condition: None.
      * Return: All CSRF cookies are deleted.
      */
+
     private static function destroy_csrf_cookies() {
 
         /* Retreive all cookies */

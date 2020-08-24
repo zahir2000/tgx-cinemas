@@ -43,7 +43,7 @@ include_once 'BookingTimer.php';
     <head>
         <meta charset="UTF-8">
         <title>TGX Cinemas - Payment</title>
-        <link rel="stylesheet" href="Payment.css">
+        <link rel="stylesheet" href="/tgx-cinemas/Zahir/css/Payment.css">
     </head>
     <body>
         <?php

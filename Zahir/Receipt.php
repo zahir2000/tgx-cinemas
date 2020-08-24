@@ -38,7 +38,7 @@ $cart = unserialize($a);
     <head>
         <meta charset="UTF-8">
         <title>TGX Cinemas - Receipt</title>
-        <link rel="stylesheet" type="text/css" href="Receipt.css"/>
+        <link rel="stylesheet" type="text/css" href="/tgx-cinemas/Zahir/css/Receipt.css"/>
     </head>
     <body>
 
