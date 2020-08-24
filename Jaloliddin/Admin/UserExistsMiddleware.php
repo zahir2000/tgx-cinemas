@@ -9,7 +9,7 @@ require_once 'Middleware.php';
  */
 
 /**
- * This Concrete Middleware checks whether a user with given credentials exists.
+ * this checks if the user has supplied correct login details
  */
 class UserExistsMiddleware extends Middleware {
 

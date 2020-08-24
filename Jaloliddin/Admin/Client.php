@@ -3,19 +3,14 @@ require_once 'Server.php';
 require_once 'ThrottlingMiddleware.php';
 require_once 'UserExistsMiddleware.php';
 require_once 'Service.php';
+require_once '../Validation.php';
 
 $status = "";
 $message = "";
 
 session_start();
 ?>
-
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -31,13 +26,15 @@ and open the template in the editor.
          * The client code.
          */
         if (isset($_POST['login'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            if (!Validation::check(['username', 'password'], $_POST)) {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
 
-            $success = $server->logIn($username, $password);
+                $success = $server->logIn($username, $password);
+            }
 
             if ($success) {
-                $message = "Authorization has been successful!\n";
+                //$message = "Authorization has been successful!\n";
                 $status = "success";
 
                 $_SESSION["username"] = $username;
@@ -45,7 +42,8 @@ and open the template in the editor.
 
                 if (isset($_SESSION["username"])) {
                     header('Location:AdminDashboard.php?status=' . $status);
-                }else{
+                } else {
+                    $server->check($username, $password);
                     header('Location:Client.php');
                 }
             } else {
@@ -68,7 +66,7 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label for="username" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-control-lg" placeholder="e.g. someone@example.com" name="username" id="username" required>
+                        <input type="text" class="form-control form-control-lg" placeholder="Enter Username" name="username" id="username" required>
                     </div>
                 </div>
                 <div class="form-group row">

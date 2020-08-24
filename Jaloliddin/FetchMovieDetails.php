@@ -1,5 +1,6 @@
 <?php
 require_once '../lib/nusoap.php';
+require_once '../Jaloliddin/Validation.php';
 $error = "";
 $response = "";
 $wsdl = "http://localhost/tgx-cinemas/Jaloliddin/service.php?wsdl";
@@ -11,7 +12,7 @@ if (!isset($_SESSION["username"])) {
 }
 
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
+    $name = Validation::str($_POST['name']);
 
     if (!$name) {
         $error = "Name cannot be empty!";
