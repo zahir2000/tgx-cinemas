@@ -1,6 +1,6 @@
 <?php
-require_once 'SecureCodingPrac/Authentication.php';
-require '../lib/nusoap.php';
+require_once $_SERVER('DOCUMENT_ROOT') . '/tgx-cinemas/Simran/SecureCodingPrac/Authentication.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/lib/nusoap.php';
 $client = new nusoap_client("http://localhost/tgx-cinemas/Simran/WebService/service.php?wsdl");
 ?>
 <!DOCTYPE html>
