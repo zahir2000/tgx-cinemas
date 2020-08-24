@@ -1,5 +1,5 @@
 <?php
-require_once '../Database/UserConnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/UserConnection.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
 /**
  * Description of Authentication
@@ -38,7 +38,7 @@ class Authentication {
             if(password_verify($password, $pass)){
                 SessionHelper::login($username, $result['userID']);
                 echo "Login Successful";
-                return true;
+                return $result['userID'];
                 
             }else{
                 echo "Login Unsuccessful! Username or password is invalid!";

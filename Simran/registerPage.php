@@ -65,7 +65,6 @@ $error = '';
                      <input type="reset" class="btn btn-default" value="Reset"> 
                  </div>
                  <p>Already have an account? <a href="loginPage.php">Login Here</a>.</p>
-
              </form>  
         </div>
         

@@ -29,7 +29,8 @@ $client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsd
                 </div>
                 <div class="form-group">
                     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Login"/>
-                </div> 
+                </div>
+                <p>Do Not Have An Account? <a href="registerPage.php">Register Here</a>!</p>
             </form>
         </div>
         <?php
@@ -41,9 +42,13 @@ $client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsd
             //    header('Location:/tgx-cinemas/Home.php');
             //}
             
-            $result = $client->call("authenticateLoginService", array($username, $password));
-            if($result == true){
+            $result = $client->call("authenticateLoginService", array("username" => $username, "password" => $password));
+            print_r($result);
+            
+            if($result != 0){
                 echo "Successful login!";
+                SessionHelper::login($username, $result);
+                header('Location:/tgx-cinemas/Home.php');
             }else{
                 echo "Unsuccessful login!";
             }
