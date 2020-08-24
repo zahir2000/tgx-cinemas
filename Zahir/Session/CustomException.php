@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Zahiriddin Rustamov
+ */
 class InvalidKeyException extends Exception {
     
 }

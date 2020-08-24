@@ -2,10 +2,9 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/HallDecorator.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Utility/DayTime.php';
+
 /**
- * Description of RegularDecorator
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class RegularDecorator extends HallDecorator {
 

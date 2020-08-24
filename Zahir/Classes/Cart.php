@@ -3,9 +3,7 @@
 require_once 'Strategy/PaymentStrategy/PaymentStrategy.php';
 
 /**
- * Description of Booking
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class Cart {
 

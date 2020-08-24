@@ -3,9 +3,7 @@
 require_once 'SeatPriceStrategy.php';
 
 /**
- * Description of KidSeatStrategy
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class KidSeatStrategy implements SeatPriceStrategy {
 

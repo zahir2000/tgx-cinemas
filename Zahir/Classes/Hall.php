@@ -3,9 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/HallInterface.php';
 
 /**
- * Description of Hall
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class Hall implements HallInterface {
 

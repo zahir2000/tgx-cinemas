@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of Token
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class Token {
 

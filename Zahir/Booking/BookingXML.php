@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of BookingXMLBuilder
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class BookingXML {
 

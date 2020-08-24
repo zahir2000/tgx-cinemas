@@ -1,8 +1,7 @@
 <?php
 
 /**
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 interface HallInterface {
 

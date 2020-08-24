@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Zahiriddin Rustamov
+ */
 SessionHelper::login_session();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/CheckToken.php';

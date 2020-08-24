@@ -4,9 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/HallDecor
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Utility/DayTime.php';
 
 /**
- * Description of DeluxeDecorator
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class DeluxeDecorator extends HallDecorator {
 

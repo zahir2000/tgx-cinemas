@@ -1,5 +1,8 @@
 <?php
-require_once 'Session/CheckLogin.php';
+/**
+ * @author Zahiriddin Rustamov
+ */
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';
 
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";

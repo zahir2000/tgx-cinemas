@@ -11,7 +11,7 @@ class SeatsXSLT {
 
     private $xmlFile = 'SeatLayout/Templates/RegularSeatLayout.xml';
     private $xmlFileUpdated;
-    private $xslFile = 'SeatLayout/RegularSeatLayout.xsl';
+    private $xslFile = 'SeatLayout/SeatLayout.xsl';
     private $hall = "";
 
     public function __construct($showtimeId) {

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Zahiriddin Rustamov
+ */
 require_once 'Classes/Cart.php';
 require_once 'Session/CheckLogin.php';
 require_once 'Session/SessionHelper.php';

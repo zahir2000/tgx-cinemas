@@ -8,9 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/RegularDe
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Decorator/DeluxeDecorator.php';
 
 /**
- * Description of GeneralUtilities
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 final class GeneralUtilities {
 

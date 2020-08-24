@@ -3,7 +3,7 @@
 <!--
     Document   : Receipt.xsl
     Created on : August 18, 2020, 6:18 PM
-    Author     : Zahir
+    Author     : Zahiriddin Rustamov
     Description:
         Purpose of transformation follows.
 -->

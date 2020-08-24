@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of Ticket
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class Ticket {
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Choo Wei Ling
+ */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/BookingConnection.php';
 

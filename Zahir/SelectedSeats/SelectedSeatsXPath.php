@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of UserSeatsXPath
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class SelectedSeatsXPath {
 

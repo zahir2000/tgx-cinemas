@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Zahiriddin Rustamov
+ */
 require_once 'SessionHelper.php';
 
 if(!SessionHelper::check('username')){

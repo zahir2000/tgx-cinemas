@@ -6,9 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/UserConnection.p
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Classes/User.php';
 
 /**
- * Description of CreditCardStrategy
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class CreditCardStrategy implements PaymentStrategy {
 

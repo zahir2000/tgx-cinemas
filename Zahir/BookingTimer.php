@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Zahiriddin Rustamov
+ */
 require_once 'Session/SessionHelper.php';
 
 if (isset($_GET['confirm'])) {

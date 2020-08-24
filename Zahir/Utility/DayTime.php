@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of SeatType
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 abstract class DayTime {
 

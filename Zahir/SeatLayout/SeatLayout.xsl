@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- Author: Zahiriddin Rustamov -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:php="http://php.net/xsl" 
                 xmlns:lxslt="http://xml.apache.org/xslt"
@@ -8,7 +8,7 @@
     <xsl:output method="html"/>
     <xsl:template match="/">
         <html>
-            <link rel="stylesheet" type="text/css" href="SeatLayout/RegularSeatLayout.css"/>
+            <link rel="stylesheet" type="text/css" href="SeatLayout/SeatLayout.css"/>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
             
             <script type="text/javascript">

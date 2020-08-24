@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of User
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class User {
     

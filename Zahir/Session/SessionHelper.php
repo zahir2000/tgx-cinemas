@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Database/BookingConnectio
 
 /**
  * <p><b>Session Helper</b> is a class dedicated for session management.</P>
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class SessionHelper {
 

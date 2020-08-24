@@ -3,9 +3,7 @@
 require_once 'SeatPriceStrategy.php';
 
 /**
- * Description of TwinSeatStrategy
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class TwinSeatStrategy implements SeatPriceStrategy {
 

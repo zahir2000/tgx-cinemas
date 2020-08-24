@@ -22,7 +22,6 @@ class ReceiptXSLT {
 
         $proc = new XSLTProcessor();
         $proc->importStylesheet($xsl);
-        //$proc->setParameter('', 'showtimeID', $showtimeId);
 
         echo $proc->transformToXml($xmlDoc);
     }

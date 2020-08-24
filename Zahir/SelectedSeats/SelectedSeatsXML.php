@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of UserSeats
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class SelectedSeatsXML {
 

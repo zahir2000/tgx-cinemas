@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of Booking
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class Booking {
 

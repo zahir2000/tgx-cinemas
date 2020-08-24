@@ -3,9 +3,7 @@
 require_once 'Classes/Booking.php';
 
 /**
- * Description of bookingDOMParser
- *
- * @author Zahir
+ * @author Zahiriddin Rustamov
  */
 class BookingDOMParser {
 

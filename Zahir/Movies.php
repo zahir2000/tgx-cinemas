@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Zahiriddin Rustamov
+ */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
 
 require_once '../Database/DatabaseConnection.php';
