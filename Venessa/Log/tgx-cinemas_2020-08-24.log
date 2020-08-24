@@ -1,0 +1,40 @@
+24-08-2020 16:12:10 -> Get release date of searched movie from DB
+24-08-2020 16:12:10 -> Movie search: joker, Release Date: 2020-08-22
+24-08-2020 16:12:12 -> Get release date of searched movie from DB
+24-08-2020 16:12:12 -> No movie found for: j
+24-08-2020 16:12:58 -> Get all movies from DB to display in web
+24-08-2020 16:12:58 -> Get all movies from DB for Movie.xml
+24-08-2020 16:12:58 -> Creating Movie.xml in XML/Movies.xml
+24-08-2020 16:12:58 -> Done creating Movie.xml in XML/Movies.xml
+24-08-2020 16:12:58 -> Read from Movie.xml
+24-08-2020 16:13:00 -> Get all movies from DB to display in web
+24-08-2020 16:13:00 -> Get all movies from DB for Movie.xml
+24-08-2020 16:13:00 -> Creating Movie.xml in XML/Movies.xml
+24-08-2020 16:13:00 -> Done creating Movie.xml in XML/Movies.xml
+24-08-2020 16:13:00 -> Read from Movie.xml
+24-08-2020 16:13:22 -> Get all movies from DB to display in web
+24-08-2020 16:13:22 -> Get all movies from DB for Movie.xml
+24-08-2020 16:13:22 -> Get searched movies from DB to display in web
+24-08-2020 16:13:22 -> Get searched movies from DB for Movie.xml
+24-08-2020 16:13:22 -> Creating Movie.xml in XML/Movies.xml
+24-08-2020 16:13:22 -> Done creating Movie.xml in XML/Movies.xml
+24-08-2020 16:13:22 -> Read from Movie.xml
+24-08-2020 16:14:16 -> Get all movies from DB to display in web
+24-08-2020 16:14:16 -> Get all movies from DB for Movie.xml
+24-08-2020 16:14:16 -> Get searched movies from DB to display in web
+24-08-2020 16:14:16 -> Get searched movies from DB for Movie.xml
+24-08-2020 16:14:16 -> Creating Movie.xml in XML/Movies.xml
+24-08-2020 16:14:16 -> Done creating Movie.xml in XML/Movies.xml
+24-08-2020 16:14:16 -> Read from Movie.xml
+24-08-2020 16:14:18 -> Get all movies from DB to display in web
+24-08-2020 16:14:18 -> Get all movies from DB for Movie.xml
+24-08-2020 16:14:18 -> Get searched movies from DB to display in web
+24-08-2020 16:14:18 -> Get searched movies from DB for Movie.xml
+24-08-2020 16:14:18 -> Creating Movie.xml in XML/Movies.xml
+24-08-2020 16:14:18 -> Done creating Movie.xml in XML/Movies.xml
+24-08-2020 16:14:18 -> Read from Movie.xml
+24-08-2020 16:14:24 -> Get all movies from DB to display in web
+24-08-2020 16:14:24 -> Get all movies from DB for Movie.xml
+24-08-2020 16:14:24 -> Creating Movie.xml in XML/Movies.xml
+24-08-2020 16:14:24 -> Done creating Movie.xml in XML/Movies.xml
+24-08-2020 16:14:24 -> Read from Movie.xml

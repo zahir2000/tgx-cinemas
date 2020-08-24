@@ -1,7 +1,7 @@
 <?php
-require_once 'Authentication.php';
+require_once 'SecureCodingPrac/Authentication.php';
 require '../lib/nusoap.php';
-$client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsdl");
+$client = new nusoap_client("http://localhost/tgx-cinemas/Simran/WebService/service.php?wsdl");
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,10 +38,14 @@ $client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsd
             $username = trim($_POST['username']);
             $password = trim($_POST['password']);
             
+            //SecureCodingPrac
             //if(Authentication::authenticateLogin($username, $password)){
             //    header('Location:/tgx-cinemas/Home.php');
+            //}else{
+            //    echo "Username or password are invalid!";
             //}
             
+            //WebServices
             $result = $client->call("authenticateLoginService", array("username" => $username, "password" => $password));
             print_r($result);
             
@@ -50,24 +54,8 @@ $client = new nusoap_client("http://localhost/tgx-cinemas/Simran/service.php?wsd
                 SessionHelper::login($username, $result);
                 header('Location:/tgx-cinemas/Home.php');
             }else{
-                echo "Unsuccessful login!";
+                echo "Unsuccessful login! Invalid username or password!";
             }
-            //$result = json_decode($result);
-            
-            //if($result != null){
-            //    $passService = $result->password;
-            //    echo $passService;
-            //}
-            
-            //foreach($result as $row){
-            //    $user = $row['username'];
-            //    $pass = $row['password'];
-            //}
-            //if(password_verify($password, $passService)){
-            //    echo "Successful Login";
-            //}else{
-            //    echo "Wrong username or password!";
-            //}
         }
         ?>
     </body>

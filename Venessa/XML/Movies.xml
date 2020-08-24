@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <movies>
+  <movie movieID="3">
+    <movieID>3</movieID>
+    <name>Annabelle</name>
+    <poster>img/annabelle.jpg</poster>
+    <length>99</length>
+    <status>Upcoming</status>
+    <genre>Horror, Thriller</genre>
+    <language>English</language>
+    <subtitle>English, Chinese</subtitle>
+    <ageRestriction>18</ageRestriction>
+    <releaseDate>2020-10-20</releaseDate>
+    <cast>Annabelle Wallis, Ward Horton, Tony Amendola</cast>
+    <director>John R. Leonetti</director>
+    <distributor>Warner Bros. Pictures</distributor>
+    <synopsis>John and Mia Form are attacked by a Satan worshipping couple, who uses their doll as a conduit to make their life miserable. This unleashes a string of paranormal events in the Forms' residence.&#13;
+</synopsis>
+  </movie>
+  <movie movieID="1">
+    <movieID>1</movieID>
+    <name>Avengers: Infinity War</name>
+    <poster>img/avengers.jpg</poster>
+    <length>120</length>
+    <status>Showing</status>
+    <genre>Action,Drama</genre>
+    <language>English</language>
+    <subtitle>English,Chinese</subtitle>
+    <ageRestriction>13</ageRestriction>
+    <releaseDate>2020-08-05</releaseDate>
+    <cast>Thor,Captain America</cast>
+    <director>Tony Start</director>
+    <distributor>Fox Movies</distributor>
+    <synopsis>The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.</synopsis>
+  </movie>
+  <movie movieID="2">
+    <movieID>2</movieID>
+    <name>Fast &amp; Furious 9</name>
+    <poster>img/f&amp;f9.jpg</poster>
+    <length>188</length>
+    <status>Upcoming</status>
+    <genre>Action, Adventure, Racing</genre>
+    <language>English</language>
+    <subtitle>English, Chinese</subtitle>
+    <ageRestriction>18</ageRestriction>
+    <releaseDate>2020-09-11</releaseDate>
+    <cast>Vin Diesel, Michelle Rodriguez, Tyrese Gibson, John Cena, ...</cast>
+    <director>Justin Lin</director>
+    <distributor>Universal Pictures</distributor>
+    <synopsis>Dominic Toretto and his crew join forces to battle the most skilled assassin and high-performance driver they've ever encountered -- his forsaken brother.</synopsis>
+  </movie>
   <movie movieID="4">
     <movieID>4</movieID>
     <name>Joker</name>
@@ -15,5 +64,53 @@
     <director>Todd Phillips</director>
     <distributor>Warner Bros. Pictures</distributor>
     <synopsis>Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.</synopsis>
+  </movie>
+  <movie movieID="102">
+    <movieID>102</movieID>
+    <name>The Angry Birds Movie 2</name>
+    <poster>img/angrybird2.jpg</poster>
+    <length>97</length>
+    <status>Upcoming</status>
+    <genre>Family, Cartoon, Animation</genre>
+    <language>English</language>
+    <subtitle>English, Chinese</subtitle>
+    <ageRestriction>0</ageRestriction>
+    <releaseDate>2021-01-01</releaseDate>
+    <cast>Jason Sudeikis, Josh Gad, Leslie Jones</cast>
+    <director>Thurop Van Orman</director>
+    <distributor>Sony Pictures</distributor>
+    <synopsis>Bird and Piggy Islands are under threat when Zeta, the leader of Eagle Island, wants to occupy them. Red must join forces with Leonard's team to thwart her bold schemes and save their homes.</synopsis>
+  </movie>
+  <movie movieID="101">
+    <movieID>101</movieID>
+    <name>The Nun</name>
+    <poster>img/thenun.jpg</poster>
+    <length>96</length>
+    <status>Upcoming</status>
+    <genre>Horror</genre>
+    <language>English</language>
+    <subtitle>English, Chinese</subtitle>
+    <ageRestriction>18</ageRestriction>
+    <releaseDate>2021-01-29</releaseDate>
+    <cast>Taissa Farmiga, Bonnie Aarons</cast>
+    <director>Corin Hardy</director>
+    <distributor>Warner Bros. Pictures</distributor>
+    <synopsis>When a young nun at a cloistered abbey in Romania takes her own life, a priest with a haunted past and a novitiate on the threshold of her final vows are sent by the Vatican to investigate. Together, they uncover the order's unholy secret. Risking not only their lives but their faith and their very souls, they confront a malevolent force in the form of a demonic nun.</synopsis>
+  </movie>
+  <movie movieID="103">
+    <movieID>103</movieID>
+    <name>Zootopia 2</name>
+    <poster>img/zootopia2.jpg</poster>
+    <length>124</length>
+    <status>Upcoming</status>
+    <genre>Animation, Cartoon, Romance</genre>
+    <language>English</language>
+    <subtitle>English, Chinese</subtitle>
+    <ageRestriction>13</ageRestriction>
+    <releaseDate>2021-11-24</releaseDate>
+    <cast>Jason Bateman, Ginnifer Goodwin</cast>
+    <director>Byron Howard, Rich Moore</director>
+    <distributor>Walt Disney Pictures</distributor>
+    <synopsis>Rabbit and Fox Love story</synopsis>
   </movie>
 </movies>
