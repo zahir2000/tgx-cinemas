@@ -1,5 +1,6 @@
 <?php
 //require all the required files that needs to be accessed
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/CheckLogin.php';
 require_once '../Database/UserConnection.php';
 require_once 'ProfileXML.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tgx-cinemas/Zahir/Session/SessionHelper.php';
