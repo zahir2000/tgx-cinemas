@@ -11,11 +11,6 @@ if (!isset($_SESSION["username"])) {
 ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -28,21 +23,25 @@ and open the template in the editor.
     <body>
         <?php include ('Utilities/navigation.php'); ?>
         <?php
-        //get cinema details $cinemaDetails = result from query
+        //database instance
         $cinemaCon = new CinemaConnection();
+        //get cinema details result from query
         $cinemaDetails = $cinemaCon->getCinemaDetails();
 
         //create cinema xml class 
         $cinemaXML = new CinemaXML($cinemaDetails);
 
+        //load xml file
         $xmlDoc = new DOMDocument();
         $xmlDoc->load('Cinema.xml');
-
+        
+        //load xsl stylesheet
         $xsl = new DOMDocument();
         $xsl->load('Cinema.xsl');
-
         $proc = new XSLTProcessor();
         $proc->registerPHPFunctions();
+        
+        //makes use of the stylesheet
         $proc->importStylesheet($xsl);
 
         echo $proc->transformToXml($xmlDoc);

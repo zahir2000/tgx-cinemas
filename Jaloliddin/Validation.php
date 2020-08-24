@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of Validation
+ * Validation class which validates various types of inputs
  *
  * @author Jaloliddin
  */
@@ -57,7 +57,7 @@ class Validation {
         $regexPattern = "^4[0-9]{12}(?:[0-9]{3})?$";
         if (preg_match($regexPattern, $number)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

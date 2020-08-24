@@ -22,9 +22,6 @@ session_start();
     </head>
     <body>
         <?php
-        /**
-         * The client code.
-         */
         if (isset($_POST['login'])) {
             if (Validation::isEmpty(['username', 'password'], $_POST)) {
                 $username = $_POST['username'];

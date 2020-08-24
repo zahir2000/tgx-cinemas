@@ -28,7 +28,6 @@ class ThrottlingMiddleware extends Middleware {
             echo "Request limit exceeded!\n";
             die();
         }
-
         return parent::check($username, $password);
     }
 

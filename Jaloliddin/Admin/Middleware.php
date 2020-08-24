@@ -7,9 +7,6 @@
  */
 abstract class Middleware {
 
-    /**
-     * @var Middleware
-     */
     private $next;
 
     /**
@@ -17,7 +14,6 @@ abstract class Middleware {
      */
     public function linkWith(Middleware $next): Middleware {
         $this->next = $next;
-
         return $next;
     }
 

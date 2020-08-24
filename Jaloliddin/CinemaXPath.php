@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of CinemaXPath
+ * CinemaXPath is used to navigate through attributes of the Cinema.Xml file
  *
  * @author Jaloliddin
  */

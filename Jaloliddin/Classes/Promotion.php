@@ -15,7 +15,7 @@ class Promotion {
     private $photo; //string
     private Admin $admin;
 
-    function __construct($promotionID="", $name="", $description="", $rate=0.0, $date="", $photo="", Admin $admin=NULL) {
+    function __construct($promotionID="", $name="", $description="", $rate=0.0, $date="", $photo="", $admin="") {
         $this->promotionID = $promotionID;
         $this->name = $name;
         $this->description = $description;
@@ -73,11 +73,11 @@ class Promotion {
         $this->photo = $photo;
     }
 
-    function getAdmin(): Admin {
+    function getAdmin(){
         return $this->admin;
     }
 
-    function setAdmin(Admin $admin): void {
+    function setAdmin($admin): void {
         $this->admin = $admin;
     }
 

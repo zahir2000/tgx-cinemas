@@ -3,10 +3,6 @@
 class Server {
 
     private $users = [];
-
-    /**
-     * @var Middleware
-     */
     private $middleware;
 
     /**

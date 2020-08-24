@@ -4,8 +4,7 @@
     Document   : Cinema.xsl
     Created on : August 19, 2020, 2:55 PM
     Author     : Jaloliddin
-    Description:
-        Purpose of transformation follows.
+    Description: XSL Stylesheet
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
@@ -45,7 +44,6 @@
                         </xsl:for-each>
                     </table>
                 </div>
-                
             </body>
         </html>
     </xsl:template>

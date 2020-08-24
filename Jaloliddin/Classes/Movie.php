@@ -21,10 +21,10 @@ class Movie {
     private $director; //string
     private $distributor; //string
     private $synopsis; //string
-    private Admin $admin;
+    private $admin;
 
     function __construct($movieID = "", $name = "", $poster = "", $length = 0, $status = "", $genre = "", $language = "", $subtitle = "",
-            $ageRestriction = "", $releaseDate = "", $cast = "", $director = "", $distributor = "", $synopsis = "", Admin $admin = NULL) {
+            $ageRestriction = "", $releaseDate = "", $cast = "", $director = "", $distributor = "", $synopsis = "", $admin="") {
         $this->movieID = $movieID;
         $this->name = $name;
         $this->poster = $poster;
@@ -154,11 +154,11 @@ class Movie {
         $this->synopsis = $synopsis;
     }
 
-    function getAdmin(): Admin {
+    function getAdmin() {
         return $this->admin;
     }
 
-    function setAdmin(Admin $admin): void {
+    function setAdmin($admin): void {
         $this->admin = $admin;
     }
 
